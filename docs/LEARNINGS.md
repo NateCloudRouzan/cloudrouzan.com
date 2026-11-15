@@ -48,3 +48,11 @@ For each incident or operational change, record the date, symptom, failing commi
 versions, evidence, root cause, approved fix, validation, and prevention step. Redact
 credentials and private account details. Clearly label observations, assumptions, and
 unverified dashboard state.
+
+## Follow-up evidence: 2026-11-15
+The owner supplied a screenshot of the existing Worker's Production build settings. It
+confirms repository `NateCloudRouzan/cloudrouzan.com`, production branch `main`, builds
+enabled, root `/`, build command `npm run build`, and deploy command
+`npx wrangler deploy --assets ./dist`. The Previews Base tab is visible but not selected,
+so feature-branch/PR preview publishing is still unknown. No infrastructure settings were
+changed in response to this screenshot.

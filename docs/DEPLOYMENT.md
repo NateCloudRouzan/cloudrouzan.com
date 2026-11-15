@@ -33,16 +33,21 @@ In Cloudflare's existing `cloudrouzan` Worker, verify these settings without cha
 | Setting | Expected from restoration / repository |
 | --- | --- |
 | Connected repository | `NateCloudRouzan/cloudrouzan.com` |
-| Production branch | `main` (reported in restoration chat) |
-| Root directory | Repository root |
+| Production branch | `main` (confirmed in owner screenshot, 2026-11-15) |
+| Root directory | `/` (confirmed in owner screenshot, 2026-11-15) |
 | Dependency installation | npm install while no lockfile exists; npm ci only after one is committed |
-| Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
+| Build command | `npm run build` (confirmed in owner screenshot, 2026-11-15) |
+| Deploy command | `npx wrangler deploy --assets ./dist` (confirmed in owner screenshot, 2026-11-15) |
 | Static assets directory | `./dist` in `wrangler.jsonc` |
 | Production Custom Domain | `cloudrouzan.com` on Worker `cloudrouzan` |
 | Non-production builds | Must be checked before pushing branches; not recorded in Git |
 
-Dashboard values have not been independently verified. There is no GitHub Actions
+The owner's 2026-11-15 screenshot confirms the connected repository, production branch,
+build and deploy commands, root directory, and that production builds are enabled.
+The explicit `--assets ./dist` flag matches the asset path in `wrangler.jsonc`.
+The screenshot shows the Production tab, not the Previews Base configuration; feature
+branch/PR preview publishing remains unverified. Other account settings have not been
+independently audited. There is no GitHub Actions
 workflow in this snapshot; GitHub-triggered deployment refers to Cloudflare Workers
 Builds integration, not an assumed Actions pipeline.
 
