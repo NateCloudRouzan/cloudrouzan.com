@@ -56,3 +56,9 @@ enabled, root `/`, build command `npm run build`, and deploy command
 `npx wrangler deploy --assets ./dist`. The Previews Base tab is visible but not selected,
 so feature-branch/PR preview publishing is still unknown. No infrastructure settings were
 changed in response to this screenshot.
+
+A second owner screenshot on 2026-11-15 confirms Previews Base has preview branch builds
+enabled, build command `npm run build`, preview command `npx wrangler preview`, root `/`,
+and include watch path `*`. Feature-branch publishing is therefore potentially a preview
+release. The documentation branch remains local pending approval to publish a preview or
+confirmation that preview builds have been disabled. No settings were changed.

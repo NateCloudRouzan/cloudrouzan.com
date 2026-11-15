@@ -40,14 +40,17 @@ In Cloudflare's existing `cloudrouzan` Worker, verify these settings without cha
 | Deploy command | `npx wrangler deploy --assets ./dist` (confirmed in owner screenshot, 2026-11-15) |
 | Static assets directory | `./dist` in `wrangler.jsonc` |
 | Production Custom Domain | `cloudrouzan.com` on Worker `cloudrouzan` |
-| Non-production builds | Must be checked before pushing branches; not recorded in Git |
+| Non-production builds | Enabled in owner screenshot, 2026-11-15; preview command `npx wrangler preview`, build `npm run build`, root `/` |
 
 The owner's 2026-11-15 screenshot confirms the connected repository, production branch,
 build and deploy commands, root directory, and that production builds are enabled.
 The explicit `--assets ./dist` flag matches the asset path in `wrangler.jsonc`.
-The screenshot shows the Production tab, not the Previews Base configuration; feature
-branch/PR preview publishing remains unverified. Other account settings have not been
-independently audited. There is no GitHub Actions
+A second owner screenshot shows Previews Base with preview branch builds enabled,
+preview command `npx wrangler preview`, build command `npm run build`, root `/`, and
+include watch path `*`. Treat pushing this documentation branch as potentially publishing
+a preview. Under a no-deployment instruction, obtain explicit approval for that preview
+or verify preview builds have been disabled before pushing. Other account settings have
+not been independently audited. There is no GitHub Actions
 workflow in this snapshot; GitHub-triggered deployment refers to Cloudflare Workers
 Builds integration, not an assumed Actions pipeline.
 
