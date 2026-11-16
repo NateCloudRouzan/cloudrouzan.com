@@ -812,3 +812,8 @@
 .bb-stock-label input {
   max-width: 100%;
 }
+
+.bb-quantity {
+  margin-top: 14px;
+  max-width: 200px;
+}

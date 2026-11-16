@@ -9,6 +9,11 @@ import {
 } from "./catalog";
 import {
   STORAGE_KEY,
+  addInventory,
+  productKey,
+  setQuantity,
+  isInInventory,
+  MAX_QUANTITY,
   emptyProfile,
   defaultPreferences,
   parseProfile,
@@ -89,13 +94,7 @@ export default function BarBuddy() {
     setStatus(`${name} added to your shopping list.`);
   }
   function addItem(ingredient: string, name: string) {
-    setProfile((p) => ({
-      ...p,
-      items: [
-        ...p.items,
-        { id: crypto.randomUUID(), ingredient, name, stock: "have" },
-      ],
-    }));
+    setProfile((p) => addInventory(p, ingredient, name, crypto.randomUUID()));
     setStatus(`${name} added to your bar.`);
   }
   function exportProfile() {
@@ -124,30 +123,10 @@ export default function BarBuddy() {
     if (fileRef.current) fileRef.current.value = "";
   }
   function purchased(item: ShoppingItem) {
-    setProfile((p) => {
-      const existing = p.items.find(
-        (i) =>
-          i.ingredient === item.ingredient &&
-          i.name.toLowerCase() === item.name.toLowerCase(),
-      );
-      return {
-        ...p,
-        items: existing
-          ? p.items.map((i) =>
-              i.id === existing.id ? { ...i, stock: "have" } : i,
-            )
-          : [
-              ...p.items,
-              {
-                id: crypto.randomUUID(),
-                ingredient: item.ingredient,
-                name: item.name,
-                stock: "have",
-              },
-            ],
-        shopping: p.shopping.filter((s) => s !== item),
-      };
-    });
+    setProfile((p) => ({
+      ...addInventory(p, item.ingredient, item.name, crypto.randomUUID()),
+      shopping: p.shopping.filter((s) => s !== item),
+    }));
     setStatus(`${item.name} confirmed purchased and marked available.`);
   }
   return (
@@ -482,6 +461,9 @@ export default function BarBuddy() {
                       )
                       .map((i) => ({ name: i.name, ingredient: i.id })),
                   ]
+                    .filter(
+                      (p) => !isInInventory(profile, p.ingredient, p.name),
+                    )
                     .filter((p) =>
                       (p.name + " " + ingredientName(p.ingredient))
                         .toLowerCase()
@@ -553,6 +535,10 @@ export default function BarBuddy() {
                     other essentials.
                   </p>
                 )}
+                <p className="bb-footnote">
+                  Update counts here instead of adding another row. Zero marks
+                  an item out; use Restock to buy more.
+                </p>
                 <div className="bb-inventory">
                   {profile.items.map((item) => (
                     <div className="bb-stock-row" key={item.id}>
@@ -566,18 +552,71 @@ export default function BarBuddy() {
                           onBlur={(e) => {
                             const name = e.currentTarget.value.trim();
                             if (name) {
-                              setProfile((p) => ({
-                                ...p,
-                                items: p.items.map((i) =>
-                                  i.id === item.id ? { ...i, name } : i,
-                                ),
-                              }));
+                              if (
+                                profile.items.some(
+                                  (i) =>
+                                    i.id !== item.id &&
+                                    productKey(i.ingredient, i.name) ===
+                                      productKey(item.ingredient, name),
+                                )
+                              ) {
+                                e.currentTarget.value = item.name;
+                                setStatus(
+                                  "That product is already in your bar. Update its quantity instead.",
+                                );
+                              } else {
+                                setProfile((p) => ({
+                                  ...p,
+                                  items: p.items.map((i) =>
+                                    i.id === item.id ? { ...i, name } : i,
+                                  ),
+                                }));
+                              }
                             } else {
                               e.currentTarget.value = item.name;
                               setStatus("Product names cannot be empty.");
                             }
                           }}
                         />
+                        <label className="bb-quantity">
+                          Quantity (bottles / items)
+                          <input
+                            key={item.quantity}
+                            type="number"
+                            min="0"
+                            max={MAX_QUANTITY}
+                            step="1"
+                            defaultValue={item.quantity}
+                            aria-label={`${item.name} quantity`}
+                            onBlur={(e) => {
+                              const value = e.currentTarget.value;
+                              const quantity = Number(value);
+                              if (
+                                value.trim() &&
+                                Number.isSafeInteger(quantity) &&
+                                quantity >= 0 &&
+                                quantity <= MAX_QUANTITY
+                              ) {
+                                setProfile((p) => ({
+                                  ...p,
+                                  items: p.items.map((i) =>
+                                    i.id === item.id
+                                      ? setQuantity(i, quantity)
+                                      : i,
+                                  ),
+                                }));
+                              } else {
+                                e.currentTarget.value = String(item.quantity);
+                                setStatus(
+                                  "Quantity must be a whole number from 0 to 9999.",
+                                );
+                              }
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") e.currentTarget.blur();
+                            }}
+                          />
+                        </label>
                         <select
                           aria-label={`${item.name} availability`}
                           value={item.stock}
@@ -586,7 +625,14 @@ export default function BarBuddy() {
                               ...p,
                               items: p.items.map((i) =>
                                 i.id === item.id
-                                  ? { ...i, stock: e.target.value as Stock }
+                                  ? {
+                                      ...i,
+                                      stock: e.target.value as Stock,
+                                      quantity:
+                                        e.target.value === "out"
+                                          ? 0
+                                          : Math.max(1, i.quantity),
+                                    }
                                   : i,
                               ),
                             }))
@@ -879,9 +925,10 @@ export default function BarBuddy() {
               </article>
             ))}
             <p className="bb-footnote">
-              Confirm purchased marks this named product available. For a
-              generic ingredient, add the exact brand separately in My bar if
-              you want a precise restock search next time.
+              Confirm purchased adds one to this product’s quantity and marks it
+              available. For a generic ingredient, add the exact brand
+              separately in My bar if you want a precise restock search next
+              time.
             </p>
           </>
         )}
