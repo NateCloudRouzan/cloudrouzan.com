@@ -3,17 +3,29 @@
 body { margin: 0; }
 a { color: #fff; text-decoration: none; }
 a:hover { text-decoration: underline; }
-.page { width: min(780px, calc(100% - 48px)); margin: 0 auto; }
+a:focus-visible { outline: 2px solid #a9cfee; outline-offset: 5px; border-radius: 2px; }
+.page { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }
 .topline { padding: 32px 0; font-weight: 650; letter-spacing: -.02em; font-size: 15px; border-bottom: 1px solid #2b3540; }
-.hero { padding: 106px 0 104px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: center; gap: 56px; padding: 90px 0; }
+.hero-copy { min-width: 0; }
+.portrait { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid #2b3540; }
 .eyebrow { color: #95a6b8; text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 650; }
 h1 { font-size: clamp(52px, 9vw, 88px); letter-spacing: -.065em; margin: 12px 0 22px; line-height: 1.04; }
 .intro { font-size: clamp(18px, 3vw, 22px); line-height: 1.6; color: #a9b7c7; max-width: 660px; }
-.links { display: flex; gap: 28px; margin-top: 34px; font-size: 15px; }
+.links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 26px; font-size: 15px; }
+.links a { display: inline-flex; align-items: center; min-height: 44px; }
 .projects { border-top: 1px solid #2b3540; padding: 34px 0 100px; }
-.section-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.section-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
 .section-head h2 { margin: 0; font-size: 24px; letter-spacing: -.025em; }
 .section-head span { color: #8b9bad; font-size: 13px; }
 .projects p { color: #a9b7c7; line-height: 1.7; }
 footer { padding: 24px 0 36px; border-top: 1px solid #2b3540; color: #8191a3; font-size: 13px; }
-@media (max-width: 600px) { .hero { padding: 80px 0; } .projects { padding-bottom: 75px; } }
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 56px 0; }
+  .portrait { max-width: 460px; }
+  .projects { padding-bottom: 64px; }
+}
+@media (max-width: 400px) {
+  .page { width: calc(100% - 32px); }
+  h1 { font-size: clamp(40px, 13vw, 52px); }
+}
