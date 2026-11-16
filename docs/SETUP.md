@@ -43,9 +43,10 @@ output. For documentation edits, also run `git diff --check` and inspect local l
 Give the environment repository access and dependency-install network access, then have it
 read [AGENTS.md](../AGENTS.md). Use the same install/build/type-check commands as locally.
 No production Cloudflare token is needed. Keep changes on a feature branch, review the
-file diff, and prepare a PR. Before publishing a branch, verify Cloudflare's branch build
-settings as described in [DEPLOYMENT.md](DEPLOYMENT.md). A successful build is not
-permission to merge or deploy.
+file diff, and open or update a PR. Branch pushes publish previews; merge completed, validated work
+to `main` to deploy production. The owner authorizes this routine workflow without another
+reviewer or a separate approval; keep unfinished PRs open. See
+[DEPLOYMENT.md](DEPLOYMENT.md) for release and recovery details.
 
 ## Common local issues
 - Authentication: use `gh auth status`; if needed, sign in interactively with

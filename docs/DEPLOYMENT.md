@@ -1,16 +1,24 @@
 # Deployment and recovery
 
-## Approval boundary
+## Solo asynchronous workflow
 Production is `https://cloudrouzan.com`, served by the `cloudrouzan` Cloudflare Worker.
-Do not merge or deploy without the owner's explicit approval. A push/merge to `main`
-can deploy automatically. Direct Wrangler deployment and rollback also change production.
-Do not execute release commands below as validation.
+On 2026-11-16 the owner authorized routine commits, branch pushes, previews, merges,
+production releases, and recovery without another person's review or a separate owner
+approval. This replaces the initial no-merge/no-deploy restriction. Respect any narrower
+instruction in a particular task. Validation and checking the diff still apply.
 
-Before pushing any feature branch, inspect the existing Worker's Builds settings for
-non-production branch builds and preview publishing. Do not assume a PR cannot publish.
-If the settings cannot be verified and deployment is prohibited, keep the branch local
-and prepare the PR description until the owner confirms safe publishing. Do not disable
-builds or modify branch settings without authorization.
+Feature branch pushes publish previews; `main` changes trigger production deployment.
+Keep an in-progress PR open while adding commits. A branch push updates its PR and
+preview, not production. Merge completed work to release it; do not auto-merge an unfinished
+PR. The owner or Codex can perform that merge without requesting another approval.
+Do not run deployment commands merely as build validation.
+
+GitHub settings inspected on 2026-11-16: `main` has no branch protection and the repository
+has no rulesets. No external reviewer is required. Repository auto-merge is enabled for
+future use; per-PR auto-merge depends on GitHub's branch requirements and is not an
+always-on merge trigger. Without required checks, an ordinary merge can happen immediately;
+wait for validation rather than using auto-merge as a substitute for checking results.
+No new review requirements or branch restrictions are introduced by this setup.
 
 ## Existing configuration and account checks
 The repository declares:
@@ -26,7 +34,7 @@ The repository declares:
 This is an assets-only Worker, not a Cloudflare Pages project. Wrangler does not have a
 custom build command here: build `dist/` explicitly before deploying. No Wrangler package
 or version is pinned. `npx wrangler` may download a release; confirm its version and Node
-requirements before an authorized release. Pinning it is separate future work.
+requirements before a release. Pinning it is separate future work.
 
 In Cloudflare's existing `cloudrouzan` Worker, verify these settings without changing them:
 
@@ -48,8 +56,8 @@ The explicit `--assets ./dist` flag matches the asset path in `wrangler.jsonc`.
 A second owner screenshot shows Previews Base with preview branch builds enabled,
 preview command `npx wrangler preview`, build command `npm run build`, root `/`, and
 include watch path `*`. Treat pushing this documentation branch as potentially publishing
-a preview. Under a no-deployment instruction, obtain explicit approval for that preview
-or verify preview builds have been disabled before pushing. Other account settings have
+a preview. Routine preview publishing is authorized by the solo workflow above. If a
+specific task forbids publishing, keep its branch local. Other account settings have
 not been independently audited. There is no GitHub Actions
 workflow in this snapshot; GitHub-triggered deployment refers to Cloudflare Workers
 Builds integration, not an assumed Actions pipeline.
@@ -57,11 +65,12 @@ Builds integration, not an assumed Actions pipeline.
 ## Preferred release: GitHub -> Workers Builds
 1. Make changes on a feature branch, install dependencies, run `npm run build`, and run
    `npx --no-install tsc --noEmit`. Review the diff and inspect UI changes locally.
-2. Confirm feature branch publishing is safe, push that branch, and open a PR against
-   `main`. Include scope, checks, and any known limitations. Do not enable auto-merge.
-3. Obtain explicit owner approval to merge and deploy. Treat merging to `main` as the
-   release action because Workers Builds can publish it automatically.
-4. After the authorized merge, inspect Cloudflare's build logs and deployed commit SHA.
+2. Push the branch and open or update its PR against `main`. Include scope, checks, and
+   limitations. Keep it open while work continues; each push can update the preview.
+3. Once the task is complete and validation passes, merge without a separate approval.
+   Treat merging to `main` as the release action because Workers Builds publishes it.
+   Auto-merge may be used for completed work; never use it to bypass a failed check.
+4. After the merge, inspect Cloudflare's build logs and deployed commit SHA.
    Confirm installation, Vite build, and Wrangler deployment all succeeded.
 5. Verify the production homepage, CSS/assets, HTTPS, profile links, and mobile layout.
    Record the commit and deployment version. Confirm the domain serves the intended build.
@@ -70,7 +79,7 @@ A GitHub push alone does not prove a successful deployment. Avoid overlapping au
 and manual deployments; an automatic build can replace a manually deployed version.
 
 ## Alternative: direct Wrangler CLI release
-Only after explicit approval, from the reviewed commit in the repository root:
+For a routine release, from the validated commit in the repository root:
 
 ```sh
 git status --short
@@ -84,16 +93,16 @@ npx wrangler whoami
 npx wrangler deploy
 ```
 
-Stop if the checkout contains unreviewed changes, validation fails, or `whoami` identifies
+Stop if the checkout contains unintended changes, validation fails, or `whoami` identifies
 the wrong account. Confirm the existing `cloudrouzan` Worker and intended account before
 running deploy. With no configured environments, do not invent an `--env` value or Worker
 name. Do not run project creation or auto-configuration commands.
 
 Wrangler uploads the built assets to the existing Worker; it does not push source to
-GitHub. Deploy a reviewed commit already tracked in GitHub and record its SHA to avoid
+GitHub. Deploy a validated commit already tracked in GitHub and record its SHA to avoid
 source/production drift. A future lockfile changes installation to `npm ci`. Interactive
 login is suitable for a developer; production tokens should not be supplied to a Codex
-editing environment. If unattended releases are later approved, use scoped credentials
+editing environment. For unattended CLI releases, use scoped credentials
 in the CI secret store, never in Git or browser code.
 
 ## Troubleshooting
@@ -118,10 +127,10 @@ Cloudflare DNS manages zone records per the restoration record. Preserve mail re
 
 ## Recovery and rollback
 Identify the last known good commit and Cloudflare deployment version before a release.
-If a release breaks production, gather the failing SHA/version and logs, and ask the owner
-to approve recovery. After approval, use the existing Worker's deployment history to
+If a release breaks production, gather the failing SHA/version and logs, then use the
+existing Worker's deployment history to
 restore the known good version, or use Wrangler's rollback command with an explicitly
-selected version. Verify the domain afterward. Reconcile GitHub with a reviewed revert PR;
+selected version. Verify the domain afterward. Reconcile GitHub with a validated revert PR;
 a later automatic build may otherwise overwrite the rollback. Do not force-push history,
 delete the Worker, or recreate DNS as a rollback strategy.
 
@@ -132,3 +141,21 @@ delete the Worker, or recreate DNS as a rollback strategy.
 - [Cloudflare rollback guidance](https://developers.cloudflare.com/workers/versions-and-deployments/rollbacks/)
 
 Check current official guidance before changing tooling or release settings.
+
+## Publishing and releasing from the CLI
+Push more commits to an open PR with `git push` from its branch. After completing the
+work, checking the diff, and resolving failed checks, merge with:
+
+```sh
+gh pr checks 1 --repo NateCloudRouzan/cloudrouzan.com
+gh pr merge 1 --repo NateCloudRouzan/cloudrouzan.com --squash
+```
+
+Replace `1` with the intended PR number for future work. These are release commands,
+not commands to run on every push. When required checks are configured, use
+`gh pr merge <number> --auto --squash` to wait for them without requiring human review.
+Do not add reviewer requirements just to enable auto-merge.
+
+The first documentation preview check failed on 2026-11-15; its Cloudflare build log
+must be inspected before treating preview publishing as healthy. Local build and type
+checks passed. A failed hosted check is not evidence that review approval is needed.

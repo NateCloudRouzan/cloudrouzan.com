@@ -39,7 +39,7 @@ rather than treating every build failure as the old compatibility-date issue.
 
 ## Preserve these boundaries
 Keep documentation with source so remote development has the same context as local
-work. Use branches, reviewable PRs, and explicit release approval. Preserve the existing
+work. Use branches, PR history, and validation under the solo workflow below. Preserve the existing
 Worker identity, domain registration, DNS and mail settings. Do not grant production
 credentials just to edit content or validate builds.
 
@@ -62,3 +62,11 @@ enabled, build command `npm run build`, preview command `npx wrangler preview`, 
 and include watch path `*`. Feature-branch publishing is therefore potentially a preview
 release. The documentation branch remains local pending approval to publish a preview or
 confirmation that preview builds have been disabled. No settings were changed.
+
+## Solo workflow decision: 2026-11-16
+The owner requested asynchronous development and deployment without a second reviewer
+or an additional approval step. Routine pushes, previews, completed-work merges, releases,
+and known-good recovery are now authorized. Initial approval restrictions above are
+historical, not current policy. Keep unfinished PRs open, respect task-specific limits,
+and preserve DNS/registrar/access boundaries. GitHub has no rulesets or protection on
+`main`; auto-merge is enabled at repository level, with no required human reviews added.

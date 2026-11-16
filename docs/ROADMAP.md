@@ -1,7 +1,7 @@
 # Roadmap
 
 These are proposed follow-up tasks, not permission to implement, merge, or deploy them.
-Keep each change small enough for its own review. Current website behavior is preserved
+Keep each change small enough to validate and understand. Current website behavior is preserved
 by the documentation work.
 
 ## 1. Make development repeatable
@@ -19,7 +19,7 @@ can open a PR without publishing anything unintentionally.
 - Review the existing Workers Builds repository connection, commands, deployed SHA,
   Custom Domain, DNS delegation, and certificate status with the owner.
 - Confirm Squarespace renewal remains active; preserve unrelated DNS and mail records.
-- Record a known good deployment and approved recovery procedure.
+- Record a known good deployment and recovery procedure.
 - Plan and approve an explicit `www.cloudrouzan.com` -> apex redirect if desired.
 - Align the generic starter README with the Workers-specific documentation in a separate
   change, keeping application files unchanged.
@@ -39,6 +39,7 @@ agreed feature justifies them; none are required for the current static homepage
 
 ## 4. Exercise the remote workflow
 Use [AGENTS.md](../AGENTS.md) and [SETUP.md](SETUP.md) for a small approved Codex task.
-Require a feature branch, local validation, a clear PR, and owner review. Supply no
-production credentials. Keep publishing, merging, and deployment within explicit approval
-boundaries documented in [DEPLOYMENT.md](DEPLOYMENT.md).
+Use a feature branch, local validation, and a clear PR for history. Another reviewer and
+a separate routine release approval are not required. Keep unfinished PRs open, then merge
+completed work to deploy. Use the standing authorization and infrastructure boundaries in
+[DEPLOYMENT.md](DEPLOYMENT.md). Supply no production credentials for editing tasks.

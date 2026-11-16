@@ -26,14 +26,21 @@ Do not add a backend, framework, or dependency without a concrete need.
    registrar, custom domains, billing, or unrelated mail records as part of code changes.
 6. Squarespace remains the registrar; Cloudflare provides DNS and Workers hosting per the
    restoration record. Do not migrate services implicitly.
-7. Do not merge or deploy without the owner's explicit approval. A merge/push to `main`
-   can trigger production deployment through Cloudflare Workers Builds. Do not run
-   `wrangler deploy`, `versions upload`, rollback, or preview publishing as validation.
-8. Before pushing a feature branch, check whether branch builds publish previews. If this
-   cannot be verified and deployment is forbidden, keep the branch local and prepare the
-   PR text until the owner confirms safe branch publishing.
-9. Use pull requests for review; do not enable auto-merge. Report validation results and
-   limitations, and update relevant docs when commands or architecture change.
+7. The owner authorizes routine asynchronous development: commit and push feature branches,
+   publish previews, merge completed changes, and deploy the existing site without a separate
+   human review or approval step. This standing instruction supersedes the initial
+   documentation-only no-merge/no-deploy restriction. Follow any narrower instruction in
+   the current task, such as “PR only” or “do not deploy.”
+8. Feature branch pushes can publish Cloudflare previews; merging to `main` triggers
+   production deployment. Keep an in-progress PR open while the owner is adding commits.
+   Do not enable auto-merge on unfinished work. When a requested feature is complete,
+   validate it and inspect the diff, then merge/deploy without asking for routine approval.
+9. PRs provide history and an optional self-review point; another person's approval is not
+   required. Auto-merge is permitted for completed work when supported by branch rules.
+   Do not bypass failed checks. Investigate failures and report unresolved blockers.
+10. Routine recovery to a known good site version is authorized. Preserve infrastructure
+    boundaries above: domain/DNS, billing, access permissions, and unrelated services remain
+    outside routine website work. Never deploy merely to test whether a build succeeds.
 
 ## Commands and validation
 There is currently no committed lockfile or pinned Node/Wrangler version.
