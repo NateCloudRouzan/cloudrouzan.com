@@ -1,7 +1,7 @@
 {
   "name": "Nate’s bar",
   "updatedAt": "2026-11-16",
-  "status": "Inventory in progress: fridge and pantry recorded from current photos. Other locations and equipment are still pending. Counts are containers, not remaining volume.",
+  "status": "Inventory in progress: fridge and pantry containers recorded; cabinet coffee, tea, matcha, and SodaStream tonic supplies confirmed available. Cabinet quantities are supply entries, not package counts. Other locations and equipment remain pending.",
   "items": [
     {
       "id": "fridge-noble-ginger",
@@ -250,6 +250,42 @@
       "stock": "have",
       "location": "Pantry",
       "notes": "Flavoring essence; not jasmine syrup or tea."
+    },
+    {
+      "id": "cabinet-sodastream-tonic",
+      "ingredient": "tonic-concentrate",
+      "name": "SodaStream Tonic",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Concentrate requiring preparation; not ready-to-drink tonic. Brand variant and container count unconfirmed. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cabinet-coffee",
+      "ingredient": "ba-coffee",
+      "name": "Coffee",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms available to prepare at any time. Type, brand, amount, and espresso/cold-brew capability unspecified. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cabinet-tea",
+      "ingredient": "ba-tea",
+      "name": "Tea",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms available to prepare at any time. Tea variety, brand, and amount unspecified. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cabinet-matcha",
+      "ingredient": "matcha",
+      "name": "Matcha",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms available to prepare at any time. Brand and amount unspecified; not assumed to be sweetened matcha syrup. Quantity 1 represents one available supply entry, not a confirmed package count."
     }
   ],
   "tools": []

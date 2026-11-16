@@ -68,6 +68,9 @@ Bar Assistant's photo metadata are not treated as blanket reuse permission.
 All visitors use the same published bar, defined in
 [`shared-bar.json`](../src/barbuddy/data/shared-bar.json). Inventory is being recorded by location. The current draft contains 28 distinct
 containers photographed on 2026-11-16: 15 in the fridge and 13 in the pantry, one each.
+Four additional Cabinet supply entries record coffee, tea, matcha, and SodaStream tonic.
+Their quantity of 1 denotes an available supply entry, not a confirmed package count.
+Coffee is not assumed to include espresso or cold brew; tonic concentrate requires preparation.
 The Tallax wine style remains unconfirmed. Other locations and equipment
 remain pending; repeated views of the same bottles are not extra stock. Do not
 infer remaining volume or low-stock status from the photographs.
