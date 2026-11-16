@@ -24,8 +24,8 @@ Squarespace registration -> Cloudflare authoritative DNS (restoration record)
 | `wrangler.jsonc` | Worker `cloudrouzan`, compatibility date `2026-11-10`, assets directory `./dist` |
 | `docs/` and `AGENTS.md` | Development, operations, history, and agent guidance |
 
-The GitHub link points to NateCloudRouzan; LinkedIn still points to the generic LinkedIn
-homepage. Projects are intentionally a placeholder. The footer computes the current year
+The GitHub link points to NateCloudRouzan; LinkedIn points to the owner's profile at
+`https://www.linkedin.com/in/cloudrouzan`. Projects are intentionally a placeholder. The footer computes the current year
 in the browser. Documentation work must not alter any of this behavior.
 
 ## Hosting boundaries

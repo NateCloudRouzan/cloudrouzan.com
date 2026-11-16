@@ -28,7 +28,7 @@ Done when the owner can explain which action publishes production and can recove
 known good version without guessing or recreating infrastructure.
 
 ## 3. Improve the portfolio incrementally
-- Replace the generic LinkedIn destination after the owner supplies the actual URL.
+- Completed 2026-11-16: link LinkedIn to `https://www.linkedin.com/in/cloudrouzan`.
 - Add real project descriptions and links to the existing Projects section.
 - Check accessibility, keyboard focus, responsive layout, and metadata as content grows.
 - Add technical writing and interactive demonstrations when content is ready.
