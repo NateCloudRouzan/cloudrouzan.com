@@ -446,7 +446,7 @@ export default function BarBuddy() {
               </div>
             )}
             <div className="bb-drinks">
-              {view.map(({ drink, missing, tools, low }, index) => (
+              {view.map(({ drink, missing, tools, low, substitutions }, index) => (
                 <DrinkCard
                   key={drink.id}
                   drink={drink}
@@ -454,6 +454,7 @@ export default function BarBuddy() {
                   missing={missing.map((n) => n.id)}
                   missingTools={tools}
                   low={low.map((n) => n.id)}
+                  substitutions={substitutions}
                   taste={prefs.taste}
                   onShop={shop}
                   review={profile.reviews.find((r) => r.drinkId === drink.id)}
@@ -1005,6 +1006,7 @@ function DrinkCard({
   index,
   missing,
   missingTools,
+  substitutions,
   low,
   taste,
   onShop,
@@ -1016,6 +1018,7 @@ function DrinkCard({
   missing: string[];
   missingTools: string[];
   low: string[];
+  substitutions: string[];
   taste: string;
   onShop: (id: string, name: string, reason: string) => void;
   review?: Review;
@@ -1118,6 +1121,7 @@ function DrinkCard({
               excluded from make-now and unlock recommendations.
             </p>
           )}
+          {!!substitutions.length && <div className="bb-footnote"><strong>Using your bar</strong><ul>{substitutions.map(note => <li key={note}>{note}</li>)}</ul></div>}
           <p className="bb-method">{drink.method}</p>
           {!!drink.optionalNeeds?.length && (
             <p className="bb-footnote">

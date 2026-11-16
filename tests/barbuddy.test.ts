@@ -342,7 +342,7 @@ test("fridge inventory deduplicates repeated photos and preserves product distin
   );
   const p = { ...emptyProfile(), items: fridge };
   const ids = new Set(inspect(drink("margarita"), p).missing.map((n) => n.id));
-  assert.ok(ids.has("lime"));
+  assert.ok(!ids.has("lime"));
   assert.ok(ids.has("tequila"));
   assert.ok(
     inspect(drink("cuba-libre"), p).missing.some((n) => n.id === "cola"),
@@ -394,4 +394,27 @@ test("prepared sodas require stocked concentrates and a carbonator", () => {
   p.items[0].ingredient = "diet-ginger-ale-concentrate";
   assert.ok(available(p).has("ginger-ale"));
   assert.ok(!available(p).has("ginger-beer"));
+});
+
+test("specific spirits and bottled citrus satisfy broader recipe requirements with notes", () => {
+  const p = emptyProfile();
+  p.items = ["japanese-whisky", "bottled-lime", "bottled-lemon", "bottled-orange", "ba-tequila-reposado"].map(id => ({id, ingredient:id, name:id, quantity:1, stock:"have" as const}));
+  for (const id of ["ba-whiskey", "lime", "lemon", "orange", "tequila", "ba-tequila"]) assert.ok(available(p).has(id), id);
+  for (const id of ["bourbon", "rye", "ba-islay-scotch-whiskey", "ba-tequila-blanco", "ba-lime"]) assert.ok(!available(p).has(id), id);
+  const recipe = {...drink("margarita"), needs:[{id:"lime", amount:"1 oz"}]};
+  assert.equal(inspect(recipe,p).missing.length,0);
+  assert.match(inspect(recipe,p).substitutions[0], /Fresh is preferred/);
+  p.items[1].stock = "low";
+  assert.equal(inspect(recipe,p).low.length,1);
+  p.items[1].stock = "out";
+  assert.equal(inspect(recipe,p).missing.length,1);
+  assert.equal(inspect(recipe,p).substitutions.length,0);
+});
+test("mapped pantry supplies prevent false unlocks without equating unrelated ingredients", () => {
+ const p=withSharedBar(emptyProfile());
+ for (const id of ["ba-whiskey", "lime", "lemon", "orange", "tequila", "ba-dry-curacao", "grenadine"]) assert.ok(available(p).has(id),id);
+ assert.ok(!available(p).has("ginger-beer"));
+ assert.ok(!available(p).has("ba-maraschino"));
+ const recipe={...drink("margarita"),needs:[{id:"lime",amount:"1 oz"},{id:"bottled-lime",amount:"1 oz"}]};
+ assert.equal(inspect(recipe,p).substitutions.length,1);
 });
