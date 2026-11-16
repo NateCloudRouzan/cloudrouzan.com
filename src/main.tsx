@@ -1,6 +1,7 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles.css';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+import BarBuddy from "./barbuddy/BarBuddy";
 
 function App() {
   return (
@@ -11,12 +12,24 @@ function App() {
           <p className="eyebrow">Software Engineer · Personal Website</p>
           <h1>Hi, I'm Nate.</h1>
           <p className="intro">
-            I build software for infrastructure and distributed systems.
-            This is my corner of the internet for projects, experiments, and writing.
+            I build software for infrastructure and distributed systems. This is
+            my corner of the internet for projects, experiments, and writing.
           </p>
           <div className="links">
-            <a href="https://github.com/NateCloudRouzan" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/cloudrouzan" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a
+              href="https://github.com/NateCloudRouzan"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://www.linkedin.com/in/cloudrouzan"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn ↗
+            </a>
           </div>
         </div>
         <img
@@ -29,14 +42,26 @@ function App() {
         />
       </section>
       <section className="projects">
-        <div className="section-head"><h2>Projects</h2><span>Coming soon</span></div>
-        <p>I'm setting up this space to share things I'm building. Check back soon.</p>
+        <div className="section-head">
+          <h2>Projects</h2>
+          <span>Tools & experiments</span>
+        </div>
+        <a className="project-card" href="/BarBuddy">
+          <h3>BarBuddy ↗</h3>
+          <p>
+            A cocktail companion for what’s on your shelf. Find a drink,
+            discover ingredient unlocks, and plan your next supply run.
+          </p>
+          <span>Explore BarBuddy</span>
+        </a>
       </section>
       <footer>© {new Date().getFullYear()} Nate Cloud-Rouzan</footer>
     </main>
   );
 }
 
-createRoot(document.getElementById('root')!).render(
-  <React.StrictMode><App /></React.StrictMode>
+createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    {/^\/barbuddy\/?$/i.test(window.location.pathname) ? <BarBuddy /> : <App />}
+  </React.StrictMode>,
 );
