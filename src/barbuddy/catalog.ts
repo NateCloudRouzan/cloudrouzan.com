@@ -13,6 +13,7 @@ const groups: Record<string, [string, string][]> = {
     ["japanese-whisky", "Japanese whisky"],
     ["cognac", "Cognac"],
     ["fireball", "Fireball"],
+    ["lychee-soju", "Lychee-flavored soju"],
   ],
   "Liqueurs & aperitifs": [
     ["triple-sec", "Triple sec"],
@@ -26,6 +27,14 @@ const groups: Record<string, [string, string][]> = {
     ["lychee", "Lychee liqueur"],
   ],
   "Juice & mixers": [
+    ["bottled-lemon", "Bottled lemon juice"],
+    ["bottled-lime", "Bottled lime juice"],
+    ["bottled-orange", "Bottled orange juice"],
+    ["fruit-punch", "Fruit punch juice drink"],
+    ["ginger-blend", "Organic ginger blend"],
+    ["diet-cola-concentrate", "Diet cola concentrate"],
+    ["diet-ginger-ale-concentrate", "Diet ginger ale concentrate"],
+    ["diet-lemon-lime-concentrate", "Diet lemon-lime concentrate"],
     ["lime", "Fresh lime juice"],
     ["lemon", "Fresh lemon juice"],
     ["orange", "Fresh orange juice"],
@@ -41,6 +50,9 @@ const groups: Record<string, [string, string][]> = {
     ["grapefruit-seltzer", "Grapefruit sparkling water"],
   ],
   "Syrups & extras": [
+    ["portland-georgia-peach", "Georgia Peach syrup concentrate"],
+    ["portland-ube", "Ube syrup concentrate"],
+    ["portland-pomegranate-cherry", "Pomegranate Cherry syrup concentrate"],
     ["syrup", "Simple syrup"],
     ["sugar", "Superfine sugar"],
     ["sugar-cube", "Sugar cubes"],

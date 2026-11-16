@@ -1,7 +1,142 @@
 {
   "name": "Nate’s bar",
   "updatedAt": "2026-11-16",
-  "status": "Inventory session pending — no stock or quantities have been assumed.",
-  "items": [],
+  "status": "Inventory in progress: fridge recorded from current photos. Other locations and equipment are still pending. Counts are containers, not remaining volume.",
+  "items": [
+    {
+      "id": "fridge-noble-ginger",
+      "ingredient": "ginger-blend",
+      "name": "Noble Organic Ginger Blend",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Combined ginger beverage product; not assumed to be ginger beer or simple syrup."
+    },
+    {
+      "id": "fridge-realemon",
+      "ingredient": "bottled-lemon",
+      "name": "ReaLemon lemon juice",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Bottled juice; kept separate from freshly squeezed lemon juice."
+    },
+    {
+      "id": "fridge-realime",
+      "ingredient": "bottled-lime",
+      "name": "ReaLime lime juice",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Bottled juice; kept separate from freshly squeezed lime juice."
+    },
+    {
+      "id": "fridge-portland-georgia-peach",
+      "ingredient": "portland-georgia-peach",
+      "name": "Portland Syrups Georgia Peach",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Flavored beverage concentrate; not fresh peach or plain simple syrup."
+    },
+    {
+      "id": "fridge-portland-ube",
+      "ingredient": "portland-ube",
+      "name": "Portland Syrups Ube",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Flavored beverage concentrate."
+    },
+    {
+      "id": "fridge-portland-pomegranate-cherry",
+      "ingredient": "portland-pomegranate-cherry",
+      "name": "Portland Syrups Pomegranate Cherry",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Combined flavor concentrate; not separate pomegranate and cherry ingredients."
+    },
+    {
+      "id": "fridge-soonhari-lychee",
+      "ingredient": "lychee-soju",
+      "name": "Soonhari Lychee soju",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Lychee-flavored soju; not lychee liqueur."
+    },
+    {
+      "id": "fridge-la-couleur-exquise-2022",
+      "ingredient": "ba-white-wine",
+      "name": "La Couleur Exquise 2022",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Owner confirmed still white wine; not sparkling wine, Champagne, or Prosecco."
+    },
+    {
+      "id": "fridge-mission-strawberry-margarita",
+      "ingredient": "premix",
+      "name": "Mission Strawberry Margarita",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Ready-to-pour cocktail; not separate tequila, fruit, and citrus supplies."
+    },
+    {
+      "id": "fridge-roses-grenadine",
+      "ingredient": "grenadine",
+      "name": "Rose’s Grenadine",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge"
+    },
+    {
+      "id": "fridge-simply-orange",
+      "ingredient": "bottled-orange",
+      "name": "Simply Orange Pulp Free",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Bottled orange juice; kept separate from freshly squeezed orange juice."
+    },
+    {
+      "id": "fridge-honest-kids-super-fruit-punch",
+      "ingredient": "fruit-punch",
+      "name": "Honest Kids Organic Super Fruit Punch",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Juice drink; not individual fruit juices."
+    },
+    {
+      "id": "fridge-sodastream-diet-cola",
+      "ingredient": "diet-cola-concentrate",
+      "name": "SodaStream Classics Diet Cola",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Concentrate requiring preparation; not ready-to-drink cola or Coke Zero."
+    },
+    {
+      "id": "fridge-sodastream-diet-ginger-ale",
+      "ingredient": "diet-ginger-ale-concentrate",
+      "name": "SodaStream Diet Ginger Ale",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Concentrate requiring preparation; not ginger beer."
+    },
+    {
+      "id": "fridge-sodastream-diet-lemon-lime",
+      "ingredient": "diet-lemon-lime-concentrate",
+      "name": "SodaStream Classics Diet Lemon Lime",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Concentrate requiring preparation; not fresh lemon or lime juice."
+    }
+  ],
   "tools": []
 }

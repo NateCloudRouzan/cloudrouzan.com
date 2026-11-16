@@ -66,14 +66,15 @@ Bar Assistant's photo metadata are not treated as blanket reuse permission.
 ## Shared inventory
 
 All visitors use the same published bar, defined in
-[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). It is initially empty at
-Nate's request; inventory and equipment will be confirmed together in a later chat.
-Do not infer bottles, quantities, staples, or tools from older photos.
+[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). Inventory is being recorded by location. The current draft contains 15 distinct
+fridge containers photographed on 2026-11-16, one each. Other locations and equipment
+remain pending; repeated views of the same bottles are not extra stock. Do not
+infer remaining volume or low-stock status from the photographs.
 
 Update this file through the normal code review and release workflow when Nate
 provides inventory changes. Each item has a stable ID, ingredient ID, display name,
 whole-number bottle/item quantity (0–9999), and availability (`have`, `low`, `out`,
-`unknown`). Equipment uses IDs from `catalog.ts`. Update the date and status message.
+`unknown`), with optional location and product notes. Equipment uses IDs from `catalog.ts`. Update the date and status message.
 The snapshot is validated using the same inventory validator as personal backups.
 No visitor-facing inventory writes or public update endpoint exist.
 

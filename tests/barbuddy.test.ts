@@ -321,3 +321,54 @@ test("retailer coverage requires each item explicitly checked available; checks 
   };
   assert.throws(() => parseProfile(bad));
 });
+
+test("fridge inventory deduplicates repeated photos and preserves product distinctions", () => {
+  const fridge = sharedBar.items.filter((i) => i.location === "Fridge");
+  assert.equal(fridge.length, 15);
+  assert.ok(fridge.every((i) => i.quantity === 1));
+  assert.equal(new Set(fridge.map((i) => i.id)).size, 15);
+  assert.equal(
+    fridge.find((i) => i.name.includes("Soonhari"))?.ingredient,
+    "lychee-soju",
+  );
+  assert.equal(
+    fridge.find((i) => i.name.includes("Exquise"))?.ingredient,
+    "ba-white-wine",
+  );
+  assert.deepEqual(
+    parseProfile({ ...emptyProfile(), items: fridge }).items,
+    fridge,
+  );
+  const p = { ...emptyProfile(), items: fridge };
+  const ids = new Set(inspect(drink("margarita"), p).missing.map((n) => n.id));
+  assert.ok(ids.has("lime"));
+  assert.ok(ids.has("tequila"));
+  assert.ok(
+    inspect(drink("cuba-libre"), p).missing.some((n) => n.id === "cola"),
+  );
+  assert.ok(
+    inspect(drink("moscow-mule"), p).missing.some(
+      (n) => n.id === "ginger-beer",
+    ),
+  );
+  assert.throws(() =>
+    parseProfile({
+      ...emptyProfile(),
+      items: [{ ...fridge[0], location: "" }],
+    }),
+  );
+});
+
+test("the same product in different locations keeps separate inventory rows", () => {
+  const item = sharedBar.items[0];
+  const p = parseProfile({
+    ...emptyProfile(),
+    items: [
+      item,
+      { ...item, id: "other-location", location: "Pantry", quantity: 2 },
+    ],
+  });
+  assert.equal(p.items.length, 2);
+  assert.equal(p.items[0].quantity, 1);
+  assert.equal(p.items[1].quantity, 2);
+});

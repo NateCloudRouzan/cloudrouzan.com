@@ -57,6 +57,7 @@ export default function BarBuddy() {
   const [blocked, setBlocked] = useState(Boolean(initial.error));
   const [tab, setTab] = useState<Tab>("Find a drink");
   const [prefs, setPrefs] = useState(defaultPreferences);
+  const [barLocation, setBarLocation] = useState("All locations");
   const [drinkQuery, setDrinkQuery] = useState("");
   const [limit, setLimit] = useState(24);
   const [avoidQuery, setAvoidQuery] = useState("");
@@ -536,42 +537,71 @@ export default function BarBuddy() {
                 staples, or tools have been assumed.
               </div>
             )}
+            {!!sharedBar.items.length && (
+              <label className="bb-retailer">
+                Inventory location
+                <select
+                  aria-label="Inventory location"
+                  value={barLocation}
+                  onChange={(e) => setBarLocation(e.target.value)}
+                >
+                  {[
+                    "All locations",
+                    ...new Set(
+                      sharedBar.items.map((i) => i.location ?? "Unspecified"),
+                    ),
+                  ].map((location) => (
+                    <option key={location}>{location}</option>
+                  ))}
+                </select>
+              </label>
+            )}
             <div className="bb-shared-items">
-              {sharedBar.items.map((item) => (
-                <article className="bb-panel" key={item.id}>
-                  <h3>{item.name}</h3>
-                  <p className="bb-muted">
-                    {ingredientName(item.ingredient)} · Quantity {item.quantity}{" "}
-                    ·{" "}
-                    {item.stock === "have"
-                      ? "Available"
-                      : item.stock === "low"
-                        ? "Running low"
-                        : item.stock === "out"
-                          ? "Out"
-                          : "Unconfirmed"}
-                  </p>
-                  <button
-                    onClick={() =>
-                      shop(item.ingredient, item.name, "Restock shared bar")
-                    }
-                  >
-                    Add restock to my list
-                  </button>
-                  <div className="bb-actions">
-                    {retailers.map((r) => (
-                      <a
-                        key={r}
-                        href={searchURL(item.name, r)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {r} ↗
-                      </a>
-                    ))}
-                  </div>
-                </article>
-              ))}
+              {sharedBar.items
+                .filter(
+                  (item) =>
+                    barLocation === "All locations" ||
+                    (item.location ?? "Unspecified") === barLocation,
+                )
+                .map((item) => (
+                  <article className="bb-panel" key={item.id}>
+                    <p className="eyebrow">
+                      {item.location ?? "Unspecified location"}
+                    </p>
+                    <h3>{item.name}</h3>
+                    <p className="bb-muted">
+                      {ingredientName(item.ingredient)} · Quantity{" "}
+                      {item.quantity} ·{" "}
+                      {item.stock === "have"
+                        ? "Available"
+                        : item.stock === "low"
+                          ? "Running low"
+                          : item.stock === "out"
+                            ? "Out"
+                            : "Unconfirmed"}
+                    </p>
+                    {item.notes && <p className="bb-footnote">{item.notes}</p>}
+                    <button
+                      onClick={() =>
+                        shop(item.ingredient, item.name, "Restock shared bar")
+                      }
+                    >
+                      Add restock to my list
+                    </button>
+                    <div className="bb-actions">
+                      {retailers.map((r) => (
+                        <a
+                          key={r}
+                          href={searchURL(item.name, r)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {r} ↗
+                        </a>
+                      ))}
+                    </div>
+                  </article>
+                ))}
             </div>
             <section className="bb-panel">
               <h3>Shared equipment</h3>
