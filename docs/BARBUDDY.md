@@ -8,7 +8,7 @@ loads do not require changing the Worker to use a global SPA fallback.
 ## First version
 
 - Twenty recipes: sixteen IBA-referenced recipes and four labeled house highballs.
-- Ingredient/product inventory with have, low, out, and unknown states.
+- Ingredient/product inventory with bottle/item quantities and have, low, out, and unknown states.
 - Equipment, taste, base-spirit, preparation, style, and ingredient exclusions.
 - Make-now results, missing ingredients/tools, and low-stock notices.
 - One-ingredient unlocks calculated against the current catalog and settings.
@@ -31,7 +31,7 @@ model-specific recipes and operating requirements have been verified.
 Shopping links open an encoded Google query with the selected retailer's name,
 product, and optional size notes. They are not retailer product links, live stock
 checks, or direct-cart integrations. Opening one does not update inventory.
-“Confirm purchased & add to bar” explicitly updates the local stock and removes
+“Confirm purchased & add to bar” adds one to the named product quantity, marks it available, and removes
 that shopping entry. Exact retailer product links can be added in future work.
 
 ## Source map
@@ -48,8 +48,16 @@ that shopping entry. Exact retailer product links can be added in future work.
 Extend the catalog by adding stable IDs and explicit requirements. Different
 bitters, premixes, and flavored ingredients stay separate. Do not map Japanese
 whisky to bourbon, or amber curaçao to triple sec, without an explicit recipe
-variant. Adding categories may require a deliberate persistence migration; existing
-version-1 imports reject IDs that the current catalog does not recognize.
+variant. Profile version 2 adds whole-number quantities (0–9999); version-1 browser saves
+and backups are migrated automatically using the existing storage key. Each legacy
+row counts as one item (out rows count as zero); matching product/category names
+are combined with summed quantities. Different brands remain separate. Users can
+correct counts if duplicate rows were accidental. Zero quantity is unavailable.
+Owned directory products stay hidden even when out; use inventory/restock controls
+or remove the row to make its add option return. Generic ingredient categories are
+hidden when a product already represents them; other brands remain addable.
+Adding categories may require a deliberate persistence migration; imports reject
+IDs that the current catalog does not recognize.
 
 ## Validation
 

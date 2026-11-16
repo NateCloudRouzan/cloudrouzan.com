@@ -10,14 +10,17 @@ import {
   parseProfile,
   addShopping,
   searchURL,
+  addInventory,
+  isInInventory,
+  setQuantity,
 } from "../src/barbuddy/model.ts";
 const drink = (id: string) => drinks.find((d) => d.id === id)!;
 test("low counts as available; out/unknown do not; duplicate bottles do not hide low correctly", () => {
   const p = emptyProfile();
   p.items = [
-    { id: "v", ingredient: "vodka", name: "Vodka", stock: "low" },
-    { id: "s", ingredient: "soda", name: "Water", stock: "out" },
-    { id: "i", ingredient: "ice", name: "Ice", stock: "unknown" },
+    { id: "v", ingredient: "vodka", name: "Vodka", quantity: 1, stock: "low" },
+    { id: "s", ingredient: "soda", name: "Water", quantity: 0, stock: "out" },
+    { id: "i", ingredient: "ice", name: "Ice", quantity: 1, stock: "unknown" },
   ];
   assert.deepEqual(
     inspect(drink("vodka-soda"), p).missing.map((n) => n.id),
@@ -28,6 +31,7 @@ test("low counts as available; out/unknown do not; duplicate bottles do not hide
     id: "v2",
     ingredient: "vodka",
     name: "Another vodka",
+    quantity: 1,
     stock: "have",
   });
   assert.equal(inspect(drink("vodka-soda"), p).low.length, 0);
@@ -39,6 +43,7 @@ test("unlocks only count a sole missing ingredient when equipment is present", (
     id,
     ingredient: id,
     name: id,
+    quantity: 1,
     stock: "have" as const,
   }));
   const soda = unlocks(p, defaultPreferences()).find((u) => u.id === "soda")!;
@@ -59,6 +64,7 @@ test("exclusions apply to recommendations and unlocks", () => {
     id,
     ingredient: id,
     name: id,
+    quantity: 1,
     stock: "have" as const,
   }));
   assert.equal(
@@ -72,6 +78,7 @@ test("flavored mixers, Japanese whisky and amber curaçao are not universal subs
     id,
     ingredient: id,
     name: id,
+    quantity: 1,
     stock: "have" as const,
   }));
   assert.ok(
@@ -85,9 +92,15 @@ test("flavored mixers, Japanese whisky and amber curaçao are not universal subs
 test("imports reject unknown IDs, unsupported versions and duplicates; round-trip is lossless", () => {
   const p = emptyProfile();
   assert.deepEqual(parseProfile(JSON.parse(JSON.stringify(p))), p);
-  assert.throws(() => parseProfile({ ...p, version: 2 }));
+  assert.throws(() => parseProfile({ ...p, version: 3 }));
   assert.throws(() => parseProfile({ ...p, tools: ["unknown"] }));
-  const i = { id: "x", ingredient: "vodka", name: "Vodka", stock: "have" };
+  const i = {
+    id: "x",
+    ingredient: "vodka",
+    name: "Vodka",
+    quantity: 1,
+    stock: "have",
+  };
   assert.throws(() => parseProfile({ ...p, items: [i, i] }));
 });
 test("shopping merges reasons, keeps exact products separate, and search queries are encoded", () => {
@@ -112,9 +125,71 @@ test("catalog has unique IDs and all references are recognized", () => {
           id: n.id,
           ingredient: n.id,
           name: n.id,
+          quantity: 1,
           stock: "have",
         })),
       }),
     );
   }
+});
+
+test("legacy saves combine duplicate products and preserve different brands", () => {
+  const p = parseProfile({
+    version: 1,
+    items: [
+      { id: "1", ingredient: "gin", name: "Gin", stock: "have" },
+      { id: "2", ingredient: "gin", name: " gin ", stock: "low" },
+      { id: "3", ingredient: "gin", name: "Other brand", stock: "have" },
+    ],
+    tools: ["spoon"],
+    shopping: [],
+  });
+  assert.equal(p.version, 2);
+  assert.equal(p.items.length, 2);
+  assert.equal(p.items[0].quantity, 2);
+  assert.equal(p.items[0].stock, "have");
+  assert.deepEqual(parseProfile(p), p);
+});
+test("repeated additions increment quantity and directory hides owned products and generic categories", () => {
+  let p = addInventory(emptyProfile(), "gin", "Brand gin", "one");
+  p = addInventory(p, "gin", " BRAND GIN ", "two");
+  assert.equal(p.items.length, 1);
+  assert.equal(p.items[0].quantity, 2);
+  assert.ok(isInInventory(p, "gin", "Brand gin"));
+  assert.ok(isInInventory(p, "gin", "Gin"));
+  assert.equal(isInInventory(p, "gin", "Other brand"), false);
+  p.items[0] = setQuantity(p.items[0], 0);
+  assert.equal(p.items[0].stock, "out");
+  assert.ok(isInInventory(p, "gin", "Brand gin"));
+  assert.equal(
+    inspect(drink("gin-soda"), p).missing.some((n) => n.id === "gin"),
+    true,
+  );
+  p.items[0] = setQuantity(p.items[0], 3);
+  assert.equal(p.items[0].stock, "have");
+  assert.equal(p.items[0].quantity, 3);
+});
+test("quantity imports reject invalid values and keep tools and shopping through migration", () => {
+  const p = addInventory(emptyProfile(), "vodka", "Vodka", "v");
+  for (const q of [-1, 1.5, null, 10000])
+    assert.throws(() =>
+      parseProfile({ ...p, items: [{ ...p.items[0], quantity: q }] }),
+    );
+  const legacy = {
+    version: 1,
+    items: [{ id: "v", ingredient: "vodka", name: "Vodka", stock: "out" }],
+    tools: ["spoon"],
+    shopping: [
+      {
+        ingredient: "vodka",
+        name: "Vodka",
+        reasons: ["Restock"],
+        note: "750 ml",
+      },
+    ],
+  };
+  const migrated = parseProfile(legacy);
+  assert.equal(migrated.items[0].quantity, 0);
+  assert.deepEqual(migrated.shopping, legacy.shopping);
+  assert.deepEqual(migrated.tools, legacy.tools);
 });

@@ -5,6 +5,7 @@ export type Item = {
   ingredient: string;
   name: string;
   stock: Stock;
+  quantity: number;
 };
 export type ShoppingItem = {
   ingredient: string;
@@ -13,7 +14,7 @@ export type ShoppingItem = {
   note: string;
 };
 export type Profile = {
-  version: 1;
+  version: 2;
   items: Item[];
   tools: string[];
   shopping: ShoppingItem[];
@@ -26,7 +27,7 @@ export type Preferences = {
   avoid: string[];
 };
 export const emptyProfile = (): Profile => ({
-  version: 1,
+  version: 2,
   items: [],
   tools: [],
   shopping: [],
@@ -49,9 +50,9 @@ function text(value: unknown, max = 180): value is string {
 export function parseProfile(value: unknown): Profile {
   if (!value || typeof value !== "object")
     throw new Error("Choose a BarBuddy JSON export.");
-  const p = value as Partial<Profile>;
+  const p = value as Partial<Omit<Profile, "version">> & { version?: number };
   if (
-    p.version !== 1 ||
+    (p.version !== 1 && p.version !== 2) ||
     !Array.isArray(p.items) ||
     !Array.isArray(p.tools) ||
     !Array.isArray(p.shopping)
@@ -70,12 +71,22 @@ export function parseProfile(value: unknown): Profile {
       !["have", "low", "out", "unknown"].includes(i.stock)
     )
       throw new Error("Invalid or duplicate inventory entry.");
+    const quantity = p.version === 1 ? (i.stock === "out" ? 0 : 1) : i.quantity;
+    if (
+      !Number.isSafeInteger(quantity) ||
+      quantity < 0 ||
+      quantity > MAX_QUANTITY
+    )
+      throw new Error(
+        "Inventory quantities must be whole numbers from 0 to 9999.",
+      );
     ids.add(i.id);
     return {
       id: i.id,
       ingredient: i.ingredient,
       name: i.name.trim(),
-      stock: i.stock,
+      stock: quantity === 0 ? ("out" as Stock) : i.stock,
+      quantity,
     };
   });
   if (!p.tools.every((id) => toolIds.has(id)))
@@ -103,12 +114,19 @@ export function parseProfile(value: unknown): Profile {
       note: s.note,
     };
   });
-  return { version: 1, items, tools: [...new Set(p.tools)], shopping };
+  return {
+    version: 2,
+    items: consolidateItems(items),
+    tools: [...new Set(p.tools)],
+    shopping,
+  };
 }
 export function available(profile: Profile): Set<string> {
   return new Set(
     profile.items
-      .filter((i) => i.stock === "have" || i.stock === "low")
+      .filter(
+        (i) => i.quantity > 0 && (i.stock === "have" || i.stock === "low"),
+      )
       .map((i) => i.ingredient),
   );
 }
@@ -119,8 +137,12 @@ export function inspect(drink: Drink, profile: Profile) {
     tools: drink.tools.filter((t) => !profile.tools.includes(t)),
     low: drink.needs.filter(
       (n) =>
-        profile.items.some((i) => i.ingredient === n.id && i.stock === "low") &&
-        !profile.items.some((i) => i.ingredient === n.id && i.stock === "have"),
+        profile.items.some(
+          (i) => i.ingredient === n.id && i.quantity > 0 && i.stock === "low",
+        ) &&
+        !profile.items.some(
+          (i) => i.ingredient === n.id && i.quantity > 0 && i.stock === "have",
+        ),
     ),
   };
 }
@@ -195,4 +217,83 @@ export function addShopping(
 export function searchURL(name: string, retailer = "Web") {
   const query = (retailer === "Web" ? "" : retailer + " ") + name + " buy";
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+}
+
+// Keep the storage key stable so existing version-1 saves are found and migrated.
+export const MAX_QUANTITY = 9999;
+export const productKey = (ingredient: string, name: string) =>
+  ingredient + "|" + name.trim().replace(/\s+/g, " ").toLowerCase();
+
+export function consolidateItems(items: Item[]): Item[] {
+  const result: Item[] = [];
+  const priority: Record<Stock, number> = {
+    out: 0,
+    unknown: 1,
+    low: 2,
+    have: 3,
+  };
+  for (const item of items) {
+    const existing = result.find(
+      (i) =>
+        productKey(i.ingredient, i.name) ===
+        productKey(item.ingredient, item.name),
+    );
+    if (!existing) {
+      result.push({ ...item });
+      continue;
+    }
+    if (existing.quantity + item.quantity > MAX_QUANTITY)
+      throw new Error("Combined inventory quantity exceeds 9999.");
+    existing.quantity += item.quantity;
+    if (priority[item.stock] > priority[existing.stock])
+      existing.stock = item.stock;
+  }
+  return result;
+}
+export function addInventory(
+  profile: Profile,
+  ingredient: string,
+  name: string,
+  id: string,
+): Profile {
+  const existing = profile.items.find(
+    (i) => productKey(i.ingredient, i.name) === productKey(ingredient, name),
+  );
+  return {
+    ...profile,
+    items: existing
+      ? profile.items.map((i) =>
+          i.id === existing.id
+            ? {
+                ...i,
+                quantity: Math.min(MAX_QUANTITY, i.quantity + 1),
+                stock: "have",
+              }
+            : i,
+        )
+      : [
+          ...profile.items,
+          { id, ingredient, name: name.trim(), stock: "have", quantity: 1 },
+        ],
+  };
+}
+export function setQuantity(item: Item, quantity: number): Item {
+  return {
+    ...item,
+    quantity,
+    stock: quantity === 0 ? "out" : item.stock === "out" ? "have" : item.stock,
+  };
+}
+export function isInInventory(
+  profile: Profile,
+  ingredient: string,
+  name: string,
+): boolean {
+  // Named products stay distinct; a generic category is hidden once represented.
+  return profile.items.some(
+    (i) =>
+      productKey(i.ingredient, i.name) === productKey(ingredient, name) ||
+      (ingredients.find((n) => n.id === ingredient)?.name === name &&
+        i.ingredient === ingredient),
+  );
 }
