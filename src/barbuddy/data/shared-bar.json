@@ -1,7 +1,7 @@
 {
   "name": "Nate’s bar",
   "updatedAt": "2026-11-16",
-  "status": "Inventory recorded by location on 2026-11-16. Photographed containers counted once each; cabinet supplies and Tajín are availability entries with package counts unspecified. Remaining volume is not tracked. Tallax wine style remains unconfirmed. Aarke carbonator and Ninja SLUSHi confirmed; other tools not assumed.",
+  "status": "Inventory recorded by location on 2026-11-16. Photographed containers counted once each; cabinet supplies and Tajín are availability entries with package counts unspecified. Remaining volume is not tracked. Tallax wine style remains unconfirmed. Aarke carbonator, Ninja SLUSHi, strainer, stirring spoon, and ice confirmed. Shaker and mixing glass are not yet confirmed.",
   "items": [
     {
       "id": "fridge-noble-ginger",
@@ -454,10 +454,21 @@
       "stock": "have",
       "location": "Bar cart",
       "notes": "Owner confirmed available; package count unspecified."
+    },
+    {
+      "id": "freezer-ice",
+      "ingredient": "ice",
+      "name": "Ice",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Freezer",
+      "notes": "Owner confirms ice available. Quantity denotes availability, not a count of cubes or bags."
     }
   ],
   "tools": [
     "aarke",
-    "slushi"
+    "slushi",
+    "strainer",
+    "spoon"
   ]
 }

@@ -72,7 +72,9 @@ entries, and 20 bar cart entries (including owner-confirmed Tajín). Overlapping
 photos count once. Cabinet supplies and Tajín use quantity 1 as an availability
 entry, not a confirmed package count. Remaining volume and low-stock status are
 not inferred. Tallax wine style remains unconfirmed. Aarke carbonator and Ninja
-SLUSHi are confirmed; other equipment is not assumed.
+SLUSHi, strainer, and stirring spoon are confirmed. Ice is recorded as one Freezer
+availability entry, bringing the inventory to 53 entries. A strainer alone does not
+confirm a shaker or mixing glass.
 
 Bottled juices, concentrates, flavored syrups, tinctures, and premixed drinks retain
 specific categories. Aperix is not automatically substituted for Aperol; Goldschläger

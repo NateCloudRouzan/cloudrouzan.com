@@ -90,6 +90,7 @@ export const equipment = [
   { id: "shaker", name: "Shaker & strainer" },
   { id: "mixing", name: "Mixing glass & strainer" },
   { id: "spoon", name: "Stirring spoon" },
+  { id: "strainer", name: "Strainer" },
   { id: "aarke", name: "Aarke carbonator" },
   { id: "slushi", name: "Ninja SLUSHi" },
   { id: "blender", name: "Blender (separate from SLUSHi)" },
