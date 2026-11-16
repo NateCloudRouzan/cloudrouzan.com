@@ -1,6 +1,8 @@
+import { withSharedBar, sharedBar } from "../src/barbuddy/shared-bar.ts";
+import { retailers } from "../src/barbuddy/retailers.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
-import { drinks } from "../src/barbuddy/catalog.ts";
+import { drinks, ingredients } from "../src/barbuddy/catalog.ts";
 import {
   emptyProfile,
   defaultPreferences,
@@ -14,6 +16,8 @@ import {
   isInInventory,
   setQuantity,
   saveReview,
+  checkRetailer,
+  retailerSummary,
 } from "../src/barbuddy/model.ts";
 const drink = (id: string) => drinks.find((d) => d.id === id)!;
 test("low counts as available; out/unknown do not; duplicate bottles do not hide low correctly", () => {
@@ -48,8 +52,12 @@ test("unlocks only count a sole missing ingredient when equipment is present", (
     stock: "have" as const,
   }));
   const soda = unlocks(p, defaultPreferences()).find((u) => u.id === "soda")!;
-  assert.equal(soda.drinks.length, 3);
-  assert.equal(new Set(soda.drinks.map((d) => d.id)).size, 3);
+  assert.ok(
+    ["gin-soda", "vodka-soda", "whisky-highball"].every((id) =>
+      soda.drinks.some((d) => d.id === id),
+    ),
+  );
+  assert.equal(new Set(soda.drinks.map((d) => d.id)).size, soda.drinks.length);
   p.tools = [];
   assert.equal(
     unlocks(p, defaultPreferences()).find((u) => u.id === "soda"),
@@ -112,8 +120,8 @@ test("shopping merges reasons, keeps exact products separate, and search queries
   p = addShopping(p, "gin", "Another brand", "Restock");
   assert.equal(p.shopping.length, 2);
   const u = new URL(searchURL("Gin & citrus"));
-  assert.equal(u.hostname, "www.google.com");
-  assert.equal(u.searchParams.get("q"), "Gin & citrus buy");
+  assert.equal(u.hostname, "www.totalwine.com");
+  assert.equal(u.searchParams.get("text"), "Gin & citrus");
 });
 test("catalog has unique IDs and all references are recognized", () => {
   assert.equal(new Set(drinks.map((d) => d.id)).size, drinks.length);
@@ -242,4 +250,74 @@ test("review validation rejects invalid stars, oversized notes, dates, IDs and d
   );
   assert.throws(() => saveReview(emptyProfile(), { ...r, drinkId: "missing" }));
   assert.throws(() => parseProfile({ ...emptyProfile(), reviews: [r, r] }));
+});
+
+test("expanded catalog preserves existing IDs, resolves optional ingredients, and quarantines drafts", () => {
+  assert.equal(drinks.length, 667);
+  assert.equal(drinks.filter((d) => d.id.startsWith("ba-")).length, 647);
+  assert.equal(drinks.filter((d) => d.needsReview).length, 7);
+  const ids = new Set(ingredients.map((i) => i.id));
+  assert.equal(ids.size, ingredients.length);
+  for (const d of drinks) {
+    for (const n of [...d.needs, ...(d.optionalNeeds ?? [])])
+      assert.ok(ids.has(n.id), d.id + " missing " + n.id);
+    if (d.needsReview) assert.equal(matches(d, defaultPreferences()), false);
+  }
+  const old = saveReview(emptyProfile(), {
+    drinkId: "margarita",
+    rating: 5,
+    note: "Keep this review",
+    updatedAt: "2026-11-16T20:00:00.000Z",
+  });
+  assert.equal(parseProfile(old).reviews[0].drinkId, "margarita");
+});
+test("all visitors use the published bar while private inventory and reviews remain recoverable", () => {
+  const p = addInventory(emptyProfile(), "gin", "Private bottle", "private");
+  p.tools = ["spoon"];
+  const active = withSharedBar(p);
+  assert.deepEqual(active.items, sharedBar.items);
+  assert.deepEqual(active.tools, sharedBar.tools);
+  assert.equal(p.items[0].name, "Private bottle");
+  assert.notEqual(active.items, p.items);
+  assert.equal(parseProfile(p).items[0].name, "Private bottle");
+});
+test("retailer links are direct and encode product text without changing destinations", () => {
+  const hosts = [
+    "www.totalwine.com",
+    "bevmo.com",
+    "www.instacart.com",
+    "www.amazon.com",
+  ];
+  retailers.forEach((r, i) => {
+    const u = new URL(searchURL("Gin & citrus / 750 ml", r));
+    assert.equal(u.hostname, hosts[i]);
+    assert.equal(u.protocol, "https:");
+    assert.ok([...u.searchParams.values()].includes("Gin & citrus / 750 ml"));
+  });
+});
+test("retailer coverage requires each item explicitly checked available; checks survive backups", () => {
+  let p = addShopping(emptyProfile(), "gin", "Gin", "Restock");
+  p = addShopping(p, "vodka", "Vodka", "Restock");
+  assert.equal(retailerSummary(p.shopping, "BevMo").allConfirmed, false);
+  p = checkRetailer(p, p.shopping[0], "BevMo", "available");
+  assert.equal(retailerSummary(p.shopping, "BevMo").confirmed, 1);
+  assert.equal(retailerSummary(p.shopping, "BevMo").allConfirmed, false);
+  p = checkRetailer(p, p.shopping[1], "BevMo", "available");
+  assert.equal(retailerSummary(p.shopping, "BevMo").allConfirmed, true);
+  assert.deepEqual(parseProfile(p), p);
+  p = checkRetailer(p, p.shopping[0], "BevMo", "unavailable");
+  assert.equal(retailerSummary(p.shopping, "BevMo").allConfirmed, false);
+  assert.equal(retailerSummary([], "BevMo").allConfirmed, false);
+  const bad = {
+    ...p,
+    shopping: [
+      {
+        ...p.shopping[0],
+        retailerChecks: {
+          Unknown: { status: "available", checkedAt: "invalid" },
+        },
+      },
+    ],
+  };
+  assert.throws(() => parseProfile(bad));
 });

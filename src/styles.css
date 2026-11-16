@@ -29,3 +29,28 @@ footer { padding: 24px 0 36px; border-top: 1px solid #2b3540; color: #8191a3; fo
   .page { width: calc(100% - 32px); }
   h1 { font-size: clamp(40px, 13vw, 52px); }
 }
+
+.project-card {
+  display: block;
+  border: 1px solid #39424b;
+  border-radius: 10px;
+  padding: 24px;
+  margin-top: 24px;
+  transition: background 0.15s;
+}
+.project-card:hover {
+  background: #192229;
+  text-decoration: none;
+}
+.project-card h3 {
+  font-size: 23px;
+  margin: 0;
+  color: #e7b789;
+}
+.project-card p {
+  margin: 10px 0 16px;
+}
+.project-card span {
+  font-size: 13px;
+  color: #e7b789;
+}

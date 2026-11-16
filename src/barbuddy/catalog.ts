@@ -1,3 +1,6 @@
+import ingredientData from "./data/ingredients.json" with { type: "json" };
+import recipesA from "./data/recipes-a.json" with { type: "json" };
+import recipesB from "./data/recipes-b.json" with { type: "json" };
 export type Ingredient = { id: string; name: string; category: string };
 const groups: Record<string, [string, string][]> = {
   Spirits: [
@@ -50,9 +53,12 @@ const groups: Record<string, [string, string][]> = {
     ["premix", "Strawberry margarita (premixed)"],
   ],
 };
-export const ingredients: Ingredient[] = Object.entries(groups).flatMap(
-  ([category, rows]) => rows.map(([id, name]) => ({ id, name, category })),
-);
+export const ingredients: Ingredient[] = [
+  ...Object.entries(groups).flatMap(([category, rows]) =>
+    rows.map(([id, name]) => ({ id, name, category })),
+  ),
+  ...ingredientData,
+];
 export const ingredientName = (id: string) =>
   ingredients.find((i) => i.id === id)?.name ?? id;
 export const equipment = [
@@ -61,6 +67,8 @@ export const equipment = [
   { id: "spoon", name: "Stirring spoon" },
   { id: "aarke", name: "Aarke carbonator" },
   { id: "slushi", name: "Ninja SLUSHi" },
+  { id: "blender", name: "Blender (separate from SLUSHi)" },
+  { id: "muddler", name: "Muddler" },
 ];
 export type Product = { name: string; ingredient: string };
 // Generic product directory, not an owner's inventory. No stock is preselected.
@@ -94,7 +102,7 @@ export type Drink = {
   description: string;
   spirit: string;
   taste: string[];
-  style: "Classic" | "Sparkling";
+  style: "Classic" | "Sparkling" | "Frozen";
   effort: "Quick" | "Shake or stir";
   needs: Requirement[];
   tools: string[];
@@ -102,6 +110,17 @@ export type Drink = {
   source: string;
   sourceLabel: string;
   note?: string;
+  optionalNeeds?: Requirement[];
+  originalSource?: string;
+  garnish?: string;
+  needsReview?: boolean;
+  image?: {
+    src: string;
+    author: string;
+    source: string;
+    license: string;
+    licenseURL: string;
+  };
 };
 function iba(
   id: string,
@@ -448,3 +467,14 @@ export const drinks: Drink[] = [
     };
   }),
 ];
+
+// Pinned, locally validated open recipe data. Existing stable IDs are preserved.
+drinks.push(...([...recipesA, ...recipesB] as Drink[]));
+const margarita = drinks.find((d) => d.id === "margarita")!;
+margarita.image = {
+  src: "/barbuddy/margarita.jpg",
+  author: "Cocktailmarler",
+  source: "https://commons.wikimedia.org/wiki/File:Klassiche_Margarita.jpg",
+  license: "CC BY-SA 3.0",
+  licenseURL: "https://creativecommons.org/licenses/by-sa/3.0/",
+};

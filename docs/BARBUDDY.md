@@ -1,97 +1,138 @@
 # BarBuddy
 
-BarBuddy is the cocktail finder at `/BarBuddy` (also supports the trailing slash).
-The homepage Projects section links to it. It uses the existing static React/Vite
-site, with a separate HTML entry emitted to `dist/BarBuddy/index.html` so direct
-loads do not require changing the Worker to use a global SPA fallback.
+BarBuddy lives at `/BarBuddy` and is linked from Projects. It uses the existing
+React/TypeScript/Vite static site and Cloudflare Worker. No paid recipe service,
+new dependency, account system, or backend is required.
 
-## First version
+## Catalog and provenance
 
-- Twenty recipes: sixteen IBA-referenced recipes and four labeled house highballs.
-- Ingredient/product inventory with bottle/item quantities and have, low, out, and unknown states.
-- Equipment, taste, base-spirit, preparation, style, and ingredient exclusions.
-- Make-now results, missing ingredients/tools, and low-stock notices.
-- One-ingredient unlocks calculated against the current catalog and settings.
-- Restock and discovery shopping list with quantity/size notes and search links.
-- Private 1–5 star drink reviews with optional notes, editable from cards or My reviews.
-- Versioned browser storage, validated backup import with confirmation, and export.
+There are 667 catalog entries: the original 20 recipes plus 647 imported from
+[Bar Assistant public data](https://github.com/bar-assistant/data). The source
+snapshot contains 663 recipes; 16 overlaps were skipped to preserve existing
+BarBuddy recipe IDs, proportions, and saved reviews. This is an expanded catalog,
+not a claim to reproduce the exact 501 recipes in Nate's book.
 
-The product directory is generic content; it does not assert ownership or quantities.
-Inventory starts empty. Personalized stock, tools, shopping lists, and reviews stay in the
-browser. They are not synchronized across devices or preview/production origins.
-Do not commit personalized JSON exports or household photos.
+Pinned upstream commit: `5a504d474614494119882eb91a8ffdc5491a483f`.
+The upstream MIT notice is retained at
+[`public/barbuddy/BAR-ASSISTANT-LICENSE.txt`](../public/barbuddy/BAR-ASSISTANT-LICENSE.txt).
+Each imported entry links to its pinned source JSON and preserves its original
+source reference. Long narrative descriptions and all upstream images are excluded.
 
-Book recipes and page references are not yet available. The current catalog does
-not claim to transcribe *501 Must-Taste Cocktails*. The recipe source links were
-read on 2026-11-16; descriptions and methods are written for this interface.
-The Moscow Mule uses generic vodka and says so; the Whiskey Sour omits optional
-egg white. Garnishes are optional in this catalog. House recipes have no IBA claim.
-Ninja SLUSHi equipment can be recorded, but frozen recipes remain unavailable until
-model-specific recipes and operating requirements have been verified.
+[`import-report.json`](../src/barbuddy/data/import-report.json) records totals,
+skipped overlaps, and seven recipes needing verification: three missing method
+classifications and four with zero upper-bound measurements. They remain browsable
+with a verification badge but do not participate in make-now or unlock results.
+The importer validates records; it is not a claim that every recipe has been mixed
+or reviewed by a bartender.
 
-Shopping links open an encoded Google query with the selected retailer's name,
-product, and optional size notes. They are not retailer product links, live stock
-checks, or direct-cart integrations. Opening one does not update inventory.
-“Confirm purchased & add to bar” adds one to the named product quantity, marks it available, and removes
-that shopping entry. Exact retailer product links can be added in future work.
+Ingredient IDs use reviewed exact equivalences only. Unknown categories are added
+with `ba-` IDs, without fuzzy substitutions. Specific spirits remain specific:
+blanco tequila, generic agave tequila, and reposado are not automatically equivalent.
+Optional ingredients and garnishes are shown separately from requirements. Duplicate
+requirements for the same ingredient are grouped without losing their amounts.
+Numeric measures retain upstream units; no machine formulation is inferred.
 
-## Source map
+Blend/frozen recipes require a blender. They are not Ninja SLUSHi recipes. Unsupported
+methods and unresolved data stay out of recommendations. Original IBA references
+and house recipes retain their original IDs and attribution.
 
-- `src/barbuddy/catalog.ts`: ingredient categories, generic product directory,
-  equipment, recipe requirements, quantities, methods, and source links.
-- `src/barbuddy/model.ts`: persistence validation, matching, unlocks, shopping
-  deduplication, and search URL creation.
-- `src/barbuddy/BarBuddy.tsx`: interface and local storage.
-- `src/barbuddy/barbuddy.css`: scoped styling and decorative CSS glass illustrations.
-- `BarBuddy/index.html`: route-specific shell and metadata.
-- `tests/barbuddy.test.ts`: focused pure-logic checks.
+### Reproducing the import
 
-Extend the catalog by adding stable IDs and explicit requirements. Different
-bitters, premixes, and flavored ingredients stay separate. Do not map Japanese
-whisky to bourbon, or amber curaçao to triple sec, without an explicit recipe
-variant. Profile version 2 adds whole-number quantities (0–9999); version-1 browser saves
-and backups are migrated automatically using the existing storage key. Each legacy
-row counts as one item (out rows count as zero); matching product/category names
-are combined with summed quantities. Different brands remain separate. Users can
-correct counts if duplicate rows were accidental. Zero quantity is unavailable.
-Owned directory products stay hidden even when out; use inventory/restock controls
-or remove the row to make its add option return. Generic ingredient categories are
-hidden when a product already represents them; other brands remain addable.
-Adding categories may require a deliberate persistence migration; imports reject
-IDs that the current catalog does not recognize.
+```sh
+python3 scripts/import-bar-assistant.py --fetch
+```
 
-## Validation
+This uses Python's standard library to fetch only pinned recipe JSON and the MIT
+license. Each recipe is checked against its Git blob SHA. No upstream code is
+executed and no upstream photo collection is downloaded. Temporary source files
+live under `/tmp/barbuddy-bar-assistant/<commit>/`; exclude them from Git.
+Running without `--fetch` normalizes an existing cache into the checked-in data.
+Inspect the generated diff and import report before releasing updated data.
 
-Use the repository [setup instructions](SETUP.md), plus:
+`ingredients.json` and `recipes-a.json` / `recipes-b.json` are generated source
+artifacts. The two recipe chunks avoid one large application bundle. React lazy
+loading keeps the BarBuddy catalog off the homepage's initial load. The separate
+`BarBuddy/index.html` entry supports direct visits without a Worker routing change.
+
+### Photos
+
+One individually verified photo is included: *Klassiche Margarita*, Cocktailmarler,
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Klassiche_Margarita.jpg),
+[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+The stored thumbnail is resized; the UI displays it cropped and links its author,
+source, and license. Remaining cards use decorative CSS illustrations. Credits in
+Bar Assistant's photo metadata are not treated as blanket reuse permission.
+
+## Shared inventory
+
+All visitors use the same published bar, defined in
+[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). It is initially empty at
+Nate's request; inventory and equipment will be confirmed together in a later chat.
+Do not infer bottles, quantities, staples, or tools from older photos.
+
+Update this file through the normal code review and release workflow when Nate
+provides inventory changes. Each item has a stable ID, ingredient ID, display name,
+whole-number bottle/item quantity (0–9999), and availability (`have`, `low`, `out`,
+`unknown`). Equipment uses IDs from `catalog.ts`. Update the date and status message.
+The snapshot is validated using the same inventory validator as personal backups.
+No visitor-facing inventory writes or public update endpoint exist.
+
+`withSharedBar` overlays the published inventory/equipment for all matching and
+unlock calculations. Visitor browser data cannot override the published snapshot.
+Existing private inventory and tools remain in personal storage and exports, so
+switching to the shared bar does not erase previous entries. Importing a personal
+backup changes only that browser's personal data, not the shared inventory.
+
+## Shopping and retailer comparison
+
+Links now go directly to retailer search pages at Total Wine, BevMo, Instacart,
+and Amazon. Queries are URL-encoded and destinations come from a fixed allowlist.
+They are search links, not guaranteed product pages, external cart mutations, or
+claims of current stock. Product-specific URLs can be introduced when brands,
+package sizes, and store regions are confirmed in the inventory session.
+
+Each shopping entry can store the visitor's own available/unavailable check for
+any retailer, with a timestamp. The comparison summary says all items are available
+only when the visitor has explicitly marked every entry available at that retailer.
+It labels this as “marked available by you,” not live stock. Unknown, unavailable,
+and an empty list never qualify as all-confirmed. Real-time automatic availability
+requires a separately verified retailer integration and appropriate location context.
+
+Shopping lists and retailer checks remain private to each browser and are included
+in personal backups. Mark purchased removes an entry from the personal list; it
+never updates the shared bar. Nate can tell Codex about confirmed purchases in chat.
+
+## Personal reviews and backups
+
+Profile version 3 keeps one editable review per catalog drink: stable drink ID,
+1–5 integer stars, optional plain-text note up to 2000 characters, and updated date.
+Reviews stay in the browser and do not change recommendation ranking. Version-1/2
+saves migrate without losing inventory, equipment, quantities, or shopping. The
+original storage key is retained to find existing saves. Optional retailer checks
+are a backward-compatible extension to shopping entries.
+
+Exports include personal inventory, tools, shopping, retailer checks, and reviews.
+Imports are validated and require confirmation before replacement. They do not
+publish data. Storage is per browser/origin and is not cross-device synchronization.
+Never commit personal exports, household photos, credentials, or private notes.
+
+## Source map and validation
+
+- `catalog.ts`: original recipes, generated catalog composition, equipment, image metadata.
+- `model.ts`: profile validation, matching, quarantine, unlocks, personal shopping/reviews.
+- `shared-bar.ts`: validated published snapshot and recommendation overlay.
+- `retailers.ts`: direct search URL construction and supported retailers.
+- `BarBuddy.tsx` / `ReviewEditor.tsx`: public shared bar and private visitor interfaces.
+- `tests/barbuddy.test.ts`: meaningful matching, migration, catalog and shopping checks.
+
+Follow [SETUP.md](SETUP.md), and run:
 
 ```sh
 node --experimental-strip-types --test tests/barbuddy.test.ts
 ```
 
-The focused checks cover availability, equipment blockers, exclusions, ingredient
-specificity, unlock deduplication, import validation, shopping deduplication, and
-URL encoding. Use a supported Node release with built-in TypeScript stripping.
-
-Initial local validation: Node v26.13.1, npm 11.20.0, Vite 6.4.6. Build, TypeScript,
-and seven checks passed. Browser checks exercised inventory, one-ingredient unlocks,
-purchase confirmation, reload persistence, and low-stock notices. At a 390-pixel
-viewport the page had no horizontal document overflow; the console had no warnings
-or errors during these checks. Repeat relevant checks when behavior changes.
-
-## Drink reviews
-
-Profile version 3 adds one review per supported cocktail: stable drink ID, an integer
-rating from 1 to 5, an optional plain-text note of up to 2000 characters, and a last
-updated timestamp. Version-1 and version-2 saves/backups migrate with an empty review
-list while retaining inventory, equipment, quantities, and shopping. The original
-storage key is retained so existing browser data is found.
-
-Use Review this drink on a card or choose any catalog drink in My reviews. Saving
-an edit replaces that cocktail's previous review; this is not a per-serving history.
-Reviews appear newest first and can be edited or removed. Notes render as text with
-line breaks preserved. They stay local and are included in exports and confirmed
-replacement imports. Ratings do not change recommendation ranking in this version.
-`ReviewEditor.tsx` owns the rating/note form; `model.ts` validates and saves reviews.
-
-Review validation adds checks for save/edit behavior, round-trip persistence,
-legacy migration, invalid stars, notes, dates, drink IDs, and duplicate reviews.
+Development uses Node v26.13.1 and npm 11.20.0. Build, TypeScript, focused checks,
+source/license integrity, desktop/mobile layouts, direct routes, review persistence,
+private/shared data boundaries, image credits, and retailer link destinations must
+be verified for this release. Do not change DNS, registrar, billing, or Worker identity.
+The original personal design draft remains local and is excluded from publication.

@@ -1,3 +1,9 @@
+import {
+  retailers,
+  retailerURL,
+  type Retailer,
+  type RetailerCheck,
+} from "./retailers.ts";
 import { drinks, equipment, ingredients, type Drink } from "./catalog.ts";
 export type Stock = "have" | "low" | "out" | "unknown";
 export type Item = {
@@ -12,6 +18,7 @@ export type ShoppingItem = {
   name: string;
   reasons: string[];
   note: string;
+  retailerChecks?: Partial<Record<Retailer, RetailerCheck>>;
 };
 export type Review = {
   drinkId: string;
@@ -115,7 +122,32 @@ export function parseProfile(value: unknown): Profile {
     const key = s.ingredient + "|" + s.name.toLowerCase();
     if (shoppingKeys.has(key)) throw new Error("Duplicate shopping entry.");
     shoppingKeys.add(key);
+    let retailerChecks: ShoppingItem["retailerChecks"];
+    if (s.retailerChecks !== undefined) {
+      if (
+        !s.retailerChecks ||
+        typeof s.retailerChecks !== "object" ||
+        Array.isArray(s.retailerChecks)
+      )
+        throw new Error("Invalid retailer availability checks.");
+      retailerChecks = {};
+      for (const [store, check] of Object.entries(s.retailerChecks)) {
+        if (
+          !retailers.includes(store as Retailer) ||
+          !check ||
+          !["available", "unavailable"].includes(check.status) ||
+          typeof check.checkedAt !== "string" ||
+          !Number.isFinite(Date.parse(check.checkedAt))
+        )
+          throw new Error("Invalid retailer availability check.");
+        retailerChecks[store as Retailer] = {
+          status: check.status,
+          checkedAt: check.checkedAt,
+        };
+      }
+    }
     return {
+      ...(retailerChecks ? { retailerChecks } : {}),
       ingredient: s.ingredient,
       name: s.name.trim(),
       reasons: [...new Set(s.reasons)],
@@ -173,8 +205,9 @@ export function inspect(drink: Drink, profile: Profile) {
     ),
   };
 }
-export function matches(drink: Drink, p: Preferences) {
+export function matches(drink: Drink, p: Preferences, includeReview = false) {
   return (
+    (!drink.needsReview || includeReview) &&
     !drink.needs.some((n) => p.avoid.includes(n.id)) &&
     (p.spirit === "Any" || drink.spirit === p.spirit) &&
     (p.effort === "Any" || drink.effort === p.effort) &&
@@ -184,9 +217,13 @@ export function matches(drink: Drink, p: Preferences) {
 export function score(drink: Drink, p: Preferences) {
   return p.taste !== "Any" && drink.taste.includes(p.taste) ? 10 : 0;
 }
-export function ranked(profile: Profile, p: Preferences) {
+export function ranked(
+  profile: Profile,
+  p: Preferences,
+  includeReview = false,
+) {
   return drinks
-    .filter((d) => matches(d, p))
+    .filter((d) => matches(d, p, includeReview))
     .map((drink) => ({ drink, ...inspect(drink, profile) }))
     .sort(
       (a, b) =>
@@ -241,9 +278,35 @@ export function addShopping(
         ],
   };
 }
-export function searchURL(name: string, retailer = "Web") {
-  const query = (retailer === "Web" ? "" : retailer + " ") + name + " buy";
-  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+export function searchURL(name: string, retailer: Retailer = "Total Wine") {
+  return retailerURL(name, retailer);
+}
+export function checkRetailer(
+  profile: Profile,
+  item: ShoppingItem,
+  retailer: Retailer,
+  status: "available" | "unavailable" | "unknown",
+): Profile {
+  return {
+    ...profile,
+    shopping: profile.shopping.map((s) => {
+      if (s !== item) return s;
+      const checks = { ...s.retailerChecks };
+      if (status === "unknown") delete checks[retailer];
+      else checks[retailer] = { status, checkedAt: new Date().toISOString() };
+      return { ...s, retailerChecks: checks };
+    }),
+  };
+}
+export function retailerSummary(shopping: ShoppingItem[], retailer: Retailer) {
+  const confirmed = shopping.filter(
+    (s) => s.retailerChecks?.[retailer]?.status === "available",
+  ).length;
+  return {
+    confirmed,
+    total: shopping.length,
+    allConfirmed: shopping.length > 0 && confirmed === shopping.length,
+  };
 }
 
 // Keep the storage key stable so existing version-1 saves are found and migrated.

@@ -4,16 +4,10 @@ import {
   ingredients,
   ingredientName,
   equipment,
-  products,
   type Drink,
 } from "./catalog";
 import {
   STORAGE_KEY,
-  addInventory,
-  productKey,
-  setQuantity,
-  isInInventory,
-  MAX_QUANTITY,
   saveReview,
   type Review,
   emptyProfile,
@@ -23,15 +17,19 @@ import {
   unlocks,
   addShopping,
   searchURL,
+  checkRetailer,
+  retailerSummary,
   type Profile,
-  type Stock,
   type ShoppingItem,
 } from "./model";
 import "./barbuddy.css";
 import ReviewEditor from "./ReviewEditor";
+import { sharedBar, withSharedBar } from "./shared-bar";
+import { retailers, type Retailer } from "./retailers";
+import importReport from "./data/import-report.json";
 const tabs = [
   "Find a drink",
-  "My bar",
+  "The bar",
   "Unlock more",
   "Shopping list",
   "My reviews",
@@ -59,13 +57,15 @@ export default function BarBuddy() {
   const [blocked, setBlocked] = useState(Boolean(initial.error));
   const [tab, setTab] = useState<Tab>("Find a drink");
   const [prefs, setPrefs] = useState(defaultPreferences);
-  const [query, setQuery] = useState("");
-  const [newIngredient, setNewIngredient] = useState("gin");
-  const [newName, setNewName] = useState("");
+  const [drinkQuery, setDrinkQuery] = useState("");
+  const [limit, setLimit] = useState(24);
+  const [avoidQuery, setAvoidQuery] = useState("");
   const [status, setStatus] = useState("");
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(true);
   const [offset, setOffset] = useState(0);
-  const [retailer, setRetailer] = useState("Web");
+  const [retailer, setRetailer] = useState<Retailer | "All retailers">(
+    "All retailers",
+  );
   const [reviewDrink, setReviewDrink] = useState(drinks[0].id);
   const [pending, setPending] = useState<Profile | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -83,11 +83,18 @@ export default function BarBuddy() {
       );
     }
   }, [profile, blocked]);
-  const results = ranked(profile, prefs);
-  const ready = results.filter((r) => !r.missing.length && !r.tools.length);
-  const suggestions = unlocks(profile, prefs);
+  const activeBar = withSharedBar(profile);
+  const results = ranked(activeBar, prefs, showAll).filter((r) =>
+    (r.drink.name + " " + r.drink.description)
+      .toLowerCase()
+      .includes(drinkQuery.toLowerCase()),
+  );
+  const ready = results.filter(
+    (r) => !r.drink.needsReview && !r.missing.length && !r.tools.length,
+  );
+  const suggestions = unlocks(activeBar, prefs);
   const view = showAll
-    ? results
+    ? results.slice(0, limit)
     : ready.length
       ? Array.from(
           { length: Math.min(3, ready.length) },
@@ -97,10 +104,6 @@ export default function BarBuddy() {
   function shop(ingredient: string, name: string, reason: string) {
     setProfile((p) => addShopping(p, ingredient, name, reason));
     setStatus(`${name} added to your shopping list.`);
-  }
-  function addItem(ingredient: string, name: string) {
-    setProfile((p) => addInventory(p, ingredient, name, crypto.randomUUID()));
-    setStatus(`${name} added to your bar.`);
   }
   function exportProfile() {
     const url = URL.createObjectURL(
@@ -129,10 +132,12 @@ export default function BarBuddy() {
   }
   function purchased(item: ShoppingItem) {
     setProfile((p) => ({
-      ...addInventory(p, item.ingredient, item.name, crypto.randomUUID()),
+      ...p,
       shopping: p.shopping.filter((s) => s !== item),
     }));
-    setStatus(`${item.name} confirmed purchased and marked available.`);
+    setStatus(
+      "Removed from your shopping list. Tell Nate to update the shared bar through chat.",
+    );
   }
   return (
     <main className="page bb">
@@ -142,7 +147,9 @@ export default function BarBuddy() {
         </a>
         <span className="bb-local">
           <i />{" "}
-          {storageError ? "Local save needs attention" : "Saved on this device"}
+          {storageError
+            ? "Local save needs attention"
+            : "Shared bar · private reviews"}
         </span>
       </header>
       <section className="bb-hero">
@@ -154,7 +161,7 @@ export default function BarBuddy() {
             <em>BarBuddy.</em>
           </h1>
           <p className="intro">
-            Your bar. Your taste. Your next cocktail.
+            Nate’s bar. Your taste. Your next cocktail.
             <br />
             Find what you can make—and what opens up next.
           </p>
@@ -184,7 +191,7 @@ export default function BarBuddy() {
         <span>
           <strong>
             {
-              profile.items.filter(
+              activeBar.items.filter(
                 (i) => i.stock === "have" || i.stock === "low",
               ).length
             }
@@ -252,18 +259,36 @@ export default function BarBuddy() {
                 Reset preferences
               </button>
             </div>
-            {!profile.items.length && (
+            {!activeBar.items.length && (
               <div className="bb-notice">
-                <strong>First, tell BarBuddy what’s on your shelf.</strong>
+                <strong>
+                  The shared bar is waiting for an inventory session.
+                </strong>
                 <p>
-                  Your inventory starts empty and stays in this browser. Add
-                  your bottles, mixers, ice, and tools to see what’s ready.
+                  Browse the full catalog now. Nate’s confirmed inventory will
+                  be published here for every visitor after we take stock
+                  together.
                 </p>
-                <button className="bb-primary" onClick={() => setTab("My bar")}>
-                  Set up my bar ↗
+                <button
+                  className="bb-primary"
+                  onClick={() => setTab("The bar")}
+                >
+                  View shared bar ↗
                 </button>
               </div>
             )}
+            <label className="bb-catalog-search">
+              Search cocktails
+              <input
+                type="search"
+                placeholder="Try Negroni, a sour, or a favorite name…"
+                value={drinkQuery}
+                onChange={(e) => {
+                  setDrinkQuery(e.target.value);
+                  setLimit(24);
+                }}
+              />
+            </label>
             <div className="bb-filters">
               <label>
                 Flavor
@@ -304,6 +329,10 @@ export default function BarBuddy() {
                     ["bourbon", "Bourbon"],
                     ["japanese-whisky", "Japanese whisky"],
                     ["cognac", "Cognac"],
+                    ["rye", "Rye whiskey"],
+                    ["mezcal", "Mezcal"],
+                    ["scotch", "Scotch whisky"],
+                    ["other", "Other bases"],
                     ["aperol-family", "Aperitifs"],
                   ].map(([v, n]) => (
                     <option key={v} value={v}>
@@ -344,24 +373,37 @@ export default function BarBuddy() {
                 Ingredients to avoid{" "}
                 {prefs.avoid.length > 0 && `(${prefs.avoid.length})`}
               </summary>
+              <label>
+                Filter ingredients
+                <input
+                  type="search"
+                  value={avoidQuery}
+                  onChange={(e) => setAvoidQuery(e.target.value)}
+                  placeholder="Find an ingredient to avoid…"
+                />
+              </label>
               <div className="bb-checks">
-                {ingredients.map((i) => (
-                  <label key={i.id}>
-                    <input
-                      type="checkbox"
-                      checked={prefs.avoid.includes(i.id)}
-                      onChange={(e) =>
-                        setPrefs({
-                          ...prefs,
-                          avoid: e.target.checked
-                            ? [...prefs.avoid, i.id]
-                            : prefs.avoid.filter((id) => id !== i.id),
-                        })
-                      }
-                    />
-                    {i.name}
-                  </label>
-                ))}
+                {ingredients
+                  .filter((i) =>
+                    i.name.toLowerCase().includes(avoidQuery.toLowerCase()),
+                  )
+                  .map((i) => (
+                    <label key={i.id}>
+                      <input
+                        type="checkbox"
+                        checked={prefs.avoid.includes(i.id)}
+                        onChange={(e) =>
+                          setPrefs({
+                            ...prefs,
+                            avoid: e.target.checked
+                              ? [...prefs.avoid, i.id]
+                              : prefs.avoid.filter((id) => id !== i.id),
+                          })
+                        }
+                      />
+                      {i.name}
+                    </label>
+                  ))}
               </div>
             </details>
             <div className="bb-result-head">
@@ -370,14 +412,14 @@ export default function BarBuddy() {
                   {ready.length
                     ? "Ready for your bar"
                     : prefs.style === "Frozen"
-                      ? "Frozen recipes are coming"
+                      ? "Frozen recipes for a blender"
                       : "A few possibilities"}
                 </h3>
                 <p>
                   {ready.length
                     ? `${ready.length} matching drinks. Flavor preferences bring your best matches to the top.`
                     : prefs.style === "Frozen"
-                      ? "Ninja SLUSHi recipes will appear after model and formulation verification."
+                      ? "These recipes require a blender. Ninja SLUSHi adaptations still need model-specific verification."
                       : "No drinks are fully ready with these settings. Here’s exactly what is missing."}
                 </p>
               </div>
@@ -391,7 +433,7 @@ export default function BarBuddy() {
                 )}
                 <button onClick={() => setShowAll((v) => !v)}>
                   {showAll
-                    ? "Show suggestions"
+                    ? "Suggest a few"
                     : `Browse matches (${results.length})`}
                 </button>
               </div>
@@ -421,314 +463,137 @@ export default function BarBuddy() {
                 />
               ))}
             </div>
-            <p className="bb-footnote">
-              Recipes begin with IBA references and clearly labeled house
-              proportions. Book recipes and page numbers are pending
-              verification. Optional garnishes do not block a match.
-            </p>
+            {showAll && view.length < results.length && (
+              <button onClick={() => setLimit((n) => n + 24)}>
+                Show more drinks ({results.length - view.length} remaining)
+              </button>
+            )}
+            <details className="bb-details">
+              <summary>Catalog sources & image credits</summary>
+              <p className="bb-footnote">
+                {importReport.importedRecipes} recipes imported from Bar
+                Assistant’s MIT-licensed data, plus 20 retained BarBuddy
+                recipes. {importReport.preparationReview.length} imported
+                recipes need preparation or quantity verification and are
+                excluded from make-now and unlock results. Existing recipe IDs
+                and reviews are preserved. This collection does not claim to
+                reproduce the book’s 501 recipes.
+              </p>
+              <a
+                href="https://github.com/bar-assistant/data"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Bar Assistant data ↗
+              </a>{" "}
+              ·{" "}
+              <a href="/barbuddy/BAR-ASSISTANT-LICENSE.txt">
+                MIT license notice
+              </a>
+              <p className="bb-footnote">
+                Only individually verified photos are included; other cards use
+                decorative illustrations. Margarita photo: Cocktailmarler,{" "}
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Klassiche_Margarita.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Wikimedia Commons
+                </a>
+                ,{" "}
+                <a
+                  href="https://creativecommons.org/licenses/by-sa/3.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  CC BY-SA 3.0
+                </a>
+                ; resized thumbnail, displayed cropped.
+              </p>
+            </details>
           </>
         )}
-        {tab === "My bar" && (
+        {tab === "The bar" && (
           <>
             <div className="bb-section-title">
               <div>
-                <p className="eyebrow">02 / Take stock</p>
-                <h2>Good things on your shelf.</h2>
+                <p className="eyebrow">02 / Shared with every visitor</p>
+                <h2>{sharedBar.name}</h2>
               </div>
-              <span className="bb-muted">Only you, in this browser.</span>
+              <span className="bb-muted">Updated {sharedBar.updatedAt}</span>
             </div>
             <div className="bb-notice">
-              Confirm the ingredient category when adding a product. Flavored
-              spirits, premixes, and different bitters are kept separate. No
-              quantities are inferred from photos.
-            </div>
-            <div className="bb-bar-layout">
-              <section className="bb-panel">
-                <h3>Add to your bar</h3>
-                <label>
-                  Search products or ingredients
-                  <input
-                    type="search"
-                    placeholder="Try Chambord, gin, or lime…"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                  />
-                </label>
-                <div className="bb-directory">
-                  {[
-                    ...products.map((p) => ({
-                      name: p.name,
-                      ingredient: p.ingredient,
-                    })),
-                    ...ingredients
-                      .filter(
-                        (i) =>
-                          !products.some(
-                            (p) =>
-                              p.name.toLowerCase() === i.name.toLowerCase() &&
-                              p.ingredient === i.id,
-                          ),
-                      )
-                      .map((i) => ({ name: i.name, ingredient: i.id })),
-                  ]
-                    .filter(
-                      (p) => !isInInventory(profile, p.ingredient, p.name),
-                    )
-                    .filter((p) =>
-                      (p.name + " " + ingredientName(p.ingredient))
-                        .toLowerCase()
-                        .includes(query.toLowerCase()),
-                    )
-                    .map((p, i) => (
-                      <div key={p.name + i}>
-                        <span>
-                          {p.name}
-                          <small>{ingredientName(p.ingredient)}</small>
-                        </span>
-                        <button
-                          aria-label={`Add ${p.name}`}
-                          onClick={() => addItem(p.ingredient, p.name)}
-                        >
-                          + Add
-                        </button>
-                      </div>
-                    ))}
-                </div>
-                <details className="bb-details">
-                  <summary>Add another brand or product</summary>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      if (newName.trim()) {
-                        addItem(newIngredient, newName.trim());
-                        setNewName("");
-                      }
-                    }}
-                  >
-                    <label>
-                      Product name
-                      <input
-                        value={newName}
-                        onChange={(e) => setNewName(e.target.value)}
-                        required
-                        maxLength={180}
-                        placeholder="Your bottle or ingredient"
-                      />
-                    </label>
-                    <label>
-                      Ingredient category
-                      <select
-                        value={newIngredient}
-                        onChange={(e) => setNewIngredient(e.target.value)}
-                      >
-                        {ingredients.map((i) => (
-                          <option key={i.id} value={i.id}>
-                            {i.name}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <button className="bb-primary" type="submit">
-                      Add product
-                    </button>
-                  </form>
-                </details>
-              </section>
-              <section className="bb-panel">
-                <h3>
-                  My inventory{" "}
-                  <span className="bb-muted">/ {profile.items.length}</span>
-                </h3>
-                {!profile.items.length && (
-                  <p className="bb-muted">
-                    Add your first item from the directory. Remember ice and
-                    other essentials.
-                  </p>
-                )}
-                <p className="bb-footnote">
-                  Update counts here instead of adding another row. Zero marks
-                  an item out; use Restock to buy more.
-                </p>
-                <div className="bb-inventory">
-                  {profile.items.map((item) => (
-                    <div className="bb-stock-row" key={item.id}>
-                      <div className="bb-stock-label">
-                        {item.name}
-                        <small>{ingredientName(item.ingredient)}</small>
-                        <input
-                          aria-label={`Edit product name for ${item.name}`}
-                          defaultValue={item.name}
-                          maxLength={180}
-                          onBlur={(e) => {
-                            const name = e.currentTarget.value.trim();
-                            if (name) {
-                              if (
-                                profile.items.some(
-                                  (i) =>
-                                    i.id !== item.id &&
-                                    productKey(i.ingredient, i.name) ===
-                                      productKey(item.ingredient, name),
-                                )
-                              ) {
-                                e.currentTarget.value = item.name;
-                                setStatus(
-                                  "That product is already in your bar. Update its quantity instead.",
-                                );
-                              } else {
-                                setProfile((p) => ({
-                                  ...p,
-                                  items: p.items.map((i) =>
-                                    i.id === item.id ? { ...i, name } : i,
-                                  ),
-                                }));
-                              }
-                            } else {
-                              e.currentTarget.value = item.name;
-                              setStatus("Product names cannot be empty.");
-                            }
-                          }}
-                        />
-                        <label className="bb-quantity">
-                          Quantity (bottles / items)
-                          <input
-                            key={item.quantity}
-                            type="number"
-                            min="0"
-                            max={MAX_QUANTITY}
-                            step="1"
-                            defaultValue={item.quantity}
-                            aria-label={`${item.name} quantity`}
-                            onBlur={(e) => {
-                              const value = e.currentTarget.value;
-                              const quantity = Number(value);
-                              if (
-                                value.trim() &&
-                                Number.isSafeInteger(quantity) &&
-                                quantity >= 0 &&
-                                quantity <= MAX_QUANTITY
-                              ) {
-                                setProfile((p) => ({
-                                  ...p,
-                                  items: p.items.map((i) =>
-                                    i.id === item.id
-                                      ? setQuantity(i, quantity)
-                                      : i,
-                                  ),
-                                }));
-                              } else {
-                                e.currentTarget.value = String(item.quantity);
-                                setStatus(
-                                  "Quantity must be a whole number from 0 to 9999.",
-                                );
-                              }
-                            }}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") e.currentTarget.blur();
-                            }}
-                          />
-                        </label>
-                        <select
-                          aria-label={`${item.name} availability`}
-                          value={item.stock}
-                          onChange={(e) =>
-                            setProfile((p) => ({
-                              ...p,
-                              items: p.items.map((i) =>
-                                i.id === item.id
-                                  ? {
-                                      ...i,
-                                      stock: e.target.value as Stock,
-                                      quantity:
-                                        e.target.value === "out"
-                                          ? 0
-                                          : Math.max(1, i.quantity),
-                                    }
-                                  : i,
-                              ),
-                            }))
-                          }
-                        >
-                          {[
-                            ["have", "Have it"],
-                            ["low", "Running low"],
-                            ["out", "Out"],
-                            ["unknown", "Unknown"],
-                          ].map(([v, n]) => (
-                            <option key={v} value={v}>
-                              {n}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="bb-actions">
-                        <a
-                          href={searchURL(item.name, retailer)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Find product ↗
-                        </a>
-                        <button
-                          onClick={() =>
-                            shop(item.ingredient, item.name, "Restock")
-                          }
-                        >
-                          Restock
-                        </button>
-                        <button
-                          className="bb-quiet"
-                          aria-label={`Remove ${item.name}`}
-                          onClick={() =>
-                            setProfile((p) => ({
-                              ...p,
-                              items: p.items.filter((i) => i.id !== item.id),
-                            }))
-                          }
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </div>
-            <section className="bb-panel bb-equipment">
-              <h3>Tools of the trade</h3>
-              <p className="bb-muted">
-                Select what you have. A carbonator doesn’t automatically add
-                sparkling water—confirm it in your inventory when ready.
+              {sharedBar.status}
+              <p>
+                This is the same published inventory for everyone. Nate updates
+                stock and equipment through chat; visitors can browse and plan
+                shopping without changing the bar.
               </p>
-              <div className="bb-checks">
-                {equipment.map((t) => (
-                  <label key={t.id}>
-                    <input
-                      type="checkbox"
-                      checked={profile.tools.includes(t.id)}
-                      onChange={(e) =>
-                        setProfile((p) => ({
-                          ...p,
-                          tools: e.target.checked
-                            ? [...p.tools, t.id]
-                            : p.tools.filter((id) => id !== t.id),
-                        }))
-                      }
-                    />
-                    {t.name}
-                  </label>
-                ))}
+            </div>
+            {!sharedBar.items.length && (
+              <div className="bb-empty">
+                We’ll take inventory together next. No bottles, quantities,
+                staples, or tools have been assumed.
               </div>
+            )}
+            <div className="bb-shared-items">
+              {sharedBar.items.map((item) => (
+                <article className="bb-panel" key={item.id}>
+                  <h3>{item.name}</h3>
+                  <p className="bb-muted">
+                    {ingredientName(item.ingredient)} · Quantity {item.quantity}{" "}
+                    ·{" "}
+                    {item.stock === "have"
+                      ? "Available"
+                      : item.stock === "low"
+                        ? "Running low"
+                        : item.stock === "out"
+                          ? "Out"
+                          : "Unconfirmed"}
+                  </p>
+                  <button
+                    onClick={() =>
+                      shop(item.ingredient, item.name, "Restock shared bar")
+                    }
+                  >
+                    Add restock to my list
+                  </button>
+                  <div className="bb-actions">
+                    {retailers.map((r) => (
+                      <a
+                        key={r}
+                        href={searchURL(item.name, r)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {r} ↗
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <section className="bb-panel">
+              <h3>Shared equipment</h3>
+              <p className="bb-muted">
+                {sharedBar.tools.length
+                  ? sharedBar.tools
+                      .map((id) => equipment.find((t) => t.id === id)?.name)
+                      .join(" · ")
+                  : "Equipment will be confirmed in the inventory session."}
+              </p>
               <p className="bb-footnote">
-                SLUSHi ownership is recorded now; frozen variants need
-                model-specific verification before use.
+                Blender recipes are separate from Ninja SLUSHi recipes. A
+                carbonator alone does not imply sparkling water is in stock.
               </p>
             </section>
             <section className="bb-panel">
               <h3>Keep a backup</h3>
               <p className="bb-muted">
-                Your bar is saved on this browser only. Export to move it to
-                another device. Imports replace the current inventory,
-                equipment, shopping list, and reviews after confirmation.
+                Reviews and shopping lists stay private to this browser. Exports
+                also preserve any inventory you saved before the shared bar was
+                introduced. Imports replace your personal backup data, not the
+                published shared bar.
               </p>
               <div className="bb-actions">
                 <button onClick={exportProfile}>Export backup ↓</button>
@@ -745,7 +610,7 @@ export default function BarBuddy() {
               </div>
               {pending && (
                 <div className="bb-notice">
-                  <strong>Replace with imported backup?</strong>
+                  <strong>Replace personal data with this backup?</strong>
                   <p>
                     {pending.items.length} inventory items ·{" "}
                     {pending.tools.length} tools · {pending.shopping.length}{" "}
@@ -762,7 +627,7 @@ export default function BarBuddy() {
                         setStatus("Backup imported.");
                       }}
                     >
-                      Replace current bar
+                      Replace personal data
                     </button>
                     <button onClick={() => setPending(null)}>
                       Cancel import
@@ -788,8 +653,9 @@ export default function BarBuddy() {
             </p>
             {!suggestions.length && (
               <div className="bb-empty">
-                No single-ingredient unlocks yet. Add your stock and tools in My
-                bar, or loosen your preferences in Find a drink.
+                No single-ingredient unlocks yet. The shared inventory will be
+                confirmed next; you can also loosen your preferences in Find a
+                drink.
               </div>
             )}
             <div className="bb-unlocks">
@@ -860,7 +726,7 @@ export default function BarBuddy() {
               </span>
             </div>
             <p className="bb-muted">
-              Keep one editable review per cocktail. Pick any supported drink,
+              Keep one editable review per cocktail. Pick any catalog drink,
               even if it isn’t currently makeable from your bar. Reviews are
               private to this browser and included in your backups.
             </p>
@@ -959,27 +825,42 @@ export default function BarBuddy() {
               <span className="bb-muted">{profile.shopping.length} items</span>
             </div>
             <label className="bb-retailer">
-              Search preference
+              Show shopping links
               <select
                 value={retailer}
-                onChange={(e) => setRetailer(e.target.value)}
+                onChange={(e) =>
+                  setRetailer(e.target.value as Retailer | "All retailers")
+                }
               >
-                {["Web", "Total Wine", "BevMo", "Instacart", "Amazon"].map(
-                  (r) => (
-                    <option key={r}>{r}</option>
-                  ),
-                )}
+                {["All retailers", ...retailers].map((r) => (
+                  <option key={r}>{r}</option>
+                ))}
               </select>
             </label>
             <p className="bb-muted">
-              Links open a web search for the product and your selected
-              retailer. Choose a result, verify the size and availability, and
-              add it to that retailer’s cart. No live prices or direct-cart
-              integration.
+              Links go directly to each retailer’s search results. After
+              checking the product, size, and local stock, mark it available or
+              unavailable below. These are your own checks, not a live stock
+              feed.
             </p>
+            <div className="bb-retailer-summary">
+              {retailers.map((r) => {
+                const summary = retailerSummary(profile.shopping, r);
+                return (
+                  <div className="bb-panel" key={r}>
+                    <h3>{r}</h3>
+                    <p className="bb-muted">
+                      {summary.allConfirmed
+                        ? `All ${summary.total} items marked available by you`
+                        : `${summary.confirmed}/${summary.total} items marked available by you`}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
             {!profile.shopping.length && (
               <div className="bb-empty">
-                Your list is clear. Use Restock in My bar, or discover a new
+                Your list is clear. Use restock in The bar, or discover a new
                 ingredient in Unlock more.
               </div>
             )}
@@ -1010,16 +891,54 @@ export default function BarBuddy() {
                   </label>
                 </div>
                 <div className="bb-shopping-actions">
-                  <a
-                    className="bb-button bb-primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={searchURL(s.name + " " + s.note, retailer)}
-                  >
-                    Search {retailer === "Web" ? "the web" : retailer} ↗
-                  </a>
+                  {(retailer === "All retailers" ? retailers : [retailer]).map(
+                    (r) => (
+                      <div className="bb-store-check" key={r}>
+                        <a
+                          className="bb-button"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={searchURL(s.name + " " + s.note, r)}
+                        >
+                          Find at {r} ↗
+                        </a>
+                        <label>
+                          Availability checked by you
+                          <select
+                            aria-label={`${r} availability for ${s.name}`}
+                            value={s.retailerChecks?.[r]?.status ?? "unknown"}
+                            onChange={(e) =>
+                              setProfile((p) =>
+                                checkRetailer(
+                                  p,
+                                  s,
+                                  r,
+                                  e.target.value as
+                                    | "available"
+                                    | "unavailable"
+                                    | "unknown",
+                                ),
+                              )
+                            }
+                          >
+                            <option value="unknown">Not checked</option>
+                            <option value="available">Available</option>
+                            <option value="unavailable">Unavailable</option>
+                          </select>
+                        </label>
+                        {s.retailerChecks?.[r] && (
+                          <small>
+                            Checked{" "}
+                            {new Date(
+                              s.retailerChecks[r]!.checkedAt,
+                            ).toLocaleDateString()}
+                          </small>
+                        )}
+                      </div>
+                    ),
+                  )}
                   <button onClick={() => purchased(s)}>
-                    Confirm purchased & add to bar
+                    Mark purchased (remove from my list)
                   </button>
                   <button
                     className="bb-quiet"
@@ -1036,10 +955,10 @@ export default function BarBuddy() {
               </article>
             ))}
             <p className="bb-footnote">
-              Confirm purchased adds one to this product’s quantity and marks it
-              available. For a generic ingredient, add the exact brand
-              separately in My bar if you want a precise restock search next
-              time.
+              Marking a purchase only updates your private shopping list. Nate
+              can update the shared bar through chat after confirming purchases.
+              Exact product-page links can be added when we verify brands and
+              sizes together.
             </p>
           </>
         )}
@@ -1072,25 +991,39 @@ function DrinkCard({
   review?: Review;
   onReview: () => void;
 }) {
-  const ready = !missing.length && !missingTools.length;
+  const ready = !drink.needsReview && !missing.length && !missingTools.length;
   return (
     <article className="bb-drink">
-      <div className={`bb-drink-image tone-${index % 3}`} aria-hidden="true">
-        <div
-          className={`bb-mini-glass ${drink.style === "Sparkling" ? "tall" : ""}`}
-        >
-          <div />
-          <i />
-        </div>
+      <div className={`bb-drink-image tone-${index % 3}`}>
+        {drink.image ? (
+          <img
+            src={drink.image.src}
+            alt={`${drink.name} cocktail`}
+            loading="lazy"
+            width="500"
+            height="750"
+          />
+        ) : (
+          <div aria-hidden="true">
+            <div
+              className={`bb-mini-glass ${drink.style === "Sparkling" ? "tall" : ""}`}
+            >
+              <div />
+              <i />
+            </div>
+          </div>
+        )}
         <span>{drink.style}</span>
       </div>
       <div className="bb-drink-body">
         <span className={`bb-pill ${ready ? "ready" : ""}`}>
-          {ready
-            ? "Ready to make"
-            : missing.length
-              ? `Missing ${missing.length} ${missing.length === 1 ? "ingredient" : "ingredients"}`
-              : "Needs equipment"}
+          {drink.needsReview
+            ? "Needs recipe verification"
+            : ready
+              ? "Ready to make"
+              : missing.length
+                ? `Missing ${missing.length} ${missing.length === 1 ? "ingredient" : "ingredients"}`
+                : "Needs equipment"}
         </span>
         <h3>{drink.name}</h3>
         {review && (
@@ -1149,7 +1082,50 @@ function DrinkCard({
               </li>
             ))}
           </ul>
-          <p>{drink.method}</p>
+          {drink.needsReview && (
+            <p className="bb-warning">
+              Preparation or quantity details need verification. This drink is
+              excluded from make-now and unlock recommendations.
+            </p>
+          )}
+          <p className="bb-method">{drink.method}</p>
+          {!!drink.optionalNeeds?.length && (
+            <p className="bb-footnote">
+              Optional:{" "}
+              {drink.optionalNeeds
+                .map((n) => `${n.amount} ${ingredientName(n.id)}`)
+                .join("; ")}
+            </p>
+          )}
+          {drink.garnish && (
+            <p className="bb-footnote">Garnish: {drink.garnish}</p>
+          )}
+          {drink.originalSource && (
+            <p className="bb-footnote">
+              Upstream reference: {drink.originalSource}
+            </p>
+          )}
+          {drink.image && (
+            <p className="bb-footnote">
+              Photo:{" "}
+              <a
+                href={drink.image.source}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {drink.image.author}
+              </a>{" "}
+              ·{" "}
+              <a
+                href={drink.image.licenseURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {drink.image.license}
+              </a>
+              . Resized and displayed cropped.
+            </p>
+          )}
           {drink.note && <p className="bb-footnote">{drink.note}</p>}
           {drink.source ? (
             <a href={drink.source} target="_blank" rel="noopener noreferrer">
