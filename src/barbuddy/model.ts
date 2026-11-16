@@ -4,7 +4,7 @@ import {
   type Retailer,
   type RetailerCheck,
 } from "./retailers.ts";
-import { drinks, equipment, ingredients, type Drink } from "./catalog.ts";
+import { drinks, equipment, ingredients, ingredientName, type Drink } from "./catalog.ts";
 export type Stock = "have" | "low" | "out" | "unknown";
 export type Item = {
   id: string;
@@ -191,6 +191,25 @@ export function parseProfile(value: unknown): Profile {
     shopping,
   };
 }
+// Directional matches: specific stock can satisfy a broader recipe requirement.
+const ingredientAliases: Record<string, string[]> = {
+  "japanese-whisky": ["ba-japanese-whiskey", "ba-whiskey"],
+  "ba-japanese-whiskey": ["japanese-whisky", "ba-whiskey"],
+  bourbon: ["ba-whiskey"], rye: ["ba-whiskey"],
+  "ba-irish-whiskey": ["ba-whiskey"],
+  "ba-scotch-whiskey": ["ba-whiskey"],
+  "ba-blended-scotch-whisky": ["ba-scotch-whiskey", "ba-whiskey"],
+  "ba-islay-scotch-whiskey": ["ba-scotch-whiskey", "ba-whiskey"],
+  "bottled-lime": ["lime"], "bottled-lemon": ["lemon"], "bottled-orange": ["orange"],
+  "ba-tequila-blanco": ["tequila", "ba-tequila"],
+  "ba-tequila-reposado": ["tequila", "ba-tequila"],
+  tequila: ["ba-tequila"],
+  "amber-curacao": ["ba-dry-curacao", "ba-orange-curacao"],
+  "ba-dry-curacao": ["amber-curacao", "ba-orange-curacao"],
+  aromatic: ["ba-bitters"], angostura: ["aromatic", "ba-bitters"],
+  "portland-pomegranate-cherry": ["grenadine"],
+  rum: ["ba-rum"],
+};
 // Owner-approved prepared mixers require the carbonator and stocked concentrate.
 function suppliedIngredients(item: Item, profile: Profile): string[] {
   const prepared: Record<string, string[]> = {
@@ -199,7 +218,9 @@ function suppliedIngredients(item: Item, profile: Profile): string[] {
     "diet-ginger-ale-concentrate": ["ginger-ale"],
     "diet-lemon-lime-concentrate": ["lemon-lime-soda"],
   };
-  return [item.ingredient, ...(profile.tools.includes("aarke") ? prepared[item.ingredient] ?? [] : [])];
+  const supplied = new Set([item.ingredient, ...(profile.tools.includes("aarke") ? prepared[item.ingredient] ?? [] : [])]);
+  for (const id of supplied) for (const alias of ingredientAliases[id] ?? []) supplied.add(alias);
+  return [...supplied];
 }
 export function available(profile: Profile): Set<string> {
   return new Set(
@@ -215,6 +236,14 @@ export function inspect(drink: Drink, profile: Profile) {
   return {
     missing: drink.needs.filter((n) => !have.has(n.id)),
     tools: drink.tools.filter((t) => !profile.tools.includes(t)),
+    substitutions: drink.needs.flatMap((n) => {
+      const stocked = profile.items.filter(i => i.quantity > 0 && (i.stock === "have" || i.stock === "low"));
+      if (stocked.some(i => i.ingredient === n.id)) return [];
+      const item = stocked.find(i => suppliedIngredients(i, profile).includes(n.id));
+      if (!item) return [];
+      const fresh = ["bottled-lime", "bottled-lemon", "bottled-orange"].includes(item.ingredient);
+      return [`Use ${item.name} for ${ingredientName(n.id)}.${fresh ? " Fresh is preferred for the best flavor." : " Flavor may differ from the recipe’s original ingredient."}`];
+    }),
     low: drink.needs.filter(
       (n) =>
         profile.items.some(

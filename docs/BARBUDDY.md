@@ -156,3 +156,16 @@ is available. Diet cola can satisfy cola/Coke Zero requirements by owner request
 Ginger ale does not supply ginger beer; flavored concentrates do not supply fruit
 juices. Low-stock warnings propagate from concentrates to their prepared mixers.
 Out, unknown, and zero-quantity concentrates supply no prepared soda.
+
+### Ingredient matching and substitutions
+
+Specific whisky styles satisfy generic Whiskey, but not other specific styles.
+Japanese whisky therefore matches Whiskey and Japanese Whiskey, not bourbon or rye.
+Bottled lime/lemon/orange juices satisfy the corresponding fresh-juice requirements;
+recipe instructions show the actual stocked product and “Fresh is preferred.”
+This does not satisfy whole-fruit requirements. Blanco/reposado satisfy generic
+tequila; dry/amber curaçao share the corresponding imported category names;
+aromatic bitters satisfy generic bitters. Portland Pomegranate Cherry can satisfy
+grenadine, as its vendor explicitly recommends. These are directional mappings.
+Recipe method notes disclose matches through the “Using your bar” section.
+Quantity and stock status still apply; low-stock warnings propagate through mappings.
