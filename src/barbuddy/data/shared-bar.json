@@ -1,7 +1,7 @@
 {
   "name": "Nate’s bar",
   "updatedAt": "2026-11-16",
-  "status": "Inventory in progress: fridge recorded from current photos. Other locations and equipment are still pending. Counts are containers, not remaining volume.",
+  "status": "Inventory in progress: fridge and pantry recorded from current photos. Other locations and equipment are still pending. Counts are containers, not remaining volume.",
   "items": [
     {
       "id": "fridge-noble-ginger",
@@ -136,6 +136,120 @@
       "stock": "have",
       "location": "Fridge",
       "notes": "Concentrate requiring preparation; not fresh lemon or lime juice."
+    },
+    {
+      "id": "pantry-kirkland-reposado",
+      "ingredient": "ba-tequila-reposado",
+      "name": "Kirkland Signature Tequila Reposado",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "100% agave reposado tequila."
+    },
+    {
+      "id": "pantry-frey-organic-red",
+      "ingredient": "ba-red-wine",
+      "name": "Frey Organic Red",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Red wine blend; Mendocino County."
+    },
+    {
+      "id": "pantry-casamigos-blanco",
+      "ingredient": "ba-tequila-blanco",
+      "name": "Casamigos Tequila Blanco",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "100% agave blanco tequila."
+    },
+    {
+      "id": "pantry-cristiani-absinthe",
+      "ingredient": "ba-absinthe",
+      "name": "Cristiani Absinth Superieure Parnasse",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry"
+    },
+    {
+      "id": "pantry-mission-tamarind",
+      "ingredient": "tamarind-margarita-premix",
+      "name": "Mission Tamarind Margarita",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Ready-to-pour cocktail; not separate tequila, tamarind, or triple sec supplies."
+    },
+    {
+      "id": "pantry-drillaud-triple-sec",
+      "ingredient": "triple-sec",
+      "name": "Drillaud Orange Triple Sec",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Orange liqueur."
+    },
+    {
+      "id": "pantry-meiggs-pardon-2024",
+      "ingredient": "ba-red-wine",
+      "name": "Meiggs’ Pardon Promissory Red 2024",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "North Coast red wine."
+    },
+    {
+      "id": "pantry-tintoretto-primitivo-2024",
+      "ingredient": "ba-red-wine",
+      "name": "Tintoretto Primitivo 2024",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Puglia IGT red wine."
+    },
+    {
+      "id": "pantry-tallax",
+      "ingredient": "wine-unconfirmed",
+      "name": "Tallax South Australia",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Wine style and variety unconfirmed; label is partly obscured. Excluded from specific wine matches until confirmed."
+    },
+    {
+      "id": "pantry-400-conejos",
+      "ingredient": "ba-mezcal",
+      "name": "400 Conejos Espadín Joven Mezcal",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry"
+    },
+    {
+      "id": "pantry-kirkland-gin",
+      "ingredient": "gin",
+      "name": "Kirkland Signature London Dry Gin",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry"
+    },
+    {
+      "id": "pantry-butterfly-ube",
+      "ingredient": "ube-flavouring",
+      "name": "Butterfly Ube Flavouring",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Flavoring; separate from Portland Ube syrup and not assumed to be a sweetener."
+    },
+    {
+      "id": "pantry-dragonfly-jasmine",
+      "ingredient": "jasmine-essence",
+      "name": "Dragonfly Jasmine Flavoring Essence",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Flavoring essence; not jasmine syrup or tea."
     }
   ],
   "tools": []
