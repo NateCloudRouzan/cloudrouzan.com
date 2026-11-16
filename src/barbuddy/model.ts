@@ -13,11 +13,18 @@ export type ShoppingItem = {
   reasons: string[];
   note: string;
 };
+export type Review = {
+  drinkId: string;
+  rating: number;
+  note: string;
+  updatedAt: string;
+};
 export type Profile = {
-  version: 2;
+  version: 3;
   items: Item[];
   tools: string[];
   shopping: ShoppingItem[];
+  reviews: Review[];
 };
 export type Preferences = {
   taste: string;
@@ -27,10 +34,11 @@ export type Preferences = {
   avoid: string[];
 };
 export const emptyProfile = (): Profile => ({
-  version: 2,
+  version: 3,
   items: [],
   tools: [],
   shopping: [],
+  reviews: [],
 });
 export const defaultPreferences = (): Preferences => ({
   taste: "Any",
@@ -52,7 +60,7 @@ export function parseProfile(value: unknown): Profile {
     throw new Error("Choose a BarBuddy JSON export.");
   const p = value as Partial<Omit<Profile, "version">> & { version?: number };
   if (
-    (p.version !== 1 && p.version !== 2) ||
+    (p.version !== 1 && p.version !== 2 && p.version !== 3) ||
     !Array.isArray(p.items) ||
     !Array.isArray(p.tools) ||
     !Array.isArray(p.shopping)
@@ -114,8 +122,27 @@ export function parseProfile(value: unknown): Profile {
       note: s.note,
     };
   });
+  const reviews: Review[] = [];
+  if (p.version === 3) {
+    if (!Array.isArray(p.reviews) || p.reviews.length > drinks.length)
+      throw new Error("Invalid review collection.");
+    const reviewed = new Set<string>();
+    for (const review of p.reviews) {
+      validateReview(review);
+      if (reviewed.has(review.drinkId))
+        throw new Error("Duplicate drink review.");
+      reviewed.add(review.drinkId);
+      reviews.push({
+        drinkId: review.drinkId,
+        rating: review.rating,
+        note: review.note.trim(),
+        updatedAt: review.updatedAt,
+      });
+    }
+  }
   return {
-    version: 2,
+    version: 3,
+    reviews,
     items: consolidateItems(items),
     tools: [...new Set(p.tools)],
     shopping,
@@ -296,4 +323,33 @@ export function isInInventory(
       (ingredients.find((n) => n.id === ingredient)?.name === name &&
         i.ingredient === ingredient),
   );
+}
+
+export const MAX_REVIEW_NOTE = 2000;
+function validateReview(review: Review): void {
+  if (
+    !review ||
+    !drinks.some((d) => d.id === review.drinkId) ||
+    !Number.isInteger(review.rating) ||
+    review.rating < 1 ||
+    review.rating > 5 ||
+    typeof review.note !== "string" ||
+    review.note.length > MAX_REVIEW_NOTE ||
+    typeof review.updatedAt !== "string" ||
+    !Number.isFinite(Date.parse(review.updatedAt))
+  )
+    throw new Error(
+      "Reviews need a supported drink, 1–5 stars, a note of at most 2000 characters, and a valid date.",
+    );
+}
+export function saveReview(profile: Profile, review: Review): Profile {
+  validateReview(review);
+  const normalized = { ...review, note: review.note.trim() };
+  return {
+    ...profile,
+    reviews: [
+      normalized,
+      ...profile.reviews.filter((r) => r.drinkId !== review.drinkId),
+    ],
+  };
 }
