@@ -46,6 +46,8 @@ const groups: Record<string, [string, string][]> = {
     ["cola", "Cola"],
     ["cola-zero", "Coke Zero"],
     ["tonic", "Tonic water"],
+    ["ginger-ale", "Ginger ale"],
+    ["lemon-lime-soda", "Lemon-lime soda"],
     ["ginger-beer", "Ginger beer"],
     ["prosecco", "Prosecco"],
     ["peach-ginger", "White peach & ginger mixer"],

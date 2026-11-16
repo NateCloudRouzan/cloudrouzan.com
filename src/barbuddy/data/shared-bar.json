@@ -117,7 +117,7 @@
       "quantity": 1,
       "stock": "have",
       "location": "Fridge",
-      "notes": "Concentrate requiring preparation; not ready-to-drink cola or Coke Zero."
+      "notes": "Owner confirms this concentrate can be prepared with the carbonator. Counts toward its prepared soda for recipe matching; diet variants retained in product name. Package count unspecified."
     },
     {
       "id": "fridge-sodastream-diet-ginger-ale",
@@ -126,7 +126,7 @@
       "quantity": 1,
       "stock": "have",
       "location": "Fridge",
-      "notes": "Concentrate requiring preparation; not ginger beer."
+      "notes": "Owner confirms this concentrate can be prepared with the carbonator. Counts toward its prepared soda for recipe matching; diet variants retained in product name. Package count unspecified."
     },
     {
       "id": "fridge-sodastream-diet-lemon-lime",
@@ -135,7 +135,7 @@
       "quantity": 1,
       "stock": "have",
       "location": "Fridge",
-      "notes": "Concentrate requiring preparation; not fresh lemon or lime juice."
+      "notes": "Owner confirms this concentrate can be prepared with the carbonator. Counts toward its prepared soda for recipe matching; diet variants retained in product name. Package count unspecified."
     },
     {
       "id": "pantry-kirkland-reposado",
@@ -258,7 +258,7 @@
       "quantity": 1,
       "stock": "have",
       "location": "Cabinet",
-      "notes": "Concentrate requiring preparation; not ready-to-drink tonic. Brand variant and container count unconfirmed. Quantity 1 represents one available supply entry, not a confirmed package count."
+      "notes": "Owner confirms this concentrate can be prepared with the carbonator. Counts toward its prepared soda for recipe matching; diet variants retained in product name. Package count unspecified."
     },
     {
       "id": "cabinet-coffee",
@@ -463,6 +463,15 @@
       "stock": "have",
       "location": "Freezer",
       "notes": "Owner confirms ice available. Quantity denotes availability, not a count of cubes or bags."
+    },
+    {
+      "id": "cabinet-sparkling-water",
+      "ingredient": "soda",
+      "name": "Sparkling water (made with carbonator)",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms sparkling water can always be prepared. Availability entry, not a package count."
     }
   ],
   "tools": [

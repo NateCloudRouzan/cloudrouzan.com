@@ -4,6 +4,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { drinks, ingredients } from "../src/barbuddy/catalog.ts";
 import {
+  available,
   emptyProfile,
   defaultPreferences,
   inspect,
@@ -371,4 +372,26 @@ test("the same product in different locations keeps separate inventory rows", ()
   assert.equal(p.items.length, 2);
   assert.equal(p.items[0].quantity, 1);
   assert.equal(p.items[1].quantity, 2);
+});
+
+test("prepared sodas require stocked concentrates and a carbonator", () => {
+  const p = emptyProfile();
+  p.tools = ["aarke"];
+  p.items = [{ id: "tonic", ingredient: "tonic-concentrate", name: "Tonic syrup", quantity: 1, stock: "low" }];
+  assert.ok(available(p).has("tonic"));
+  const recipe = { ...drink("gin-tonic"), needs: [{id: "tonic", amount: "100 ml"}] };
+  assert.equal(inspect(recipe, p).missing.length, 0);
+  assert.equal(inspect(recipe, p).low.length, 1);
+  p.tools = [];
+  assert.ok(!available(p).has("tonic"));
+  p.tools = ["aarke"];
+  p.items[0].stock = "out";
+  assert.ok(!available(p).has("tonic"));
+  p.items[0].stock = "have";
+  p.items[0].quantity = 0;
+  assert.ok(!available(p).has("tonic"));
+  p.items[0].quantity = 1;
+  p.items[0].ingredient = "diet-ginger-ale-concentrate";
+  assert.ok(available(p).has("ginger-ale"));
+  assert.ok(!available(p).has("ginger-beer"));
 });
