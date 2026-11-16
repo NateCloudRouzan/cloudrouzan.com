@@ -13,6 +13,7 @@ import {
   addInventory,
   isInInventory,
   setQuantity,
+  saveReview,
 } from "../src/barbuddy/model.ts";
 const drink = (id: string) => drinks.find((d) => d.id === id)!;
 test("low counts as available; out/unknown do not; duplicate bottles do not hide low correctly", () => {
@@ -92,7 +93,7 @@ test("flavored mixers, Japanese whisky and amber curaçao are not universal subs
 test("imports reject unknown IDs, unsupported versions and duplicates; round-trip is lossless", () => {
   const p = emptyProfile();
   assert.deepEqual(parseProfile(JSON.parse(JSON.stringify(p))), p);
-  assert.throws(() => parseProfile({ ...p, version: 3 }));
+  assert.throws(() => parseProfile({ ...p, version: 4 }));
   assert.throws(() => parseProfile({ ...p, tools: ["unknown"] }));
   const i = {
     id: "x",
@@ -144,7 +145,7 @@ test("legacy saves combine duplicate products and preserve different brands", ()
     tools: ["spoon"],
     shopping: [],
   });
-  assert.equal(p.version, 2);
+  assert.equal(p.version, 3);
   assert.equal(p.items.length, 2);
   assert.equal(p.items[0].quantity, 2);
   assert.equal(p.items[0].stock, "have");
@@ -192,4 +193,53 @@ test("quantity imports reject invalid values and keep tools and shopping through
   assert.equal(migrated.items[0].quantity, 0);
   assert.deepEqual(migrated.shopping, legacy.shopping);
   assert.deepEqual(migrated.tools, legacy.tools);
+});
+
+test("ratings and notes save, edit without duplication, and survive export/import", () => {
+  const review = {
+    drinkId: "negroni",
+    rating: 5,
+    note: "  Try a larger ice cube next time.\nLoved the bitterness.  ",
+    updatedAt: "2026-11-16T20:00:00.000Z",
+  };
+  let p = saveReview(emptyProfile(), review);
+  assert.equal(
+    p.reviews[0].note,
+    "Try a larger ice cube next time.\nLoved the bitterness.",
+  );
+  p = saveReview(p, { ...review, rating: 4, note: "" });
+  assert.equal(p.reviews.length, 1);
+  assert.equal(p.reviews[0].rating, 4);
+  assert.deepEqual(parseProfile(JSON.parse(JSON.stringify(p))), p);
+});
+test("old inventories migrate with empty reviews and retain quantities and shopping", () => {
+  const p = addShopping(
+    addInventory(emptyProfile(), "gin", "Gin", "g"),
+    "gin",
+    "Gin",
+    "Restock",
+  );
+  const { reviews, ...legacy } = p;
+  const migrated = parseProfile({ ...legacy, version: 2 });
+  assert.deepEqual(migrated.reviews, []);
+  assert.deepEqual(migrated.items, p.items);
+  assert.deepEqual(migrated.shopping, p.shopping);
+});
+test("review validation rejects invalid stars, oversized notes, dates, IDs and duplicate entries", () => {
+  const r = {
+    drinkId: "negroni",
+    rating: 3,
+    note: "",
+    updatedAt: "2026-11-16T20:00:00.000Z",
+  };
+  for (const rating of [0, 6, 1.5, NaN])
+    assert.throws(() => saveReview(emptyProfile(), { ...r, rating }));
+  assert.throws(() =>
+    saveReview(emptyProfile(), { ...r, note: "x".repeat(2001) }),
+  );
+  assert.throws(() =>
+    saveReview(emptyProfile(), { ...r, updatedAt: "invalid" }),
+  );
+  assert.throws(() => saveReview(emptyProfile(), { ...r, drinkId: "missing" }));
+  assert.throws(() => parseProfile({ ...emptyProfile(), reviews: [r, r] }));
 });

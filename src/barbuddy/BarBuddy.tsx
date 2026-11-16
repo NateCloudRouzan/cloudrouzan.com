@@ -14,6 +14,8 @@ import {
   setQuantity,
   isInInventory,
   MAX_QUANTITY,
+  saveReview,
+  type Review,
   emptyProfile,
   defaultPreferences,
   parseProfile,
@@ -26,11 +28,13 @@ import {
   type ShoppingItem,
 } from "./model";
 import "./barbuddy.css";
+import ReviewEditor from "./ReviewEditor";
 const tabs = [
   "Find a drink",
   "My bar",
   "Unlock more",
   "Shopping list",
+  "My reviews",
 ] as const;
 type Tab = (typeof tabs)[number];
 function load() {
@@ -62,6 +66,7 @@ export default function BarBuddy() {
   const [showAll, setShowAll] = useState(false);
   const [offset, setOffset] = useState(0);
   const [retailer, setRetailer] = useState("Web");
+  const [reviewDrink, setReviewDrink] = useState(drinks[0].id);
   const [pending, setPending] = useState<Profile | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -408,6 +413,11 @@ export default function BarBuddy() {
                   low={low.map((n) => n.id)}
                   taste={prefs.taste}
                   onShop={shop}
+                  review={profile.reviews.find((r) => r.drinkId === drink.id)}
+                  onReview={() => {
+                    setReviewDrink(drink.id);
+                    setTab("My reviews");
+                  }}
                 />
               ))}
             </div>
@@ -718,7 +728,7 @@ export default function BarBuddy() {
               <p className="bb-muted">
                 Your bar is saved on this browser only. Export to move it to
                 another device. Imports replace the current inventory,
-                equipment, and shopping list after confirmation.
+                equipment, shopping list, and reviews after confirmation.
               </p>
               <div className="bb-actions">
                 <button onClick={exportProfile}>Export backup ↓</button>
@@ -739,8 +749,8 @@ export default function BarBuddy() {
                   <p>
                     {pending.items.length} inventory items ·{" "}
                     {pending.tools.length} tools · {pending.shopping.length}{" "}
-                    shopping items. Export your current bar first if you want to
-                    keep it.
+                    shopping items · {pending.reviews.length} reviews. Export
+                    your current bar first if you want to keep it.
                   </p>
                   <div className="bb-actions">
                     <button
@@ -836,6 +846,107 @@ export default function BarBuddy() {
                 No equipment-only blockers with these settings.
               </p>
             )}
+          </>
+        )}
+        {tab === "My reviews" && (
+          <>
+            <div className="bb-section-title">
+              <div>
+                <p className="eyebrow">05 / Remember the good pours</p>
+                <h2>Your tasting notes.</h2>
+              </div>
+              <span className="bb-muted">
+                {profile.reviews.length} reviewed drinks
+              </span>
+            </div>
+            <p className="bb-muted">
+              Keep one editable review per cocktail. Pick any supported drink,
+              even if it isn’t currently makeable from your bar. Reviews are
+              private to this browser and included in your backups.
+            </p>
+            <label className="bb-review-picker">
+              Choose a drink to review
+              <select
+                aria-label="Drink to review"
+                value={reviewDrink}
+                onChange={(e) => setReviewDrink(e.target.value)}
+              >
+                {[...drinks]
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.name}
+                    </option>
+                  ))}
+              </select>
+            </label>
+            <ReviewEditor
+              key={
+                reviewDrink +
+                (profile.reviews.find((r) => r.drinkId === reviewDrink)
+                  ?.updatedAt ?? "")
+              }
+              drink={drinks.find((d) => d.id === reviewDrink)!}
+              review={profile.reviews.find((r) => r.drinkId === reviewDrink)}
+              onSave={(review) => {
+                setProfile((p) => saveReview(p, review));
+                setStatus("Review saved.");
+              }}
+            />
+            <h3>Previously reviewed</h3>
+            {!profile.reviews.length && (
+              <div className="bb-empty">
+                Your first review will appear here. Rate a drink above or use
+                “Review this drink” on a cocktail card.
+              </div>
+            )}
+            <div className="bb-review-list">
+              {[...profile.reviews]
+                .sort(
+                  (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
+                )
+                .map((r) => (
+                  <article className="bb-panel" key={r.drinkId}>
+                    <h3>{drinks.find((d) => d.id === r.drinkId)?.name}</h3>
+                    <p
+                      className="bb-review-stars"
+                      role="img"
+                      aria-label={`${r.rating} out of 5 stars`}
+                    >
+                      {"★".repeat(r.rating)}
+                      <span aria-hidden="true">{"☆".repeat(5 - r.rating)}</span>
+                    </p>
+                    {r.note && <p className="bb-review-note">{r.note}</p>}
+                    <p className="bb-footnote">
+                      Last updated {new Date(r.updatedAt).toLocaleDateString()}
+                    </p>
+                    <div className="bb-actions">
+                      <button
+                        onClick={() => {
+                          setReviewDrink(r.drinkId);
+                          setStatus("Review selected above for editing.");
+                        }}
+                      >
+                        Edit review
+                      </button>
+                      <button
+                        className="bb-quiet"
+                        onClick={() => {
+                          setProfile((p) => ({
+                            ...p,
+                            reviews: p.reviews.filter(
+                              (i) => i.drinkId !== r.drinkId,
+                            ),
+                          }));
+                          setStatus("Review removed.");
+                        }}
+                      >
+                        Remove review
+                      </button>
+                    </div>
+                  </article>
+                ))}
+            </div>
           </>
         )}
         {tab === "Shopping list" && (
@@ -948,6 +1059,8 @@ function DrinkCard({
   low,
   taste,
   onShop,
+  review,
+  onReview,
 }: {
   drink: Drink;
   index: number;
@@ -956,6 +1069,8 @@ function DrinkCard({
   low: string[];
   taste: string;
   onShop: (id: string, name: string, reason: string) => void;
+  review?: Review;
+  onReview: () => void;
 }) {
   const ready = !missing.length && !missingTools.length;
   return (
@@ -978,6 +1093,19 @@ function DrinkCard({
               : "Needs equipment"}
         </span>
         <h3>{drink.name}</h3>
+        {review && (
+          <p
+            className="bb-review-stars"
+            role="img"
+            aria-label={`Your rating: ${review.rating} out of 5 stars`}
+          >
+            {"★".repeat(review.rating)}
+            <span aria-hidden="true">{"☆".repeat(5 - review.rating)}</span>
+          </p>
+        )}
+        <button className="bb-review-action" onClick={onReview}>
+          {review ? "Edit your review" : "Review this drink"}
+        </button>
         <p>{drink.description}</p>
         <p className="bb-match">
           {taste !== "Any" && drink.taste.includes(taste)

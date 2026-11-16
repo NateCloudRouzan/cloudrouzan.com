@@ -13,10 +13,11 @@ loads do not require changing the Worker to use a global SPA fallback.
 - Make-now results, missing ingredients/tools, and low-stock notices.
 - One-ingredient unlocks calculated against the current catalog and settings.
 - Restock and discovery shopping list with quantity/size notes and search links.
+- Private 1–5 star drink reviews with optional notes, editable from cards or My reviews.
 - Versioned browser storage, validated backup import with confirmation, and export.
 
 The product directory is generic content; it does not assert ownership or quantities.
-Inventory starts empty. Personalized stock, tools, and shopping lists stay in the
+Inventory starts empty. Personalized stock, tools, shopping lists, and reviews stay in the
 browser. They are not synchronized across devices or preview/production origins.
 Do not commit personalized JSON exports or household photos.
 
@@ -76,3 +77,21 @@ and seven checks passed. Browser checks exercised inventory, one-ingredient unlo
 purchase confirmation, reload persistence, and low-stock notices. At a 390-pixel
 viewport the page had no horizontal document overflow; the console had no warnings
 or errors during these checks. Repeat relevant checks when behavior changes.
+
+## Drink reviews
+
+Profile version 3 adds one review per supported cocktail: stable drink ID, an integer
+rating from 1 to 5, an optional plain-text note of up to 2000 characters, and a last
+updated timestamp. Version-1 and version-2 saves/backups migrate with an empty review
+list while retaining inventory, equipment, quantities, and shopping. The original
+storage key is retained so existing browser data is found.
+
+Use Review this drink on a card or choose any catalog drink in My reviews. Saving
+an edit replaces that cocktail's previous review; this is not a per-serving history.
+Reviews appear newest first and can be edited or removed. Notes render as text with
+line breaks preserved. They stay local and are included in exports and confirmed
+replacement imports. Ratings do not change recommendation ranking in this version.
+`ReviewEditor.tsx` owns the rating/note form; `model.ts` validates and saves reviews.
+
+Review validation adds checks for save/edit behavior, round-trip persistence,
+legacy migration, invalid stars, notes, dates, drink IDs, and duplicate reviews.
