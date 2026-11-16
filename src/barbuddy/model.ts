@@ -191,13 +191,23 @@ export function parseProfile(value: unknown): Profile {
     shopping,
   };
 }
+// Owner-approved prepared mixers require the carbonator and stocked concentrate.
+function suppliedIngredients(item: Item, profile: Profile): string[] {
+  const prepared: Record<string, string[]> = {
+    "tonic-concentrate": ["tonic"],
+    "diet-cola-concentrate": ["cola", "cola-zero", "ba-cola"],
+    "diet-ginger-ale-concentrate": ["ginger-ale"],
+    "diet-lemon-lime-concentrate": ["lemon-lime-soda"],
+  };
+  return [item.ingredient, ...(profile.tools.includes("aarke") ? prepared[item.ingredient] ?? [] : [])];
+}
 export function available(profile: Profile): Set<string> {
   return new Set(
     profile.items
       .filter(
         (i) => i.quantity > 0 && (i.stock === "have" || i.stock === "low"),
       )
-      .map((i) => i.ingredient),
+      .flatMap((i) => suppliedIngredients(i, profile)),
   );
 }
 export function inspect(drink: Drink, profile: Profile) {
@@ -208,10 +218,10 @@ export function inspect(drink: Drink, profile: Profile) {
     low: drink.needs.filter(
       (n) =>
         profile.items.some(
-          (i) => i.ingredient === n.id && i.quantity > 0 && i.stock === "low",
+          (i) => suppliedIngredients(i, profile).includes(n.id) && i.quantity > 0 && i.stock === "low",
         ) &&
         !profile.items.some(
-          (i) => i.ingredient === n.id && i.quantity > 0 && i.stock === "have",
+          (i) => suppliedIngredients(i, profile).includes(n.id) && i.quantity > 0 && i.stock === "have",
         ),
     ),
   };

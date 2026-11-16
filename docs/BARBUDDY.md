@@ -146,3 +146,13 @@ source/license integrity, desktop/mobile layouts, direct routes, review persiste
 private/shared data boundaries, image credits, and retailer link destinations must
 be verified for this release. Do not change DNS, registrar, billing, or Worker identity.
 The original personal design draft remains local and is excluded from publication.
+
+### Prepared SodaStream mixers
+
+The owner confirms sparkling water can always be made; it is recorded as an
+available Cabinet supply. Stocked tonic, diet cola, diet ginger ale, and diet
+lemon-lime concentrates supply their prepared mixers when the Aarke carbonator
+is available. Diet cola can satisfy cola/Coke Zero requirements by owner request.
+Ginger ale does not supply ginger beer; flavored concentrates do not supply fruit
+juices. Low-stock warnings propagate from concentrates to their prepared mixers.
+Out, unknown, and zero-quantity concentrates supply no prepared soda.
