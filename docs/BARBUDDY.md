@@ -66,14 +66,17 @@ Bar Assistant's photo metadata are not treated as blanket reuse permission.
 ## Shared inventory
 
 All visitors use the same published bar, defined in
-[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). Inventory is being recorded by location. The current draft contains 28 distinct
-containers photographed on 2026-11-16: 15 in the fridge and 13 in the pantry, one each.
-Four additional Cabinet supply entries record coffee, tea, matcha, and SodaStream tonic.
-Their quantity of 1 denotes an available supply entry, not a confirmed package count.
-Coffee is not assumed to include espresso or cold brew; tonic concentrate requires preparation.
-The Tallax wine style remains unconfirmed. Other locations and equipment
-remain pending; repeated views of the same bottles are not extra stock. Do not
-infer remaining volume or low-stock status from the photographs.
+[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). The initial inventory was
+recorded on 2026-11-16: 15 fridge containers, 13 pantry containers, 4 cabinet supply
+entries, and 20 bar cart entries (including owner-confirmed Tajín). Overlapping
+photos count once. Cabinet supplies and Tajín use quantity 1 as an availability
+entry, not a confirmed package count. Remaining volume and low-stock status are
+not inferred. Tallax wine style remains unconfirmed. Aarke carbonator and Ninja
+SLUSHi are confirmed; other equipment is not assumed.
+
+Bottled juices, concentrates, flavored syrups, tinctures, and premixed drinks retain
+specific categories. Aperix is not automatically substituted for Aperol; Goldschläger
+is separate from Fireball; dehydrated lemons are garnish, not fresh juice.
 
 Update this file through the normal code review and release workflow when Nate
 provides inventory changes. Each item has a stable ID, ingredient ID, display name,
