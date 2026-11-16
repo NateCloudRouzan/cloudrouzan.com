@@ -1,7 +1,463 @@
 {
   "name": "Nate’s bar",
   "updatedAt": "2026-11-16",
-  "status": "Inventory session pending — no stock or quantities have been assumed.",
-  "items": [],
-  "tools": []
+  "status": "Inventory recorded by location on 2026-11-16. Photographed containers counted once each; cabinet supplies and Tajín are availability entries with package counts unspecified. Remaining volume is not tracked. Tallax wine style remains unconfirmed. Aarke carbonator and Ninja SLUSHi confirmed; other tools not assumed.",
+  "items": [
+    {
+      "id": "fridge-noble-ginger",
+      "ingredient": "ginger-blend",
+      "name": "Noble Organic Ginger Blend",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Combined ginger beverage product; not assumed to be ginger beer or simple syrup."
+    },
+    {
+      "id": "fridge-realemon",
+      "ingredient": "bottled-lemon",
+      "name": "ReaLemon lemon juice",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Bottled juice; kept separate from freshly squeezed lemon juice."
+    },
+    {
+      "id": "fridge-realime",
+      "ingredient": "bottled-lime",
+      "name": "ReaLime lime juice",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Bottled juice; kept separate from freshly squeezed lime juice."
+    },
+    {
+      "id": "fridge-portland-georgia-peach",
+      "ingredient": "portland-georgia-peach",
+      "name": "Portland Syrups Georgia Peach",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Flavored beverage concentrate; not fresh peach or plain simple syrup."
+    },
+    {
+      "id": "fridge-portland-ube",
+      "ingredient": "portland-ube",
+      "name": "Portland Syrups Ube",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Flavored beverage concentrate."
+    },
+    {
+      "id": "fridge-portland-pomegranate-cherry",
+      "ingredient": "portland-pomegranate-cherry",
+      "name": "Portland Syrups Pomegranate Cherry",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Combined flavor concentrate; not separate pomegranate and cherry ingredients."
+    },
+    {
+      "id": "fridge-soonhari-lychee",
+      "ingredient": "lychee-soju",
+      "name": "Soonhari Lychee soju",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Lychee-flavored soju; not lychee liqueur."
+    },
+    {
+      "id": "fridge-la-couleur-exquise-2022",
+      "ingredient": "ba-white-wine",
+      "name": "La Couleur Exquise 2022",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Owner confirmed still white wine; not sparkling wine, Champagne, or Prosecco."
+    },
+    {
+      "id": "fridge-mission-strawberry-margarita",
+      "ingredient": "premix",
+      "name": "Mission Strawberry Margarita",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Ready-to-pour cocktail; not separate tequila, fruit, and citrus supplies."
+    },
+    {
+      "id": "fridge-roses-grenadine",
+      "ingredient": "grenadine",
+      "name": "Rose’s Grenadine",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge"
+    },
+    {
+      "id": "fridge-simply-orange",
+      "ingredient": "bottled-orange",
+      "name": "Simply Orange Pulp Free",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Bottled orange juice; kept separate from freshly squeezed orange juice."
+    },
+    {
+      "id": "fridge-honest-kids-super-fruit-punch",
+      "ingredient": "fruit-punch",
+      "name": "Honest Kids Organic Super Fruit Punch",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Juice drink; not individual fruit juices."
+    },
+    {
+      "id": "fridge-sodastream-diet-cola",
+      "ingredient": "diet-cola-concentrate",
+      "name": "SodaStream Classics Diet Cola",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Concentrate requiring preparation; not ready-to-drink cola or Coke Zero."
+    },
+    {
+      "id": "fridge-sodastream-diet-ginger-ale",
+      "ingredient": "diet-ginger-ale-concentrate",
+      "name": "SodaStream Diet Ginger Ale",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Concentrate requiring preparation; not ginger beer."
+    },
+    {
+      "id": "fridge-sodastream-diet-lemon-lime",
+      "ingredient": "diet-lemon-lime-concentrate",
+      "name": "SodaStream Classics Diet Lemon Lime",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Fridge",
+      "notes": "Concentrate requiring preparation; not fresh lemon or lime juice."
+    },
+    {
+      "id": "pantry-kirkland-reposado",
+      "ingredient": "ba-tequila-reposado",
+      "name": "Kirkland Signature Tequila Reposado",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "100% agave reposado tequila."
+    },
+    {
+      "id": "pantry-frey-organic-red",
+      "ingredient": "ba-red-wine",
+      "name": "Frey Organic Red",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Red wine blend; Mendocino County."
+    },
+    {
+      "id": "pantry-casamigos-blanco",
+      "ingredient": "ba-tequila-blanco",
+      "name": "Casamigos Tequila Blanco",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "100% agave blanco tequila."
+    },
+    {
+      "id": "pantry-cristiani-absinthe",
+      "ingredient": "ba-absinthe",
+      "name": "Cristiani Absinth Superieure Parnasse",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry"
+    },
+    {
+      "id": "pantry-mission-tamarind",
+      "ingredient": "tamarind-margarita-premix",
+      "name": "Mission Tamarind Margarita",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Ready-to-pour cocktail; not separate tequila, tamarind, or triple sec supplies."
+    },
+    {
+      "id": "pantry-drillaud-triple-sec",
+      "ingredient": "triple-sec",
+      "name": "Drillaud Orange Triple Sec",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Orange liqueur."
+    },
+    {
+      "id": "pantry-meiggs-pardon-2024",
+      "ingredient": "ba-red-wine",
+      "name": "Meiggs’ Pardon Promissory Red 2024",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "North Coast red wine."
+    },
+    {
+      "id": "pantry-tintoretto-primitivo-2024",
+      "ingredient": "ba-red-wine",
+      "name": "Tintoretto Primitivo 2024",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Puglia IGT red wine."
+    },
+    {
+      "id": "pantry-tallax",
+      "ingredient": "wine-unconfirmed",
+      "name": "Tallax South Australia",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Wine style and variety unconfirmed; label is partly obscured. Excluded from specific wine matches until confirmed."
+    },
+    {
+      "id": "pantry-400-conejos",
+      "ingredient": "ba-mezcal",
+      "name": "400 Conejos Espadín Joven Mezcal",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry"
+    },
+    {
+      "id": "pantry-kirkland-gin",
+      "ingredient": "gin",
+      "name": "Kirkland Signature London Dry Gin",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry"
+    },
+    {
+      "id": "pantry-butterfly-ube",
+      "ingredient": "ube-flavouring",
+      "name": "Butterfly Ube Flavouring",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Flavoring; separate from Portland Ube syrup and not assumed to be a sweetener."
+    },
+    {
+      "id": "pantry-dragonfly-jasmine",
+      "ingredient": "jasmine-essence",
+      "name": "Dragonfly Jasmine Flavoring Essence",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Pantry",
+      "notes": "Flavoring essence; not jasmine syrup or tea."
+    },
+    {
+      "id": "cabinet-sodastream-tonic",
+      "ingredient": "tonic-concentrate",
+      "name": "SodaStream Tonic",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Concentrate requiring preparation; not ready-to-drink tonic. Brand variant and container count unconfirmed. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cabinet-coffee",
+      "ingredient": "ba-coffee",
+      "name": "Coffee",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms available to prepare at any time. Type, brand, amount, and espresso/cold-brew capability unspecified. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cabinet-tea",
+      "ingredient": "ba-tea",
+      "name": "Tea",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms available to prepare at any time. Tea variety, brand, and amount unspecified. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cabinet-matcha",
+      "ingredient": "matcha",
+      "name": "Matcha",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Cabinet",
+      "notes": "Owner confirms available to prepare at any time. Brand and amount unspecified; not assumed to be sweetened matcha syrup. Quantity 1 represents one available supply entry, not a confirmed package count."
+    },
+    {
+      "id": "cart-scrappys-aromatic",
+      "ingredient": "aromatic",
+      "name": "Scrappy’s Aromatic Bitters",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-scrappys-fire",
+      "ingredient": "fire-tincture",
+      "name": "Scrappy’s Fire Tincture",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Spicy tincture; not aromatic bitters."
+    },
+    {
+      "id": "cart-scrappys-chocolate",
+      "ingredient": "chocolate-bitters",
+      "name": "Scrappy’s Chocolate Bitters",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-scrappys-orange",
+      "ingredient": "ba-orange-bitters",
+      "name": "Scrappy’s Orange Bitters",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-fireball",
+      "ingredient": "fireball",
+      "name": "Fireball Cinnamon Whisky",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-fee-peach",
+      "ingredient": "peach-bitters",
+      "name": "Fee Brothers Peach Bitters",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-luxardo-cherries",
+      "ingredient": "cherries",
+      "name": "Luxardo Maraschino Cherries",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-barsmith-lemons",
+      "ingredient": "dehydrated-lemon",
+      "name": "Barsmith Dehydrated Lemons",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Garnish; not fresh lemon juice."
+    },
+    {
+      "id": "cart-stirrings-rimmer",
+      "ingredient": "cosmo-rimmer",
+      "name": "Stirrings Cosmopolitan Rimmer",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Cocktail rim garnish; not plain sugar."
+    },
+    {
+      "id": "cart-ferrand-curacao",
+      "ingredient": "amber-curacao",
+      "name": "Pierre Ferrand Dry Curaçao",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-sodastream-peach-ginger",
+      "ingredient": "peach-ginger",
+      "name": "SodaStream Crafted White Peach & Ginger",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Cocktail mixer; not separate peach and ginger supplies."
+    },
+    {
+      "id": "cart-chambord",
+      "ingredient": "raspberry",
+      "name": "Chambord",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-bellini-amaro",
+      "ingredient": "ba-amaro",
+      "name": "Bellini Amaro delle Terme",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Generic amaro; not assumed to match brand-specific amari."
+    },
+    {
+      "id": "cart-ghost-face",
+      "ingredient": "vodka",
+      "name": "Ghost Face Vodka",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-toki",
+      "ingredient": "japanese-whisky",
+      "name": "Suntory Toki",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-empress",
+      "ingredient": "gin",
+      "name": "Empress 1908 Indigo Gin",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-goldschlager",
+      "ingredient": "goldschlager",
+      "name": "Goldschläger Cinnamon Schnapps",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Cinnamon liqueur; separate from Fireball whisky."
+    },
+    {
+      "id": "cart-aperix",
+      "ingredient": "aperix",
+      "name": "Aperix Aperitivo Italiano",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Separate aperitivo; not assumed to be Aperol or Campari."
+    },
+    {
+      "id": "cart-drillaud-violet",
+      "ingredient": "ba-creme-de-violette",
+      "name": "Drillaud Violet Crème de Violette",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart"
+    },
+    {
+      "id": "cart-tajin",
+      "ingredient": "tajin-rim",
+      "name": "Tajín rim seasoning",
+      "quantity": 1,
+      "stock": "have",
+      "location": "Bar cart",
+      "notes": "Owner confirmed available; package count unspecified."
+    }
+  ],
+  "tools": [
+    "aarke",
+    "slushi"
+  ]
 }

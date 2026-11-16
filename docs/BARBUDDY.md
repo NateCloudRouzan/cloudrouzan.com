@@ -66,14 +66,22 @@ Bar Assistant's photo metadata are not treated as blanket reuse permission.
 ## Shared inventory
 
 All visitors use the same published bar, defined in
-[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). It is initially empty at
-Nate's request; inventory and equipment will be confirmed together in a later chat.
-Do not infer bottles, quantities, staples, or tools from older photos.
+[`shared-bar.json`](../src/barbuddy/data/shared-bar.json). The initial inventory was
+recorded on 2026-11-16: 15 fridge containers, 13 pantry containers, 4 cabinet supply
+entries, and 20 bar cart entries (including owner-confirmed Tajín). Overlapping
+photos count once. Cabinet supplies and Tajín use quantity 1 as an availability
+entry, not a confirmed package count. Remaining volume and low-stock status are
+not inferred. Tallax wine style remains unconfirmed. Aarke carbonator and Ninja
+SLUSHi are confirmed; other equipment is not assumed.
+
+Bottled juices, concentrates, flavored syrups, tinctures, and premixed drinks retain
+specific categories. Aperix is not automatically substituted for Aperol; Goldschläger
+is separate from Fireball; dehydrated lemons are garnish, not fresh juice.
 
 Update this file through the normal code review and release workflow when Nate
 provides inventory changes. Each item has a stable ID, ingredient ID, display name,
 whole-number bottle/item quantity (0–9999), and availability (`have`, `low`, `out`,
-`unknown`). Equipment uses IDs from `catalog.ts`. Update the date and status message.
+`unknown`), with optional location and product notes. Equipment uses IDs from `catalog.ts`. Update the date and status message.
 The snapshot is validated using the same inventory validator as personal backups.
 No visitor-facing inventory writes or public update endpoint exist.
 

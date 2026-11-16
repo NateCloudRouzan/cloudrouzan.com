@@ -12,6 +12,8 @@ export type Item = {
   name: string;
   stock: Stock;
   quantity: number;
+  location?: string;
+  notes?: string;
 };
 export type ShoppingItem = {
   ingredient: string;
@@ -95,8 +97,17 @@ export function parseProfile(value: unknown): Profile {
       throw new Error(
         "Inventory quantities must be whole numbers from 0 to 9999.",
       );
+    if (i.location !== undefined && !text(i.location, 80))
+      throw new Error("Invalid inventory location.");
+    if (
+      i.notes !== undefined &&
+      (typeof i.notes !== "string" || i.notes.length > 500)
+    )
+      throw new Error("Invalid inventory note.");
     ids.add(i.id);
     return {
+      ...(i.location !== undefined ? { location: i.location.trim() } : {}),
+      ...(i.notes !== undefined ? { notes: i.notes.trim() } : {}),
       id: i.id,
       ingredient: i.ingredient,
       name: i.name.trim(),
@@ -326,7 +337,9 @@ export function consolidateItems(items: Item[]): Item[] {
     const existing = result.find(
       (i) =>
         productKey(i.ingredient, i.name) ===
-        productKey(item.ingredient, item.name),
+          productKey(item.ingredient, item.name) &&
+        (i.location ?? "").trim().toLowerCase() ===
+          (item.location ?? "").trim().toLowerCase(),
     );
     if (!existing) {
       result.push({ ...item });
