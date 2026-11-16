@@ -15,7 +15,7 @@ function App() {
         </p>
         <div className="links">
           <a href="https://github.com/NateCloudRouzan" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a href="https://www.linkedin.com/in/cloudrouzan" target="_blank" rel="noreferrer">LinkedIn ↗</a>
         </div>
       </section>
       <section className="projects">
