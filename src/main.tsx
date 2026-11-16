@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
-import BarBuddy from "./barbuddy/BarBuddy";
+const BarBuddy = React.lazy(() => import("./barbuddy/BarBuddy"));
 
 function App() {
   return (
@@ -62,6 +62,18 @@ function App() {
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/^\/barbuddy\/?$/i.test(window.location.pathname) ? <BarBuddy /> : <App />}
+    {/^\/barbuddy\/?$/i.test(window.location.pathname) ? (
+      <React.Suspense
+        fallback={
+          <main className="page">
+            <p>Opening BarBuddy…</p>
+          </main>
+        }
+      >
+        <BarBuddy />
+      </React.Suspense>
+    ) : (
+      <App />
+    )}
   </React.StrictMode>,
 );

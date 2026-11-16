@@ -1,0 +1,123 @@
+{
+  "source": "https://github.com/bar-assistant/data",
+  "commit": "5a504d474614494119882eb91a8ffdc5491a483f",
+  "license": "MIT",
+  "sourceRecipes": 663,
+  "importedRecipes": 647,
+  "preservedExistingRecipes": 20,
+  "skippedDuplicates": [
+    {
+      "id": "americano",
+      "name": "Americano",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "aperol-spritz",
+      "name": "Aperol Spritz",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "black-russian",
+      "name": "Black Russian",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "cuba-libre",
+      "name": "Cuba Libre",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "daiquiri",
+      "name": "Daiquiri",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "french-martini",
+      "name": "French Martini",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "gin-fizz",
+      "name": "Gin Fizz",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "gin-tonic",
+      "name": "Gin & Tonic",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "margarita",
+      "name": "Margarita",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "moscow-mule",
+      "name": "Moscow Mule",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "negroni",
+      "name": "Negroni",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "old-fashioned",
+      "name": "Old Fashioned",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "sidecar",
+      "name": "Sidecar",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "tequila-sunrise",
+      "name": "Tequila Sunrise",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "whiskey-sour",
+      "name": "Whiskey Sour",
+      "reason": "Existing BarBuddy recipe retained"
+    },
+    {
+      "id": "white-lady",
+      "name": "White Lady",
+      "reason": "Existing BarBuddy recipe retained"
+    }
+  ],
+  "preparationReview": [
+    {
+      "id": "as-kingston-negroni",
+      "reason": "Upstream zero upper-bound for Overproof Rum; Upstream zero upper-bound for Campari; Upstream zero upper-bound for Sweet Vermouth; Upstream zero upper-bound for Sherry"
+    },
+    {
+      "id": "bloody-caesar",
+      "reason": "Preparation method needs verification"
+    },
+    {
+      "id": "clover-club",
+      "reason": "Upstream zero upper-bound for Raspberry Syrup"
+    },
+    {
+      "id": "clover-leaf",
+      "reason": "Preparation method needs verification"
+    },
+    {
+      "id": "reno",
+      "reason": "Preparation method needs verification"
+    },
+    {
+      "id": "savoy-special-1",
+      "reason": "Upstream zero upper-bound for Gin; Upstream zero upper-bound for Dry Vermouth; Upstream zero upper-bound for Grenadine Syrup; Upstream zero upper-bound for Absinthe"
+    },
+    {
+      "id": "the-infante",
+      "reason": "Upstream zero upper-bound for Tequila Blanco; Upstream zero upper-bound for Lime juice; Upstream zero upper-bound for Orgeat Syrup; Upstream zero upper-bound for Rose water"
+    }
+  ],
+  "newIngredients": 238,
+  "imagesImported": 0,
+  "policy": "No upstream photos or narrative descriptions imported. Unsupported methods are browse-only pending verification."
+}

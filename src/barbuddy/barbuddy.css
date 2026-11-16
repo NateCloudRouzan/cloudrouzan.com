@@ -659,30 +659,6 @@
   margin-top: 60px;
   font-size: 11px;
 }
-.project-card {
-  display: block;
-  border: 1px solid #39424b;
-  border-radius: 10px;
-  padding: 24px;
-  margin-top: 24px;
-  transition: background 0.15s;
-}
-.project-card:hover {
-  background: #192229;
-  text-decoration: none;
-}
-.project-card h3 {
-  font-size: 23px;
-  margin: 0;
-  color: #e7b789;
-}
-.project-card p {
-  margin: 10px 0 16px;
-}
-.project-card span {
-  font-size: 13px;
-  color: #e7b789;
-}
 @media (max-width: 850px) {
   .bb-drinks,
   .bb-unlocks {
@@ -913,5 +889,70 @@
 @media (max-width: 600px) {
   .bb-review-list {
     grid-template-columns: 1fr;
+  }
+}
+
+.bb-catalog-search {
+  max-width: 600px;
+  margin: 24px 0;
+}
+.bb-shared-items,
+.bb-retailer-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.bb-retailer-summary .bb-panel {
+  margin: 0;
+  padding: 18px;
+}
+.bb-retailer-summary h3 {
+  font-size: 16px;
+}
+.bb-retailer-summary p {
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.bb-shopping-actions {
+  width: 270px;
+  max-width: 100%;
+}
+.bb-store-check {
+  border: 1px solid var(--bb-line);
+  border-radius: 7px;
+  padding: 12px;
+}
+.bb-store-check a {
+  display: block;
+  margin-bottom: 8px;
+}
+.bb-store-check select {
+  min-height: 42px;
+  margin-top: 5px;
+}
+.bb-method {
+  white-space: pre-line;
+}
+.bb-drink-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bb-drink-image:has(img) > span {
+  background: #10151cbb;
+  border-radius: 3px;
+  padding: 4px;
+}
+.bb-drinks + button {
+  margin-top: 24px;
+}
+@media (max-width: 600px) {
+  .bb-shared-items,
+  .bb-retailer-summary {
+    grid-template-columns: 1fr;
+  }
+  .bb-shopping-actions {
+    width: 100%;
   }
 }
