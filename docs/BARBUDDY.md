@@ -264,3 +264,19 @@ restricted to dash/drop doses; large bitters-base pours retain their requirement
 The owner confirmed always-available drinking water and standard 1:1 simple syrup.
 Water is now one availability entry (60 inventory entries total), and the audit
 now finds 50 ready recipes / 699 total and 112 one ingredient away.
+
+## More cocktail videos and video-only browsing
+
+Eight additional direct YouTube videos cover French Martini, Negroni, Aperol Spritz,
+Paloma, Cosmopolitan, Tequila Sunrise, Daiquiri and Espresso Martini. This brings
+coverage to 12 explicitly linked recipe IDs. Five additions open in the Shorts
+player; Spritz and Paloma are 46/58-second regular videos, and Cosmopolitan opens
+as a regular video. All destinations/titles were checked on 2026-11-16. Creator
+credits and recipe differences are shown; the espresso clip is explicitly labeled
+a mezcal/amaro variant, not the catalog's classic vodka recipe. No media is embedded.
+
+Find a drink has an “Only drinks with videos” checkbox that intersects search and
+existing preferences before pagination and suggestions. It opens the browse list
+and resets pagination. Reset preferences clears it; book recipe navigation also
+clears it so an explicit book selection cannot be hidden. It does not restrict
+other tabs or change stock, reviews or recipe readiness.

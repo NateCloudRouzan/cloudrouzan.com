@@ -549,3 +549,14 @@ test("premixed serves require only the bottle and SLUSHi recipes retain real req
   bar.tools=bar.tools.filter(t=>t!=="slushi");
   assert.ok(inspect(drink("slushi-mimosa"),bar).tools.includes("slushi"));
 });
+
+test("video filter matches only explicitly linked catalog recipes", async () => {
+  const { hasVideo, videoLinks } = await import("../src/barbuddy/videos.ts");
+  const filtered = drinks.filter(d => hasVideo(d.id));
+  assert.equal(filtered.length,12);
+  assert.equal(filtered.length,new Set(videoLinks.map(v=>v.drinkId)).size);
+  assert.ok(hasVideo("french-martini"));
+  assert.ok(!hasVideo("vendor-chambord-french-martini"));
+  assert.ok(!hasVideo("serve-mission-strawberry"));
+  assert.equal(drinks.filter(d => hasVideo(d.id) && d.name.toLowerCase().includes("negroni")).length,1);
+});

@@ -27,7 +27,7 @@ import {
 } from "./model";
 import "./barbuddy.css";
 import BookIndex from "./BookIndex";
-import videoLinks from "./data/video-links.json";
+import { videoLinks, hasVideo } from "./videos";
 import ReviewEditor from "./ReviewEditor";
 import { groupInventory } from "./inventory";
 import { sharedBar, withSharedBar } from "./shared-bar";
@@ -69,6 +69,7 @@ export default function BarBuddy() {
   const [barCategory, setBarCategory] = useState("All categories");
   const inventoryGroups = groupInventory(sharedBar.items, barLocation, barCategory);
   const [drinkQuery, setDrinkQuery] = useState("");
+  const [videosOnly, setVideosOnly] = useState(false);
   const [focusedDrinkId, setFocusedDrinkId] = useState<string | null>(null);
   const [limit, setLimit] = useState(24);
   const [avoidQuery, setAvoidQuery] = useState("");
@@ -98,6 +99,7 @@ export default function BarBuddy() {
   const activeBar = withSharedBar(profile);
   const results = ranked(activeBar, prefs, showAll).filter((r) =>
     (!focusedDrinkId || r.drink.id === focusedDrinkId) &&
+    (tab !== "Find a drink" || !videosOnly || hasVideo(r.drink.id)) &&
     (r.drink.name + " " + r.drink.description)
       .toLowerCase()
       .includes(drinkQuery.toLowerCase()),
@@ -266,6 +268,7 @@ export default function BarBuddy() {
                 className="bb-quiet"
                 onClick={() => {
                   setPrefs(defaultPreferences());
+                  setVideosOnly(false);
                   setOffset(0);
                 }}
               >
@@ -382,6 +385,11 @@ export default function BarBuddy() {
                 </select>
               </label>
             </div>
+            <label className="bb-video-filter">
+              <input type="checkbox" checked={videosOnly} onChange={e => {setVideosOnly(e.target.checked); setLimit(24); setOffset(0); setShowAll(true);}} />
+              Only drinks with videos
+            </label>
+            {videosOnly && <p className="bb-footnote">{results.length} drinks with videos match your filters. Includes how-to guides and clearly labeled variant demos; some may need ingredients.</p>}
             <details className="bb-details">
               <summary>
                 Ingredients to avoid{" "}
@@ -536,7 +544,7 @@ export default function BarBuddy() {
         )}
         {tab === "Book index" && <BookIndex onOpen={id => {
           const drink = drinks.find(d => d.id === id)!;
-          setPrefs(defaultPreferences()); setFocusedDrinkId(id); setDrinkQuery(drink.name); setShowAll(true); setLimit(24); setTab("Find a drink");
+          setPrefs(defaultPreferences()); setVideosOnly(false); setFocusedDrinkId(id); setDrinkQuery(drink.name); setShowAll(true); setLimit(24); setTab("Find a drink");
         }} />}
         {tab === "The bar" && (
           <>

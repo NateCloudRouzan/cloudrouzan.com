@@ -36,7 +36,87 @@
     "url": "https://www.youtube.com/shorts/AqyVf6PZOFo",
     "format": "YouTube Short",
     "kind": "How-to",
-    "note": "The creator\u2019s mixer and proportions may differ from this recipe.",
+    "note": "The creator’s mixer and proportions may differ from this recipe.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "french-martini",
+    "title": "How to Make a French Martini",
+    "creator": "Grey Goose Vodka",
+    "url": "https://www.youtube.com/shorts/1BW0gthppEI",
+    "format": "YouTube Short",
+    "kind": "How-to",
+    "note": "A branded preparation guide; follow this recipe for quantities and your stocked vodka.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "negroni",
+    "title": "Batching a Negroni",
+    "creator": "James Witty",
+    "url": "https://www.youtube.com/shorts/7GedCX1N6Vg",
+    "format": "YouTube Short",
+    "kind": "Batching demo",
+    "note": "Shows an equal-parts batched version; the BarBuddy recipe is a single serve.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "spritz",
+    "title": "How to Make an Aperol Spritz",
+    "creator": "COCKTAIL CHANNEL",
+    "url": "https://www.youtube.com/watch?v=OOxq0i0TUkI",
+    "format": "46-second YouTube video",
+    "kind": "How-to",
+    "note": "Uses 90 ml Prosecco, 60 ml Aperol and 30 ml soda. Portuguese-language guide; garnish may differ.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "ba-paloma",
+    "title": "Paloma Cocktail",
+    "creator": "COCKTAIL CHANNEL",
+    "url": "https://www.youtube.com/watch?v=icsJUGamHVw",
+    "format": "58-second YouTube video",
+    "kind": "Variant demo",
+    "note": "Uses grapefruit juice and sparkling water; this catalog recipe may use grapefruit soda. Follow the listed recipe for ingredients and quantities.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "ba-cosmopolitan",
+    "title": "Cosmopolitan Cocktail",
+    "creator": "RAUL BARTENDER",
+    "url": "https://www.youtube.com/watch?v=UwDoJd-HoCw",
+    "format": "YouTube video",
+    "kind": "Cocktail demo",
+    "note": "Creator recommends citrus vodka and uses lemon juice; compare this recipe’s citrus and proportions. Spanish-language demo.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "tequila-sunrise",
+    "title": "Tequila Sunrise in 10 Seconds",
+    "creator": "@kabartender",
+    "url": "https://www.youtube.com/shorts/6LgFPodVg0E",
+    "format": "YouTube Short",
+    "kind": "Quick preparation demo",
+    "note": "Korean bartending-exam demonstration; proportions and presentation may differ. Follow this recipe for quantities.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "daiquiri",
+    "title": "Daiquiri in 10 Seconds",
+    "creator": "@kabartender",
+    "url": "https://www.youtube.com/shorts/PjuyAQCrDeA",
+    "format": "YouTube Short",
+    "kind": "Quick preparation demo",
+    "note": "Korean bartending-exam demonstration; use the BarBuddy recipe for quantities and method details.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "ba-espresso-martini",
+    "title": "Espresso Martini at Taverna, Mexico City",
+    "creator": "Beautiful Booze",
+    "url": "https://www.youtube.com/shorts/MnIAsL9gNuY",
+    "format": "YouTube Short",
+    "kind": "Variant demo",
+    "note": "Shows a mezcal/amaro/salt variation, not this classic vodka recipe. Linked as a visual reference; follow the catalog recipe for your version.",
     "checkedAt": "2026-11-16"
   }
 ]
