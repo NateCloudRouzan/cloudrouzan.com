@@ -1,6 +1,8 @@
 import ingredientData from "./data/ingredients.json" with { type: "json" };
 import recipesA from "./data/recipes-a.json" with { type: "json" };
 import recipesB from "./data/recipes-b.json" with { type: "json" };
+import vendorRecipeData from "./data/vendor-recipes.json" with { type: "json" };
+export const vendorRecipeCount = vendorRecipeData.length;
 export type Ingredient = { id: string; name: string; category: string };
 const groups: Record<string, [string, string][]> = {
   Spirits: [
@@ -68,6 +70,16 @@ const groups: Record<string, [string, string][]> = {
     ["goldschlager", "Goldschläger cinnamon schnapps"],
     ["aperix", "Aperix aperitivo"],
     ["tajin-rim", "Tajín rim seasoning"],
+    ["cream-sherry", "Cream sherry"],
+    ["coconut-liqueur", "Coconut liqueur"],
+    ["coconut-water-syrup", "Coconut water syrup"],
+    ["coconut-cream", "Coconut cream"],
+    ["fernet", "Fernet"],
+    ["elderflower-simple-syrup", "Elderflower simple syrup"],
+    ["matcha-syrup", "Matcha syrup"],
+    ["jalapeno", "Fresh jalapeño"],
+    ["tajin-sauce", "Tajín chile-lime sauce"],
+    ["grapefruit-fruit", "Fresh grapefruit"],
     ["syrup", "Simple syrup"],
     ["sugar", "Superfine sugar"],
     ["sugar-cube", "Sugar cubes"],
@@ -497,7 +509,11 @@ export const drinks: Drink[] = [
 ];
 
 // Pinned, locally validated open recipe data. Existing stable IDs are preserved.
-drinks.push(...([...recipesA, ...recipesB] as Drink[]));
+drinks.push(...([...recipesA, ...recipesB, ...vendorRecipeData] as Drink[]));
+const tokiHighball = drinks.find(d => d.id === "whisky-highball")!;
+tokiHighball.source = "https://house.suntory.com/cocktails/whisky-highball";
+tokiHighball.sourceLabel = "House of Suntory · Toki Highball";
+tokiHighball.note = "Source checked 2026-11-16. Retained 1:3 proportions match Suntory guidance. Fresh lemon or grapefruit peel optional.";
 const margarita = drinks.find((d) => d.id === "margarita")!;
 margarita.image = {
   src: "/barbuddy/margarita.jpg",

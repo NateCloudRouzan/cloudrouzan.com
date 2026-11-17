@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   drinks,
+  vendorRecipeCount,
   ingredients,
   ingredientName,
   equipment,
@@ -26,6 +27,7 @@ import "./barbuddy.css";
 import ReviewEditor from "./ReviewEditor";
 import { sharedBar, withSharedBar } from "./shared-bar";
 import { retailers, type Retailer } from "./retailers";
+import discoveryLinks from "./data/discovery-links.json";
 import importReport from "./data/import-report.json";
 const tabs = [
   "Find a drink",
@@ -471,11 +473,16 @@ export default function BarBuddy() {
               </button>
             )}
             <details className="bb-details">
+              <summary>More recipes from your inventory ({discoveryLinks.length} source links)</summary>
+              <p className="bb-footnote">These recipe leads and product references are not included in ready-to-make or unlock counts. Open the source for details.</p>
+              <ul>{discoveryLinks.map(link => <li key={link.url}><a href={link.url} target="_blank" rel="noopener noreferrer">{link.name} ↗</a><p className="bb-footnote">{link.publisher} · {link.note}</p></li>)}</ul>
+            </details>
+            <details className="bb-details">
               <summary>Catalog sources & image credits</summary>
               <p className="bb-footnote">
                 {importReport.importedRecipes} recipes imported from Bar
                 Assistant’s MIT-licensed data, plus 20 retained BarBuddy
-                recipes. {importReport.preparationReview.length} imported
+                recipes and {vendorRecipeCount} additional vendor/creator recipes and attributed adaptations. {importReport.preparationReview.length} imported
                 recipes need preparation or quantity verification and are
                 excluded from make-now and unlock results. Existing recipe IDs
                 and reviews are preserved. This collection does not claim to

@@ -169,3 +169,22 @@ aromatic bitters satisfy generic bitters. Portland Pomegranate Cherry can satisf
 grenadine, as its vendor explicitly recommends. These are directional mappings.
 Recipe method notes disclose matches through the “Using your bar” section.
 Quantity and stock status still apply; low-stock warnings propagate through mappings.
+
+## Vendor and creator recipe additions (2026-11-16)
+
+`data/vendor-recipes.json` adds 21 measured recipes or explicitly attributed
+BarBuddy adaptations, bringing the catalog to 688. All have source links, checked
+dates, ingredients, method and tool requirements. No external photos or descriptive
+prose were imported. The existing Japanese Whisky Highball gains its verified
+Suntory reference without changing its ID. Named vendor variants are kept distinct
+where their proportions differ from existing recipes. Reviews retain their IDs.
+
+SodaStream Shirley Temple and Dirty Shirley are separate alcohol-free/alcoholic
+records. Pitcher recipes clearly state batch yields. Prepared syrups are separate
+ingredients with preparation instructions; they do not imply sugar or other supplies
+are stocked. New recipes use the existing substitution and missing-item checks.
+
+`data/discovery-links.json` exposes 12 additional source leads under Find a drink.
+Incomplete recipes and product-use references do not enter recommendation or unlock
+counts. The stale Aperix recipe link was excluded after its destination showed
+unrelated content. The linked research report preserves unresolved products and gaps.
