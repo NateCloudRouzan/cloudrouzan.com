@@ -210,6 +210,7 @@ const ingredientAliases: Record<string, string[]> = {
   "ba-dry-curacao": ["amber-curacao", "ba-orange-curacao"],
   aromatic: ["ba-bitters"], angostura: ["aromatic", "ba-bitters"],
   "portland-pomegranate-cherry": ["grenadine"],
+  "portland-georgia-peach": ["ba-peach-syrup"],
   rum: ["ba-rum"],
   "triple-sec": ["ba-cointreau"], "ba-cointreau": ["triple-sec"],
   raspberry: ["ba-chambord"], "ba-chambord": ["raspberry"],

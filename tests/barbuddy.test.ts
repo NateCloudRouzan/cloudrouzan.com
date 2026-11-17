@@ -560,3 +560,15 @@ test("video filter matches only explicitly linked catalog recipes", async () => 
   assert.ok(!hasVideo("serve-mission-strawberry"));
   assert.equal(drinks.filter(d => hasVideo(d.id) && d.name.toLowerCase().includes("negroni")).length,1);
 });
+
+test("Georgia Peach syrup supplies peach syrup but not peach fruit or liqueur", () => {
+  const p=emptyProfile();
+  p.items=[{id:"peach",ingredient:"portland-georgia-peach",name:"Portland Georgia Peach",quantity:1,stock:"have"}];
+  assert.ok(available(p).has("ba-peach-syrup"));
+  assert.ok(!available(p).has("ba-peach"));
+  assert.ok(!available(p).has("ba-peach-liqueur"));
+  assert.ok(!available(p).has("syrup"));
+  assert.equal(inspect(drink("ba-tea-time"),p).missing.some(n=>n.id==="ba-peach-syrup"),false);
+  p.items[0].stock="out";
+  assert.ok(!available(p).has("ba-peach-syrup"));
+});

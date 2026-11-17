@@ -280,3 +280,9 @@ existing preferences before pagination and suggestions. It opens the browse list
 and resets pagination. Reset preferences clears it; book recipe navigation also
 clears it so an explicit book selection cannot be hidden. It does not restrict
 other tabs or change stock, reviews or recipe readiness.
+
+A second readiness audit (2026-11-17) confirms 50 ready / 699 recipes and 60
+inventory entries. The full missing-ingredient histogram, base-tag counts, tool
+checks and simulated immediate unlocks are in BARBUDDY-READINESS-AUDIT.md. Georgia
+Peach syrup now satisfies generic peach syrup (not peach fruit/liqueur/plain syrup),
+raising one-ingredient-away entries to 114 while ready remains 50.

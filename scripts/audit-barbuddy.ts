@@ -14,6 +14,15 @@ console.log(JSON.stringify({
   needsVerification: rows.length - eligible.length,
   ready: ready.length,
   readyWithSubstitutions: ready.filter(r => r.substitutions.length).length,
+  missingIngredientHistogram: Object.fromEntries([...new Set(eligible.map(r=>r.missing.length))].sort((a,b)=>a-b).map(count=>[count,eligible.filter(r=>r.missing.length===count).length])),
+  missingEquipment: [...new Set(eligible.flatMap(r=>r.tools))].map(id=>({id,recipes:eligible.filter(r=>r.tools.includes(id)).length})),
+  recipesMissingEquipment: eligible.filter(r=>r.tools.length).length,
+  byBase: [...new Set(eligible.map(r=>r.drink.spirit))].map(base=>({base,total:eligible.filter(r=>r.drink.spirit===base).length,ready:ready.filter(r=>r.drink.spirit===base).length})),
+  singleIngredientUnlocks: [...new Set(eligible.flatMap(r=>r.missing.map(n=>n.id)))].map(id=>{
+    const scenario={...profile,items:[...profile.items,{id:"audit-"+id,ingredient:id,name:ingredientName(id),quantity:1,stock:"have" as const}]};
+    const newly=eligible.filter(r=>(r.missing.length||r.tools.length)&&!inspect(r.drink,scenario).missing.length&&!inspect(r.drink,scenario).tools.length);
+    return {id,name:ingredientName(id),recipes:newly.length,examples:newly.slice(0,5).map(r=>r.drink.name)};
+  }).filter(r=>r.recipes).sort((a,b)=>b.recipes-a.recipes),
   ingredientsReadyButEquipmentMissing: eligible.filter(r => !r.missing.length && r.tools.length).length,
   oneIngredientAwayWithEquipment: eligible.filter(r => r.missing.length === 1 && !r.tools.length).length,
   blocked: eligible.length - ready.length,
