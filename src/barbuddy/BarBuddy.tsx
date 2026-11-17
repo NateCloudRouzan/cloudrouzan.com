@@ -28,6 +28,7 @@ import "./barbuddy.css";
 import BookIndex from "./BookIndex";
 import videoLinks from "./data/video-links.json";
 import ReviewEditor from "./ReviewEditor";
+import { groupInventory } from "./inventory";
 import { sharedBar, withSharedBar } from "./shared-bar";
 import { retailers, type Retailer } from "./retailers";
 import discoveryLinks from "./data/discovery-links.json";
@@ -64,6 +65,8 @@ export default function BarBuddy() {
   const [tab, setTab] = useState<Tab>("Find a drink");
   const [prefs, setPrefs] = useState(defaultPreferences);
   const [barLocation, setBarLocation] = useState("All locations");
+  const [barCategory, setBarCategory] = useState("All categories");
+  const inventoryGroups = groupInventory(sharedBar.items, barLocation, barCategory);
   const [drinkQuery, setDrinkQuery] = useState("");
   const [focusedDrinkId, setFocusedDrinkId] = useState<string | null>(null);
   const [limit, setLimit] = useState(24);
@@ -557,6 +560,7 @@ export default function BarBuddy() {
               </div>
             )}
             {!!sharedBar.items.length && (
+              <div className="bb-filters">
               <label className="bb-retailer">
                 Inventory location
                 <select
@@ -574,20 +578,24 @@ export default function BarBuddy() {
                   ))}
                 </select>
               </label>
+              <label className="bb-retailer">Inventory category
+                <select aria-label="Inventory category" value={barCategory} onChange={e => setBarCategory(e.target.value)}>
+                  <option>All categories</option>
+                  {groupInventory(sharedBar.items).map(group => <option key={group.name}>{group.name}</option>)}
+                </select>
+              </label>
+              </div>
             )}
-            <div className="bb-shared-items">
-              {sharedBar.items
-                .filter(
-                  (item) =>
-                    barLocation === "All locations" ||
-                    (item.location ?? "Unspecified") === barLocation,
-                )
-                .map((item) => (
+            {!inventoryGroups.length && !!sharedBar.items.length && <p>No inventory items match these filters.</p>}
+            {inventoryGroups.map(group => <section key={group.name} aria-label={group.name}>
+              <h3>{group.name} <span className="bb-muted">({group.items.length})</span></h3>
+              <div className="bb-shared-items">
+              {group.items.map((item) => (
                   <article className="bb-panel" key={item.id}>
                     <p className="eyebrow">
                       {item.location ?? "Unspecified location"}
                     </p>
-                    <h3>{item.name}</h3>
+                    <h4>{item.name}</h4>
                     <p className="bb-muted">
                       {ingredientName(item.ingredient)} · Quantity{" "}
                       {item.quantity} ·{" "}
@@ -621,7 +629,8 @@ export default function BarBuddy() {
                     </div>
                   </article>
                 ))}
-            </div>
+              </div>
+            </section>)}
             <section className="bb-panel">
               <h3>Shared equipment</h3>
               <p className="bb-muted">

@@ -236,3 +236,12 @@ now contains 59 entries. Aperol remains separate from the photographed Aperix.
 Pineapple juice satisfies fresh pineapple juice requirements with a fresh-preferred
 note; it does not imply whole pineapple is stocked. The mixing glass is confirmed
 and the existing strainer remains recorded once.
+
+## Inventory categories
+
+The bar now groups its inventory into spirits, liqueurs/aperitifs, juices, syrups,
+bitters/tinctures, mixers/concentrates, wine/beer, ready-to-drink cocktails, coffee/tea,
+fruit/garnishes/rims and flavorings/extras. Category and location filters work
+together; cards retain location, quantity, stock status and restock links. Groups
+show entry counts, omit empty sections and sort products by name. Equipment remains
+separate. Display categories do not alter ingredient matching or saved inventory.
