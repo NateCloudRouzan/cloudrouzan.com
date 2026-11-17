@@ -1,4 +1,5 @@
 import { withSharedBar, sharedBar } from "../src/barbuddy/shared-bar.ts";
+import { bookIndex, bookStatus, searchBook, bookCSV } from "../src/barbuddy/book-index.ts";
 import { retailers } from "../src/barbuddy/retailers.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -254,7 +255,7 @@ test("review validation rejects invalid stars, oversized notes, dates, IDs and d
 });
 
 test("expanded catalog preserves existing IDs, resolves optional ingredients, and quarantines drafts", () => {
-  assert.equal(drinks.length, 688);
+  assert.equal(drinks.length, 692);
   assert.equal(drinks.filter((d) => d.id.startsWith("ba-")).length, 647);
   assert.equal(drinks.filter((d) => d.needsReview).length, 7);
   const ids = new Set(ingredients.map((i) => i.id));
@@ -431,4 +432,33 @@ test("vendor imports preserve provenance and separate alcohol-free and vodka var
   }
   assert.ok(inspect(drink("vendor-velvet-hex"),p).missing.length>0);
   assert.ok(inspect(drink("vendor-spicy-tajin-margarita"),p).missing.some(n=>n.id==="tajin-sauce"));
+});
+
+test("book index references resolve and uncertain variants remain on the capture list", () => {
+  assert.equal(bookIndex.entries.length,500);
+  const ids=new Set(drinks.map(d=>d.id));
+  for(const entry of bookIndex.entries) {
+    assert.ok(entry.pages.length>0 && entry.pages.every(p=>Number.isInteger(p) && p>0 && p<533));
+    for(const id of [...entry.recipeIds,...entry.relatedIds]) assert.ok(ids.has(id), id);
+    for(const id of entry.recipeIds) assert.ok(!drinks.find(d=>d.id===id)?.needsReview);
+  }
+  assert.equal(new Set(bookIndex.entries.map(e=>e.id)).size,500);
+  assert.equal(searchBook("", "Reference available").length,62);
+  assert.equal(searchBook("", "Check variant").length,9);
+  assert.equal(searchBook("", "Recipe needed").length,429);
+  const margarita=searchBook("Margarita").find(e=>e.name==="Margarita")!;
+  assert.deepEqual(margarita.pages,[430,431]); assert.equal(bookStatus(margarita),"Reference available");
+  assert.equal(bookStatus(searchBook("Corpse Reviver")[0]),"Check variant");
+  assert.equal(bookStatus(searchBook("Fireball")[0]),"Recipe needed");
+  assert.ok(searchBook("484").some(e=>e.name==="PCP"));
+  assert.match(bookCSV([margarita]), /"430, 431"/);
+});
+test("fresh lemon and lime supply juice without pretending bottled juice supplies whole fruit", () => {
+  const p=withSharedBar(emptyProfile());
+  const fruit=p.items.filter(i=>["fresh-lemon","fresh-lime"].includes(i.id));
+  assert.equal(fruit.length,2); assert.ok(fruit.every(i=>i.quantity===1));
+  const result=inspect({...drink("margarita"),needs:[{id:"lime",amount:"1 oz"}]},p);
+  assert.match(result.substitutions[0],/Juice the fresh lime/);
+  const bottled={...emptyProfile(),items:p.items.filter(i=>i.ingredient==="bottled-lime")};
+  assert.ok(!available(bottled).has("ba-lime"));
 });

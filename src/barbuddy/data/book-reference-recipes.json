@@ -1,0 +1,136 @@
+[
+  {
+    "id": "reference-tom-collins",
+    "name": "Tom Collins",
+    "description": "Known reference recipe; book version not yet verified.",
+    "spirit": "gin",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "ba-old-tom-gin",
+        "amount": "45 ml"
+      },
+      {
+        "id": "lemon",
+        "amount": "30 ml"
+      },
+      {
+        "id": "syrup",
+        "amount": "15 ml"
+      },
+      {
+        "id": "soda",
+        "amount": "60 ml"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Combine in an ice-filled highball and stir gently. Optional lemon slice and cocktail cherry.",
+    "source": "https://iba-world.com/iba-cocktail/john-collins/",
+    "sourceLabel": "IBA · John Collins with its stated Old Tom variation",
+    "note": "Source checked 2026-11-16. Name matches the book index; ingredients and proportions may differ from the book. Garnish optional."
+  },
+  {
+    "id": "reference-rob-roy",
+    "name": "Rob Roy",
+    "description": "Known reference recipe; book version not yet verified.",
+    "spirit": "scotch",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "ba-blended-scotch-whisky",
+        "amount": "50 ml"
+      },
+      {
+        "id": "sweet-vermouth",
+        "amount": "25 ml"
+      },
+      {
+        "id": "angostura",
+        "amount": "2 dashes"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "mixing"
+    ],
+    "method": "Stir with ice in a mixing glass, then strain into a chilled cocktail glass. Optional cherry and orange zest.",
+    "source": "https://www.chivas.com/en-ae/cocktails/rob-roy/",
+    "sourceLabel": "Chivas · source specifies Chivas 12",
+    "note": "Source checked 2026-11-16. Name matches the book index; ingredients and proportions may differ from the book. Garnish optional."
+  },
+  {
+    "id": "reference-black-velvet",
+    "name": "Black Velvet",
+    "description": "Known reference recipe; book version not yet verified.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "stout",
+        "amount": "120 ml"
+      },
+      {
+        "id": "ba-champagne",
+        "amount": "60 ml"
+      }
+    ],
+    "tools": [],
+    "method": "Chill a flute. Pour in the stout, then carefully add Champagne. No serving ice.",
+    "source": "https://www.danmurphys.com.au/dans-daily/cocktails/black-velvet-cocktail-recipe",
+    "sourceLabel": "Dan Murphy’s · source specifies Guinness",
+    "note": "Source checked 2026-11-16. Name matches the book index; ingredients and proportions may differ from the book. Garnish optional."
+  },
+  {
+    "id": "reference-el-diablo",
+    "name": "El Diablo",
+    "description": "Known reference recipe; book version not yet verified.",
+    "spirit": "tequila",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "ba-tequila-reposado",
+        "amount": "45 ml"
+      },
+      {
+        "id": "ba-creme-de-cassis",
+        "amount": "15 ml"
+      },
+      {
+        "id": "lime",
+        "amount": "22.5 ml"
+      },
+      {
+        "id": "ginger-beer",
+        "amount": "60 ml"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Shake tequila, cassis and lime with ice. Strain over fresh ice, top with ginger beer and stir briefly. Optional lime wedge.",
+    "source": "https://www.diffordsguide.com/cocktails/recipe/700/el-diablo-cocktail",
+    "sourceLabel": "Difford’s Guide",
+    "note": "Source checked 2026-11-16. Name matches the book index; ingredients and proportions may differ from the book. Garnish optional."
+  }
+]

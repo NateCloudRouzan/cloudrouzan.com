@@ -472,6 +472,22 @@
       "stock": "have",
       "location": "Cabinet",
       "notes": "Owner confirms sparkling water can always be prepared. Availability entry, not a package count."
+    },
+    {
+      "id": "fresh-lemon",
+      "ingredient": "ba-lemon",
+      "name": "Fresh lemon",
+      "quantity": 1,
+      "stock": "have",
+      "notes": "One whole lemon confirmed by owner; storage location unspecified."
+    },
+    {
+      "id": "fresh-lime",
+      "ingredient": "ba-lime",
+      "name": "Fresh lime",
+      "quantity": 1,
+      "stock": "have",
+      "notes": "One whole lime confirmed by owner; storage location unspecified."
     }
   ],
   "tools": [

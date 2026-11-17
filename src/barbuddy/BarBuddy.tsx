@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   drinks,
   vendorRecipeCount,
+  bookReferenceRecipeCount,
   ingredients,
   ingredientName,
   equipment,
@@ -24,6 +25,7 @@ import {
   type ShoppingItem,
 } from "./model";
 import "./barbuddy.css";
+import BookIndex from "./BookIndex";
 import ReviewEditor from "./ReviewEditor";
 import { sharedBar, withSharedBar } from "./shared-bar";
 import { retailers, type Retailer } from "./retailers";
@@ -35,6 +37,7 @@ const tabs = [
   "Unlock more",
   "Shopping list",
   "My reviews",
+  "Book index",
 ] as const;
 type Tab = (typeof tabs)[number];
 function load() {
@@ -61,6 +64,7 @@ export default function BarBuddy() {
   const [prefs, setPrefs] = useState(defaultPreferences);
   const [barLocation, setBarLocation] = useState("All locations");
   const [drinkQuery, setDrinkQuery] = useState("");
+  const [focusedDrinkId, setFocusedDrinkId] = useState<string | null>(null);
   const [limit, setLimit] = useState(24);
   const [avoidQuery, setAvoidQuery] = useState("");
   const [status, setStatus] = useState("");
@@ -88,6 +92,7 @@ export default function BarBuddy() {
   }, [profile, blocked]);
   const activeBar = withSharedBar(profile);
   const results = ranked(activeBar, prefs, showAll).filter((r) =>
+    (!focusedDrinkId || r.drink.id === focusedDrinkId) &&
     (r.drink.name + " " + r.drink.description)
       .toLowerCase()
       .includes(drinkQuery.toLowerCase()),
@@ -287,6 +292,7 @@ export default function BarBuddy() {
                 placeholder="Try Negroni, a sour, or a favorite name…"
                 value={drinkQuery}
                 onChange={(e) => {
+                  setFocusedDrinkId(null);
                   setDrinkQuery(e.target.value);
                   setLimit(24);
                 }}
@@ -482,7 +488,7 @@ export default function BarBuddy() {
               <p className="bb-footnote">
                 {importReport.importedRecipes} recipes imported from Bar
                 Assistant’s MIT-licensed data, plus 20 retained BarBuddy
-                recipes and {vendorRecipeCount} additional vendor/creator recipes and attributed adaptations. {importReport.preparationReview.length} imported
+                recipes, {vendorRecipeCount} vendor/creator recipes and attributed adaptations, and {bookReferenceRecipeCount} newly verified book-index reference recipes. {importReport.preparationReview.length} imported
                 recipes need preparation or quantity verification and are
                 excluded from make-now and unlock results. Existing recipe IDs
                 and reviews are preserved. This collection does not claim to
@@ -522,6 +528,10 @@ export default function BarBuddy() {
             </details>
           </>
         )}
+        {tab === "Book index" && <BookIndex onOpen={id => {
+          const drink = drinks.find(d => d.id === id)!;
+          setPrefs(defaultPreferences()); setFocusedDrinkId(id); setDrinkQuery(drink.name); setShowAll(true); setLimit(24); setTab("Find a drink");
+        }} />}
         {tab === "The bar" && (
           <>
             <div className="bb-section-title">
