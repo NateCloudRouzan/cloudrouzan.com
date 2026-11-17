@@ -7,11 +7,12 @@ directional aliases, optional ingredients, equipment and recipe verification fla
 The baseline was 40 ready recipes out of 692, with 7 browse-only recipes needing
 verification. There were 94 recipes one required ingredient away with equipment
 available. All ingredient-complete baseline recipes also had their required tools.
-The 59 inventory entries are products/supplies, not 59 cocktail recipes.
+The baseline 59 inventory entries were products/supplies, not 59 cocktail recipes.
+Owner confirmation adds always-available drinking water, bringing this to 60 entries.
 
-After the changes: **49 ready / 699 total**, including **39 with listed
+After the changes: **50 ready / 699 total**, including **40 with listed
 substitutions** (this includes bottled citrus and prepared SodaStream mixers).
-There are **111 recipes one ingredient away**, 643 otherwise blocked and 7 needing
+There are **112 recipes one ingredient away**, 642 otherwise blocked and 7 needing
 recipe verification. These are unfiltered counts; search and preferences can reduce
 the website's displayed matching count. No remaining volumes are tracked, so “ready”
 means ingredient types and tools are available, not that every batch volume is stocked.
@@ -24,7 +25,7 @@ means ingredient types and tools are available, not that every batch volume is s
   blanket equivalence for 45 ml pours.
 - Scrappy’s chocolate bitters can replace Angostura cocoa bitters in dash/drop doses.
 - Chambord/raspberry-liqueur IDs, cocktail cherry IDs and still-water IDs now resolve.
-  Water itself is not assumed stocked while owner confirmation is pending.
+  Drinking water was subsequently confirmed always available by the owner.
 - Japanese whisky already satisfies generic whiskey requirements. It does not
   silently become bourbon, rye, Irish or smoky Scotch.
 - Juice is not whole fruit; cherries are not maraschino liqueur; ginger ale is not
@@ -46,9 +47,10 @@ means ingredient types and tools are available, not that every batch volume is s
 - Tonic Rickey
 - Mission Strawberry Margarita (ready to pour)
 - Mission Tamarind Margarita (ready to pour)
+- Ninja SLUSHi Margarita (lime-juice version)
 
 Seven are existing recipes unlocked by mapping corrections; two are ready-to-pour
-Mission products. The two premixed recipes each require just their matching bottle;
+Mission products, and one is the new SLUSHi margarita. The two premixed recipes each require just their matching bottle;
 90 ml is a BarBuddy serving suggestion, not a manufacturer transcription. Ice and
 rims are optional. Their 25% ABV premix is not an undiluted SLUSHi input.
 
@@ -83,15 +85,14 @@ prose or transcripts were copied. No automatic conversion from blender recipes.
 
 | Recipe | Source | Current missing items |
 | --- | --- | --- |
-| Ninja SLUSHi Margarita (lime-juice version) | [Cooking With Janica · Jessica Pinney](https://cookingwithjanica.com/ninja-slushi-margaritas/) | Water |
+| Ninja SLUSHi Margarita (lime-juice version) | [Cooking With Janica · Jessica Pinney](https://cookingwithjanica.com/ninja-slushi-margaritas/) | None |
 | Ninja SLUSHi Pineapple Rum | [Ninja Test Kitchen · Pineapple Rum Slushi](https://www.sharkninja.com/pineapple-rum-slushi/REC15542.html) | Spiced rum, Canned full-fat coconut milk |
 | Ninja SLUSHi Frozen Mimosa | [Ninja Test Kitchen · Frozen Mimosa Slushi](https://www.sharkninja.com/frozen-mimosa-slushi/REC14443.html) | Prosecco |
 | Ninja SLUSHi Coffee Frappé | [Ninja Test Kitchen · Coffee Frappé Slushi](https://www.sharkninja.com/coffee-frappe-slushi/REC14571.html) | Half-and-half, Vanilla Extract, Superfine sugar |
 | Ninja SLUSHi Diet Cola Slush | [Ninja Test Kitchen · Sugar Free Diet Soda Slush](https://www.sharkninja.com/sugar-free-diet-soda-slush/REC16377.html) | Liquid allulose |
 
 The margarita uses Janica's explicit fresh-lime replacement for limeade, retaining
-its additional syrup and water. It calls for standard 1:1 simple syrup; the owner's
-syrup concentration is pending confirmation. Recipe recommendations do not infer
+its additional syrup and water. It calls for standard 1:1 simple syrup, now confirmed by the owner. Recipe recommendations do not infer
 that one lemon/lime yields a cup of juice. Check batch quantities.
 
 Diet Cola Slush requires **liquid allulose** from the official recipe. The diet

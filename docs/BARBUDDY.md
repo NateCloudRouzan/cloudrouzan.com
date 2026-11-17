@@ -260,3 +260,7 @@ model guidance and optional garnishes separate from inventory. The diet-cola
 recipe requires liquid allulose. Branded aromatic/cocoa bitters substitutions are
 restricted to dash/drop doses; large bitters-base pours retain their requirements.
 `node --experimental-strip-types scripts/audit-barbuddy.ts` emits a full audit.
+
+The owner confirmed always-available drinking water and standard 1:1 simple syrup.
+Water is now one availability entry (60 inventory entries total), and the audit
+now finds 50 ready recipes / 699 total and 112 one ingredient away.

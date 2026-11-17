@@ -538,6 +538,7 @@ test("premixed serves require only the bottle and SLUSHi recipes retain real req
     p.items=p.items.map(i=>i.ingredient===d.needs[0].id ? {...i,stock:"out"} : i);
     assert.equal(inspect(d,p).missing.length,1);
   }
+  assert.equal(inspect(drink("slushi-classic-margarita"),withSharedBar(emptyProfile())).missing.length,0);
   const slushi=drinks.filter(d=>d.id.startsWith("slushi-"));
   assert.equal(slushi.length,5);
   assert.ok(slushi.every(d=>d.style==="Frozen" && d.tools.includes("slushi") && !d.tools.includes("blender") && !d.needs.some(n=>n.id==="ice") && d.source && d.note?.includes("servings")));
