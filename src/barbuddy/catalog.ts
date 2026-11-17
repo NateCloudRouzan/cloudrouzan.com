@@ -2,6 +2,8 @@ import ingredientData from "./data/ingredients.json" with { type: "json" };
 import recipesA from "./data/recipes-a.json" with { type: "json" };
 import recipesB from "./data/recipes-b.json" with { type: "json" };
 import vendorRecipeData from "./data/vendor-recipes.json" with { type: "json" };
+import bookReferenceRecipes from "./data/book-reference-recipes.json" with { type: "json" };
+export const bookReferenceRecipeCount = bookReferenceRecipes.length;
 export const vendorRecipeCount = vendorRecipeData.length;
 export type Ingredient = { id: string; name: string; category: string };
 const groups: Record<string, [string, string][]> = {
@@ -70,6 +72,7 @@ const groups: Record<string, [string, string][]> = {
     ["goldschlager", "Goldschläger cinnamon schnapps"],
     ["aperix", "Aperix aperitivo"],
     ["tajin-rim", "Tajín rim seasoning"],
+    ["stout", "Stout beer"],
     ["cream-sherry", "Cream sherry"],
     ["coconut-liqueur", "Coconut liqueur"],
     ["coconut-water-syrup", "Coconut water syrup"],
@@ -509,7 +512,7 @@ export const drinks: Drink[] = [
 ];
 
 // Pinned, locally validated open recipe data. Existing stable IDs are preserved.
-drinks.push(...([...recipesA, ...recipesB, ...vendorRecipeData] as Drink[]));
+drinks.push(...([...recipesA, ...recipesB, ...vendorRecipeData, ...bookReferenceRecipes] as Drink[]));
 const tokiHighball = drinks.find(d => d.id === "whisky-highball")!;
 tokiHighball.source = "https://house.suntory.com/cocktails/whisky-highball";
 tokiHighball.sourceLabel = "House of Suntory · Toki Highball";

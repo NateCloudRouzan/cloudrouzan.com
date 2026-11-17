@@ -1,0 +1,5363 @@
+{
+  "title": "501 Must-Taste Cocktails",
+  "isbn": "978-0-753715-06-2",
+  "indexedAt": "2026-11-16",
+  "entries": [
+    {
+      "name": "Abbey Road",
+      "pages": [
+        198,
+        199
+      ],
+      "indexPhoto": 1,
+      "id": "book-001",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Aberdeen Angus",
+      "pages": [
+        348
+      ],
+      "indexPhoto": 1,
+      "id": "book-002",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Absinthe Minded",
+      "pages": [
+        470,
+        471
+      ],
+      "indexPhoto": 1,
+      "id": "book-003",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Acapulco Bliss",
+      "pages": [
+        453
+      ],
+      "indexPhoto": 1,
+      "id": "book-004",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "After Dark Crush",
+      "pages": [
+        80
+      ],
+      "indexPhoto": 1,
+      "id": "book-005",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Agave Julep",
+      "pages": [
+        456,
+        457
+      ],
+      "indexPhoto": 1,
+      "id": "book-006",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Albemarle Fizz",
+      "pages": [
+        172
+      ],
+      "indexPhoto": 1,
+      "id": "book-007",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Alcohol-free Sangria",
+      "pages": [
+        520
+      ],
+      "indexPhoto": 1,
+      "id": "book-008",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Algonquin",
+      "pages": [
+        317
+      ],
+      "indexPhoto": 1,
+      "id": "book-009",
+      "recipeIds": [
+        "ba-algonquin"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Alice Springs",
+      "pages": [
+        178,
+        179
+      ],
+      "indexPhoto": 1,
+      "id": "book-010",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Alleluia",
+      "pages": [
+        462
+      ],
+      "indexPhoto": 1,
+      "id": "book-011",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Almond Cigar",
+      "pages": [
+        60
+      ],
+      "indexPhoto": 1,
+      "id": "book-012",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "American Beauty",
+      "pages": [
+        124
+      ],
+      "indexPhoto": 1,
+      "id": "book-013",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "American Belle",
+      "pages": [
+        342
+      ],
+      "indexPhoto": 1,
+      "id": "book-014",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "American Rose",
+      "pages": [
+        84,
+        85
+      ],
+      "indexPhoto": 1,
+      "id": "book-015",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Angel Face",
+      "pages": [
+        96,
+        97
+      ],
+      "indexPhoto": 1,
+      "id": "book-016",
+      "recipeIds": [
+        "ba-angel-face"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Angel Kiss",
+      "pages": [
+        104,
+        105
+      ],
+      "indexPhoto": 1,
+      "id": "book-017",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Anita",
+      "pages": [
+        522
+      ],
+      "indexPhoto": 1,
+      "id": "book-018",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Apple Martini",
+      "pages": [
+        260,
+        261
+      ],
+      "indexPhoto": 1,
+      "id": "book-019",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Apple Posset",
+      "pages": [
+        102
+      ],
+      "indexPhoto": 1,
+      "id": "book-020",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Apple-soaked Mojito",
+      "pages": [
+        51
+      ],
+      "indexPhoto": 1,
+      "id": "book-021",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Applejack Sour",
+      "pages": [
+        127
+      ],
+      "indexPhoto": 1,
+      "id": "book-022",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Apricot Daiquiri",
+      "pages": [
+        14
+      ],
+      "indexPhoto": 1,
+      "id": "book-023",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Apricot Sour",
+      "pages": [
+        116
+      ],
+      "indexPhoto": 1,
+      "id": "book-024",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Aria Classic",
+      "pages": [
+        372,
+        373
+      ],
+      "indexPhoto": 1,
+      "id": "book-025",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Astronaut",
+      "pages": [
+        270,
+        271
+      ],
+      "indexPhoto": 1,
+      "id": "book-026",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Atacama Pisco Sour",
+      "pages": [
+        488
+      ],
+      "indexPhoto": 1,
+      "id": "book-027",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Aviation",
+      "pages": [
+        172,
+        173
+      ],
+      "indexPhoto": 1,
+      "id": "book-028",
+      "recipeIds": [
+        "ba-aviation"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Avondale Habit",
+      "pages": [
+        110,
+        111
+      ],
+      "indexPhoto": 1,
+      "id": "book-029",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "B-4-12",
+      "pages": [
+        468,
+        469
+      ],
+      "indexPhoto": 1,
+      "id": "book-030",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "B-52",
+      "pages": [
+        504,
+        505
+      ],
+      "indexPhoto": 1,
+      "id": "book-031",
+      "recipeIds": [
+        "ba-b-52"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Bahamas Punch",
+      "pages": [
+        68
+      ],
+      "indexPhoto": 1,
+      "id": "book-032",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Baja Sour",
+      "pages": [
+        419
+      ],
+      "indexPhoto": 1,
+      "id": "book-033",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Banana Bliss",
+      "pages": [
+        92,
+        93
+      ],
+      "indexPhoto": 1,
+      "id": "book-034",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Banana Daiquiri",
+      "pages": [
+        44
+      ],
+      "indexPhoto": 1,
+      "id": "book-035",
+      "recipeIds": [
+        "ba-banana-daiquiri"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Banshee",
+      "pages": [
+        484
+      ],
+      "indexPhoto": 1,
+      "id": "book-036",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Barbera",
+      "pages": [
+        343
+      ],
+      "indexPhoto": 1,
+      "id": "book-037",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Basil's Mango Sling",
+      "pages": [
+        274,
+        275
+      ],
+      "indexPhoto": 1,
+      "id": "book-038",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Batanga",
+      "pages": [
+        446,
+        447
+      ],
+      "indexPhoto": 1,
+      "id": "book-039",
+      "recipeIds": [
+        "ba-batanga"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Batida",
+      "pages": [
+        474
+      ],
+      "indexPhoto": 1,
+      "id": "book-040",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Batida Maracuja",
+      "pages": [
+        498,
+        499
+      ],
+      "indexPhoto": 1,
+      "id": "book-041",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Batiste",
+      "pages": [
+        28,
+        29
+      ],
+      "indexPhoto": 1,
+      "id": "book-042",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bay Breeze",
+      "pages": [
+        288,
+        289
+      ],
+      "indexPhoto": 1,
+      "id": "book-043",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Beautiful Beth",
+      "pages": [
+        70
+      ],
+      "indexPhoto": 1,
+      "id": "book-044",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Beckoning Lady",
+      "pages": [
+        446
+      ],
+      "indexPhoto": 1,
+      "id": "book-045",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bedtime Bouncer",
+      "pages": [
+        120
+      ],
+      "indexPhoto": 1,
+      "id": "book-046",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bellini",
+      "pages": [
+        370,
+        371
+      ],
+      "indexPhoto": 1,
+      "id": "book-047",
+      "recipeIds": [
+        "ba-bellini"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Bellini-tini",
+      "pages": [
+        222
+      ],
+      "indexPhoto": 1,
+      "id": "book-048",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Benedict",
+      "pages": [
+        312,
+        313
+      ],
+      "indexPhoto": 1,
+      "id": "book-049",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Berlin Blonde",
+      "pages": [
+        55
+      ],
+      "indexPhoto": 1,
+      "id": "book-050",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Berry Collins",
+      "pages": [
+        180,
+        181
+      ],
+      "indexPhoto": 1,
+      "id": "book-051",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Between the Sheets",
+      "pages": [
+        101
+      ],
+      "indexPhoto": 1,
+      "id": "book-052",
+      "recipeIds": [
+        "ba-between-the-sheets"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Big Buff",
+      "pages": [
+        308,
+        309
+      ],
+      "indexPhoto": 1,
+      "id": "book-053",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Big City Dog",
+      "pages": [
+        96
+      ],
+      "indexPhoto": 1,
+      "id": "book-054",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bijou",
+      "pages": [
+        156
+      ],
+      "indexPhoto": 1,
+      "id": "book-055",
+      "recipeIds": [
+        "ba-bijou"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Bitter Sweet",
+      "pages": [
+        508
+      ],
+      "indexPhoto": 1,
+      "id": "book-056",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bitter-sweet Symphony",
+      "pages": [
+        144,
+        145
+      ],
+      "indexPhoto": 1,
+      "id": "book-057",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Black Jack",
+      "pages": [
+        322
+      ],
+      "indexPhoto": 1,
+      "id": "book-058",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Black Russian",
+      "pages": [
+        292
+      ],
+      "indexPhoto": 1,
+      "id": "book-059",
+      "recipeIds": [
+        "black-russian"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Black Velvet",
+      "pages": [
+        368,
+        369
+      ],
+      "indexPhoto": 1,
+      "id": "book-060",
+      "recipeIds": [
+        "reference-black-velvet"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Black Widow",
+      "pages": [
+        18
+      ],
+      "indexPhoto": 1,
+      "id": "book-061",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Blackberry Martini",
+      "pages": [
+        302,
+        303
+      ],
+      "indexPhoto": 1,
+      "id": "book-062",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Blinker",
+      "pages": [
+        334
+      ],
+      "indexPhoto": 1,
+      "id": "book-063",
+      "recipeIds": [
+        "ba-blinker"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Bloody Mary",
+      "pages": [
+        293
+      ],
+      "indexPhoto": 1,
+      "id": "book-064",
+      "recipeIds": [
+        "ba-bloody-mary"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Blue Hawaiian",
+      "pages": [
+        36
+      ],
+      "indexPhoto": 1,
+      "id": "book-065",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Blue Moon",
+      "pages": [
+        274
+      ],
+      "indexPhoto": 1,
+      "id": "book-066",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Boadas Cocktail, The",
+      "pages": [
+        22,
+        23
+      ],
+      "indexPhoto": 1,
+      "id": "book-067",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bobby Burns",
+      "pages": [
+        329
+      ],
+      "indexPhoto": 1,
+      "id": "book-068",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bolero",
+      "pages": [
+        33
+      ],
+      "indexPhoto": 1,
+      "id": "book-069",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bombay Punch",
+      "pages": [
+        390,
+        391
+      ],
+      "indexPhoto": 1,
+      "id": "book-070",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Boomerang",
+      "pages": [
+        346,
+        347
+      ],
+      "indexPhoto": 1,
+      "id": "book-071",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Border Crossing",
+      "pages": [
+        416
+      ],
+      "indexPhoto": 1,
+      "id": "book-072",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bossanova",
+      "pages": [
+        81
+      ],
+      "indexPhoto": 1,
+      "id": "book-073",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bourbon Fixed",
+      "pages": [
+        310
+      ],
+      "indexPhoto": 1,
+      "id": "book-074",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bourbon Peach Smash",
+      "pages": [
+        320,
+        321
+      ],
+      "indexPhoto": 1,
+      "id": "book-075",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bourbon Sloe Gin",
+      "pages": [
+        357
+      ],
+      "indexPhoto": 1,
+      "id": "book-076",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Boxcar",
+      "pages": [
+        190
+      ],
+      "indexPhoto": 1,
+      "id": "book-077",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brain Hemorrhage",
+      "pages": [
+        500
+      ],
+      "indexPhoto": 1,
+      "id": "book-078",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandied Boat",
+      "pages": [
+        95
+      ],
+      "indexPhoto": 1,
+      "id": "book-079",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandy Alexander",
+      "pages": [
+        128,
+        129
+      ],
+      "indexPhoto": 1,
+      "id": "book-080",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-alexander"
+      ]
+    },
+    {
+      "name": "Brandy Classic",
+      "pages": [
+        122
+      ],
+      "indexPhoto": 1,
+      "id": "book-081",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandy Crusta",
+      "pages": [
+        100
+      ],
+      "indexPhoto": 1,
+      "id": "book-082",
+      "recipeIds": [
+        "ba-brandy-crusta"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandy Cuban",
+      "pages": [
+        118
+      ],
+      "indexPhoto": 1,
+      "id": "book-083",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandy Fix",
+      "pages": [
+        116,
+        117
+      ],
+      "indexPhoto": 1,
+      "id": "book-084",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandy Flip",
+      "pages": [
+        121
+      ],
+      "indexPhoto": 1,
+      "id": "book-085",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brandy Sidecar",
+      "pages": [
+        107
+      ],
+      "indexPhoto": 1,
+      "id": "book-086",
+      "recipeIds": [],
+      "relatedIds": [
+        "sidecar"
+      ]
+    },
+    {
+      "name": "Brave Bull",
+      "pages": [
+        452
+      ],
+      "indexPhoto": 1,
+      "id": "book-087",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Broadhurst Drive-by",
+      "pages": [
+        158,
+        159
+      ],
+      "indexPhoto": 1,
+      "id": "book-088",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bronx",
+      "pages": [
+        158,
+        159
+      ],
+      "indexPhoto": 1,
+      "id": "book-089",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Brooklyn Bomber",
+      "pages": [
+        427
+      ],
+      "indexPhoto": 1,
+      "id": "book-090",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bubble Berry",
+      "pages": [
+        388,
+        389
+      ],
+      "indexPhoto": 1,
+      "id": "book-091",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Bubble Gum",
+      "pages": [
+        501
+      ],
+      "indexPhoto": 1,
+      "id": "book-092",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Buck's Fizz",
+      "pages": [
+        382,
+        383
+      ],
+      "indexPhoto": 1,
+      "id": "book-093",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Buck's Twizz",
+      "pages": [
+        382,
+        383
+      ],
+      "indexPhoto": 1,
+      "id": "book-094",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Burnt Orange",
+      "pages": [
+        102,
+        103
+      ],
+      "indexPhoto": 1,
+      "id": "book-095",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "By Invitation Only",
+      "pages": [
+        140
+      ],
+      "indexPhoto": 1,
+      "id": "book-096",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cadillac",
+      "pages": [
+        449
+      ],
+      "indexPhoto": 1,
+      "id": "book-097",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Caen-Caen",
+      "pages": [
+        106
+      ],
+      "indexPhoto": 1,
+      "id": "book-098",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Caipirinha",
+      "pages": [
+        486,
+        487
+      ],
+      "indexPhoto": 1,
+      "id": "book-099",
+      "recipeIds": [
+        "ba-caipirinha"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "California Dreaming",
+      "pages": [
+        376
+      ],
+      "indexPhoto": 1,
+      "id": "book-100",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Canadian Daisy",
+      "pages": [
+        321
+      ],
+      "indexPhoto": 1,
+      "id": "book-101",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cape Codder",
+      "pages": [
+        262
+      ],
+      "indexPhoto": 1,
+      "id": "book-102",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Capricorn",
+      "pages": [
+        311
+      ],
+      "indexPhoto": 1,
+      "id": "book-103",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Caribbean Champagne",
+      "pages": [
+        366,
+        367
+      ],
+      "indexPhoto": 1,
+      "id": "book-104",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Carlton",
+      "pages": [
+        374
+      ],
+      "indexPhoto": 1,
+      "id": "book-105",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Carrot Cream",
+      "pages": [
+        525
+      ],
+      "indexPhoto": 1,
+      "id": "book-106",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cassis",
+      "pages": [
+        352,
+        353
+      ],
+      "indexPhoto": 1,
+      "id": "book-107",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cavendish",
+      "pages": [
+        385
+      ],
+      "indexPhoto": 1,
+      "id": "book-108",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Celebration Cocktail",
+      "pages": [
+        380,
+        381
+      ],
+      "indexPhoto": 1,
+      "id": "book-109",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Chablis Cup",
+      "pages": [
+        393
+      ],
+      "indexPhoto": 1,
+      "id": "book-110",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Champagne Cooler",
+      "pages": [
+        375
+      ],
+      "indexPhoto": 1,
+      "id": "book-111",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Champagne Julep",
+      "pages": [
+        402,
+        403
+      ],
+      "indexPhoto": 1,
+      "id": "book-112",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Champagne Romanov Fizz",
+      "pages": [
+        406,
+        407
+      ],
+      "indexPhoto": 1,
+      "id": "book-113",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "ChamPino",
+      "pages": [
+        399
+      ],
+      "indexPhoto": 1,
+      "id": "book-114",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cherry Julep",
+      "pages": [
+        184,
+        185
+      ],
+      "indexPhoto": 1,
+      "id": "book-115",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cheshire Cat",
+      "pages": [
+        366
+      ],
+      "indexPhoto": 1,
+      "id": "book-116",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Chetta's Punch",
+      "pages": [
+        56
+      ],
+      "indexPhoto": 1,
+      "id": "book-117",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Chocotini",
+      "pages": [
+        256
+      ],
+      "indexPhoto": 1,
+      "id": "book-118",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Christmas Punch",
+      "pages": [
+        99
+      ],
+      "indexPhoto": 1,
+      "id": "book-119",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Classic Champagne Cocktail",
+      "pages": [
+        408,
+        409
+      ],
+      "indexPhoto": 1,
+      "id": "book-120",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-champagne-cocktail"
+      ]
+    },
+    {
+      "name": "Classic Pimm's",
+      "pages": [
+        494,
+        495
+      ],
+      "indexPhoto": 1,
+      "id": "book-121",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Classic's Classic, The",
+      "pages": [
+        408,
+        409
+      ],
+      "indexPhoto": 1,
+      "id": "book-122",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Clayton's Pussyfoot",
+      "pages": [
+        529
+      ],
+      "indexPhoto": 1,
+      "id": "book-123",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Clem the Cuban",
+      "pages": [
+        44,
+        45
+      ],
+      "indexPhoto": 1,
+      "id": "book-124",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cliquet",
+      "pages": [
+        316
+      ],
+      "indexPhoto": 1,
+      "id": "book-125",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Clover Club",
+      "pages": [
+        201
+      ],
+      "indexPhoto": 1,
+      "id": "book-126",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-clover-club"
+      ]
+    },
+    {
+      "name": "Club",
+      "pages": [
+        346
+      ],
+      "indexPhoto": 1,
+      "id": "book-127",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cobalt Margarita",
+      "pages": [
+        418,
+        419
+      ],
+      "indexPhoto": 1,
+      "id": "book-128",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Coco-oco",
+      "pages": [
+        530,
+        531
+      ],
+      "indexPhoto": 1,
+      "id": "book-129",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Coconut Daiquiri",
+      "pages": [
+        22
+      ],
+      "indexPhoto": 1,
+      "id": "book-130",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Collinson",
+      "pages": [
+        167
+      ],
+      "indexPhoto": 1,
+      "id": "book-131",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Combined Forces",
+      "pages": [
+        283
+      ],
+      "indexPhoto": 1,
+      "id": "book-132",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cool Passion",
+      "pages": [
+        512,
+        513
+      ],
+      "indexPhoto": 1,
+      "id": "book-133",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cool Shower",
+      "pages": [
+        379
+      ],
+      "indexPhoto": 1,
+      "id": "book-134",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cool Wind",
+      "pages": [
+        249
+      ],
+      "indexPhoto": 1,
+      "id": "book-135",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cooper Cooler",
+      "pages": [
+        34
+      ],
+      "indexPhoto": 2,
+      "id": "book-136",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Corpse Reviver",
+      "pages": [
+        89
+      ],
+      "indexPhoto": 2,
+      "id": "book-137",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-corpse-reviver-2"
+      ]
+    },
+    {
+      "name": "Cosmopolitan",
+      "pages": [
+        234
+      ],
+      "indexPhoto": 2,
+      "id": "book-138",
+      "recipeIds": [
+        "ba-cosmopolitan"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Cowgirl",
+      "pages": [
+        475
+      ],
+      "indexPhoto": 2,
+      "id": "book-139",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cranberry Crush",
+      "pages": [
+        510,
+        511
+      ],
+      "indexPhoto": 2,
+      "id": "book-140",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Crossbow",
+      "pages": [
+        216,
+        217
+      ],
+      "indexPhoto": 2,
+      "id": "book-141",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cuba Libre",
+      "pages": [
+        42,
+        43
+      ],
+      "indexPhoto": 2,
+      "id": "book-142",
+      "recipeIds": [
+        "cuba-libre"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Cuban Breeze",
+      "pages": [
+        58
+      ],
+      "indexPhoto": 2,
+      "id": "book-143",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Cucumber Sake-tini",
+      "pages": [
+        476,
+        477
+      ],
+      "indexPhoto": 2,
+      "id": "book-144",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Dark Knight",
+      "pages": [
+        263
+      ],
+      "indexPhoto": 2,
+      "id": "book-145",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Decatini",
+      "pages": [
+        266,
+        267
+      ],
+      "indexPhoto": 2,
+      "id": "book-146",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Delft Donkey",
+      "pages": [
+        146
+      ],
+      "indexPhoto": 2,
+      "id": "book-147",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Desert Daisy",
+      "pages": [
+        440
+      ],
+      "indexPhoto": 2,
+      "id": "book-148",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Diamond Ring",
+      "pages": [
+        224,
+        225
+      ],
+      "indexPhoto": 2,
+      "id": "book-149",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Dirty Sanchez",
+      "pages": [
+        434
+      ],
+      "indexPhoto": 2,
+      "id": "book-150",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Discovery Bay",
+      "pages": [
+        38,
+        39
+      ],
+      "indexPhoto": 2,
+      "id": "book-151",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Doobs Martini, The",
+      "pages": [
+        202,
+        203
+      ],
+      "indexPhoto": 2,
+      "id": "book-152",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Dragon's Fire",
+      "pages": [
+        248,
+        249
+      ],
+      "indexPhoto": 2,
+      "id": "book-153",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Early Night",
+      "pages": [
+        318,
+        319
+      ],
+      "indexPhoto": 2,
+      "id": "book-154",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "East India",
+      "pages": [
+        108,
+        109
+      ],
+      "indexPhoto": 2,
+      "id": "book-155",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Eclipse",
+      "pages": [
+        332,
+        333
+      ],
+      "indexPhoto": 2,
+      "id": "book-156",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Egg Nog",
+      "pages": [
+        68,
+        69
+      ],
+      "indexPhoto": 2,
+      "id": "book-157",
+      "recipeIds": [
+        "ba-eggnog"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "El Diablo",
+      "pages": [
+        445
+      ],
+      "indexPhoto": 2,
+      "id": "book-158",
+      "recipeIds": [
+        "reference-el-diablo"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "El Dorado",
+      "pages": [
+        17
+      ],
+      "indexPhoto": 2,
+      "id": "book-159",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Eve",
+      "pages": [
+        372
+      ],
+      "indexPhoto": 2,
+      "id": "book-160",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fair Lady",
+      "pages": [
+        174
+      ],
+      "indexPhoto": 2,
+      "id": "book-161",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fifth Avenue",
+      "pages": [
+        88
+      ],
+      "indexPhoto": 2,
+      "id": "book-162",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fighting Bob",
+      "pages": [
+        175
+      ],
+      "indexPhoto": 2,
+      "id": "book-163",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fireball",
+      "pages": [
+        492,
+        493
+      ],
+      "indexPhoto": 2,
+      "id": "book-164",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "First the Money",
+      "pages": [
+        43,
+        59
+      ],
+      "indexPhoto": 2,
+      "id": "book-165",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fish House Punch",
+      "pages": [
+        130
+      ],
+      "indexPhoto": 2,
+      "id": "book-166",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fix, The",
+      "pages": [
+        194
+      ],
+      "indexPhoto": 2,
+      "id": "book-167",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Flaming Lamborghini",
+      "pages": [
+        502,
+        503
+      ],
+      "indexPhoto": 2,
+      "id": "book-168",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Florentine Coffee",
+      "pages": [
+        528
+      ],
+      "indexPhoto": 2,
+      "id": "book-169",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Florida Skies",
+      "pages": [
+        24,
+        25
+      ],
+      "indexPhoto": 2,
+      "id": "book-170",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Flower Power Sour",
+      "pages": [
+        239
+      ],
+      "indexPhoto": 2,
+      "id": "book-171",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Forest Fruit",
+      "pages": [
+        416,
+        417
+      ],
+      "indexPhoto": 2,
+      "id": "book-172",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Foxy's Millennium Punch",
+      "pages": [
+        78,
+        79
+      ],
+      "indexPhoto": 2,
+      "id": "book-173",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Fragrance",
+      "pages": [
+        254,
+        255
+      ],
+      "indexPhoto": 2,
+      "id": "book-174",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Franklin",
+      "pages": [
+        164,
+        165
+      ],
+      "indexPhoto": 2,
+      "id": "book-175",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "French 75",
+      "pages": [
+        206,
+        207
+      ],
+      "indexPhoto": 2,
+      "id": "book-176",
+      "recipeIds": [
+        "ba-french-75"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "French Kiss",
+      "pages": [
+        205
+      ],
+      "indexPhoto": 2,
+      "id": "book-177",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "French Leave",
+      "pages": [
+        246
+      ],
+      "indexPhoto": 2,
+      "id": "book-178",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Frobisher",
+      "pages": [
+        371
+      ],
+      "indexPhoto": 2,
+      "id": "book-179",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "From the Rafters",
+      "pages": [
+        122,
+        123
+      ],
+      "indexPhoto": 2,
+      "id": "book-180",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Frostbite",
+      "pages": [
+        435
+      ],
+      "indexPhoto": 2,
+      "id": "book-181",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Frosty Lime",
+      "pages": [
+        510
+      ],
+      "indexPhoto": 2,
+      "id": "book-182",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Frozen Mango and Mint Spiced Daiquiri",
+      "pages": [
+        13
+      ],
+      "indexPhoto": 2,
+      "id": "book-183",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Frozen Mango Daiquiri",
+      "pages": [
+        14,
+        15
+      ],
+      "indexPhoto": 2,
+      "id": "book-184",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Frozen Pineapple Daiquiri",
+      "pages": [
+        12
+      ],
+      "indexPhoto": 2,
+      "id": "book-185",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gauguin",
+      "pages": [
+        10
+      ],
+      "indexPhoto": 2,
+      "id": "book-186",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gimlet",
+      "pages": [
+        136,
+        137
+      ],
+      "indexPhoto": 2,
+      "id": "book-187",
+      "recipeIds": [
+        "ba-gimlet"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Gin and Tonic",
+      "pages": [
+        170,
+        171
+      ],
+      "indexPhoto": 2,
+      "id": "book-188",
+      "recipeIds": [
+        "gin-tonic"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Gin Cup",
+      "pages": [
+        150,
+        151
+      ],
+      "indexPhoto": 2,
+      "id": "book-189",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gin Fizz",
+      "pages": [
+        196,
+        197
+      ],
+      "indexPhoto": 2,
+      "id": "book-190",
+      "recipeIds": [
+        "gin-fizz"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Gin Floradora",
+      "pages": [
+        176
+      ],
+      "indexPhoto": 2,
+      "id": "book-191",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gin Garden",
+      "pages": [
+        182,
+        183
+      ],
+      "indexPhoto": 2,
+      "id": "book-192",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gin Sling",
+      "pages": [
+        210,
+        211
+      ],
+      "indexPhoto": 2,
+      "id": "book-193",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Ginger Tom",
+      "pages": [
+        160,
+        161
+      ],
+      "indexPhoto": 2,
+      "id": "book-194",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gingersnap",
+      "pages": [
+        232
+      ],
+      "indexPhoto": 2,
+      "id": "book-195",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Glamor Martini, The",
+      "pages": [
+        296,
+        297
+      ],
+      "indexPhoto": 2,
+      "id": "book-196",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Go West",
+      "pages": [
+        466,
+        467
+      ],
+      "indexPhoto": 2,
+      "id": "book-197",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Godfather",
+      "pages": [
+        326
+      ],
+      "indexPhoto": 2,
+      "id": "book-198",
+      "recipeIds": [
+        "ba-godfather"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Godfather Sour",
+      "pages": [
+        355
+      ],
+      "indexPhoto": 2,
+      "id": "book-199",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Godmother",
+      "pages": [
+        260
+      ],
+      "indexPhoto": 2,
+      "id": "book-200",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Golden Daisy",
+      "pages": [
+        336
+      ],
+      "indexPhoto": 2,
+      "id": "book-201",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Golden Dawn",
+      "pages": [
+        174
+      ],
+      "indexPhoto": 2,
+      "id": "book-202",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Gorgeous Grace",
+      "pages": [
+        388
+      ],
+      "indexPhoto": 2,
+      "id": "book-203",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grand Margarita",
+      "pages": [
+        437
+      ],
+      "indexPhoto": 2,
+      "id": "book-204",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grand Mimosa",
+      "pages": [
+        396,
+        397
+      ],
+      "indexPhoto": 2,
+      "id": "book-205",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grandaddy Mimosa",
+      "pages": [
+        396,
+        397
+      ],
+      "indexPhoto": 2,
+      "id": "book-206",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grapefruit Cooler",
+      "pages": [
+        518,
+        519
+      ],
+      "indexPhoto": 2,
+      "id": "book-207",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grappa Manhattan",
+      "pages": [
+        478,
+        479
+      ],
+      "indexPhoto": 2,
+      "id": "book-208",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grappa Strega",
+      "pages": [
+        478
+      ],
+      "indexPhoto": 2,
+      "id": "book-209",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grasshopper",
+      "pages": [
+        496,
+        497
+      ],
+      "indexPhoto": 2,
+      "id": "book-210",
+      "recipeIds": [
+        "ba-grasshopper"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Green Island Quiet Sunday",
+      "pages": [
+        289
+      ],
+      "indexPhoto": 2,
+      "id": "book-211",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grenada",
+      "pages": [
+        67
+      ],
+      "indexPhoto": 2,
+      "id": "book-212",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Grenadine Soda",
+      "pages": [
+        525
+      ],
+      "indexPhoto": 2,
+      "id": "book-213",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Hair Raiser",
+      "pages": [
+        276
+      ],
+      "indexPhoto": 2,
+      "id": "book-214",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Haiti Punch",
+      "pages": [
+        90,
+        91
+      ],
+      "indexPhoto": 2,
+      "id": "book-215",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Harlequin (using apricot brandy)",
+      "pages": [
+        115
+      ],
+      "indexPhoto": 2,
+      "id": "book-216",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Harlequin (using whiskey)",
+      "pages": [
+        358
+      ],
+      "indexPhoto": 2,
+      "id": "book-217",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Harvey Wallbanger",
+      "pages": [
+        223
+      ],
+      "indexPhoto": 2,
+      "id": "book-218",
+      "recipeIds": [
+        "ba-harvey-wallbanger"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Havana Beach",
+      "pages": [
+        60,
+        61
+      ],
+      "indexPhoto": 2,
+      "id": "book-219",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Havana Zombie",
+      "pages": [
+        27
+      ],
+      "indexPhoto": 2,
+      "id": "book-220",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Haven",
+      "pages": [
+        278,
+        279
+      ],
+      "indexPhoto": 2,
+      "id": "book-221",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Hawaiian Deluxe",
+      "pages": [
+        40,
+        41
+      ],
+      "indexPhoto": 2,
+      "id": "book-222",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Head-over-heels",
+      "pages": [
+        378,
+        379
+      ],
+      "indexPhoto": 2,
+      "id": "book-223",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Honey Water",
+      "pages": [
+        462,
+        463
+      ],
+      "indexPhoto": 2,
+      "id": "book-224",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Honeydew",
+      "pages": [
+        200
+      ],
+      "indexPhoto": 2,
+      "id": "book-225",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Honeymoon",
+      "pages": [
+        516,
+        517
+      ],
+      "indexPhoto": 2,
+      "id": "book-226",
+      "recipeIds": [
+        "ba-honeymoon"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Hong Kong Sling",
+      "pages": [
+        192,
+        193
+      ],
+      "indexPhoto": 2,
+      "id": "book-227",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Honolulu",
+      "pages": [
+        141
+      ],
+      "indexPhoto": 2,
+      "id": "book-228",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Hop Frog",
+      "pages": [
+        109
+      ],
+      "indexPhoto": 2,
+      "id": "book-229",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Horse's Neck",
+      "pages": [
+        162
+      ],
+      "indexPhoto": 2,
+      "id": "book-230",
+      "recipeIds": [
+        "ba-horses-neck"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Hummingbird",
+      "pages": [
+        50
+      ],
+      "indexPhoto": 2,
+      "id": "book-231",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Hurricane",
+      "pages": [
+        28
+      ],
+      "indexPhoto": 2,
+      "id": "book-232",
+      "recipeIds": [
+        "ba-hurricane-2",
+        "ba-hurricane"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Iceberg",
+      "pages": [
+        270
+      ],
+      "indexPhoto": 2,
+      "id": "book-233",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Iced Lemon and Mint Vodka",
+      "pages": [
+        220,
+        221
+      ],
+      "indexPhoto": 2,
+      "id": "book-234",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Illusion",
+      "pages": [
+        236,
+        237
+      ],
+      "indexPhoto": 2,
+      "id": "book-235",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Inspiration",
+      "pages": [
+        284
+      ],
+      "indexPhoto": 2,
+      "id": "book-236",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Irish Coffee",
+      "pages": [
+        363
+      ],
+      "indexPhoto": 2,
+      "id": "book-237",
+      "recipeIds": [
+        "ba-irish-coffee-2",
+        "ba-irish-coffee"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Italian Heather",
+      "pages": [
+        326
+      ],
+      "indexPhoto": 2,
+      "id": "book-238",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Jaffa",
+      "pages": [
+        128,
+        129
+      ],
+      "indexPhoto": 2,
+      "id": "book-239",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Jalisco Swizzle",
+      "pages": [
+        428
+      ],
+      "indexPhoto": 2,
+      "id": "book-240",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Jersey Lily",
+      "pages": [
+        526
+      ],
+      "indexPhoto": 2,
+      "id": "book-241",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Jolly Roger",
+      "pages": [
+        53
+      ],
+      "indexPhoto": 2,
+      "id": "book-242",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Juliana Blue",
+      "pages": [
+        214,
+        215
+      ],
+      "indexPhoto": 2,
+      "id": "book-243",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Katinka",
+      "pages": [
+        266
+      ],
+      "indexPhoto": 2,
+      "id": "book-244",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Keep Sober",
+      "pages": [
+        512
+      ],
+      "indexPhoto": 2,
+      "id": "book-245",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Kinky Witch",
+      "pages": [
+        48
+      ],
+      "indexPhoto": 2,
+      "id": "book-246",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Kir Champagne Royale",
+      "pages": [
+        384,
+        385
+      ],
+      "indexPhoto": 2,
+      "id": "book-247",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Kiss in the Dark",
+      "pages": [
+        195
+      ],
+      "indexPhoto": 2,
+      "id": "book-248",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Kiwi Caipiroska",
+      "pages": [
+        481
+      ],
+      "indexPhoto": 2,
+      "id": "book-249",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Kiwi in Tennessee, A",
+      "pages": [
+        344,
+        345
+      ],
+      "indexPhoto": 2,
+      "id": "book-250",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Knockout",
+      "pages": [
+        212,
+        213
+      ],
+      "indexPhoto": 2,
+      "id": "book-251",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Kurant Blush",
+      "pages": [
+        264,
+        265
+      ],
+      "indexPhoto": 2,
+      "id": "book-252",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "La Seine Fizz",
+      "pages": [
+        395
+      ],
+      "indexPhoto": 2,
+      "id": "book-253",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lady of Leisure",
+      "pages": [
+        168,
+        169
+      ],
+      "indexPhoto": 2,
+      "id": "book-254",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lalla Cocktail",
+      "pages": [
+        232,
+        233
+      ],
+      "indexPhoto": 2,
+      "id": "book-255",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Le Mans",
+      "pages": [
+        268
+      ],
+      "indexPhoto": 2,
+      "id": "book-256",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Legal High",
+      "pages": [
+        301
+      ],
+      "indexPhoto": 2,
+      "id": "book-257",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lemon Drop",
+      "pages": [
+        246,
+        247
+      ],
+      "indexPhoto": 2,
+      "id": "book-258",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-lemon-drop-martini"
+      ]
+    },
+    {
+      "name": "Lemon Grass Collins",
+      "pages": [
+        284,
+        285
+      ],
+      "indexPhoto": 2,
+      "id": "book-259",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lemon Martini",
+      "pages": [
+        236
+      ],
+      "indexPhoto": 3,
+      "id": "book-260",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Leo",
+      "pages": [
+        112
+      ],
+      "indexPhoto": 3,
+      "id": "book-261",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Leprechaun Dancer",
+      "pages": [
+        327
+      ],
+      "indexPhoto": 3,
+      "id": "book-262",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lime Fizz",
+      "pages": [
+        386
+      ],
+      "indexPhoto": 3,
+      "id": "book-263",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Limeade",
+      "pages": [
+        515
+      ],
+      "indexPhoto": 3,
+      "id": "book-264",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Limon Mojito",
+      "pages": [
+        20
+      ],
+      "indexPhoto": 3,
+      "id": "book-265",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lobsters on South Beach",
+      "pages": [
+        74,
+        75
+      ],
+      "indexPhoto": 3,
+      "id": "book-266",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Loving Cup",
+      "pages": [
+        376,
+        377
+      ],
+      "indexPhoto": 3,
+      "id": "book-267",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Luigi",
+      "pages": [
+        138,
+        139
+      ],
+      "indexPhoto": 3,
+      "id": "book-268",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lush Crush",
+      "pages": [
+        380
+      ],
+      "indexPhoto": 3,
+      "id": "book-269",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Lynchburg Lemonade",
+      "pages": [
+        344,
+        345
+      ],
+      "indexPhoto": 3,
+      "id": "book-270",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Machete",
+      "pages": [
+        280
+      ],
+      "indexPhoto": 3,
+      "id": "book-271",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mafia Martini",
+      "pages": [
+        56,
+        57
+      ],
+      "indexPhoto": 3,
+      "id": "book-272",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mai Tai",
+      "pages": [
+        19
+      ],
+      "indexPhoto": 3,
+      "id": "book-273",
+      "recipeIds": [
+        "ba-mai-tai"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Maiden's Blush",
+      "pages": [
+        184
+      ],
+      "indexPhoto": 3,
+      "id": "book-274",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Maiden's Prayer",
+      "pages": [
+        183
+      ],
+      "indexPhoto": 3,
+      "id": "book-275",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Man in the Moon",
+      "pages": [
+        368
+      ],
+      "indexPhoto": 3,
+      "id": "book-276",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mango Bellini",
+      "pages": [
+        394
+      ],
+      "indexPhoto": 3,
+      "id": "book-277",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Manhattan",
+      "pages": [
+        352,
+        353
+      ],
+      "indexPhoto": 3,
+      "id": "book-278",
+      "recipeIds": [
+        "ba-manhattan"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Maracuja",
+      "pages": [
+        414,
+        415
+      ],
+      "indexPhoto": 3,
+      "id": "book-279",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Margarita",
+      "pages": [
+        430,
+        431
+      ],
+      "indexPhoto": 3,
+      "id": "book-280",
+      "recipeIds": [
+        "margarita"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Marguerite",
+      "pages": [
+        290
+      ],
+      "indexPhoto": 3,
+      "id": "book-281",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Martini Royale",
+      "pages": [
+        398
+      ],
+      "indexPhoto": 3,
+      "id": "book-282",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mbolero",
+      "pages": [
+        152,
+        153
+      ],
+      "indexPhoto": 3,
+      "id": "book-283",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Melbourne",
+      "pages": [
+        87
+      ],
+      "indexPhoto": 3,
+      "id": "book-284",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Melon Ball",
+      "pages": [
+        305
+      ],
+      "indexPhoto": 3,
+      "id": "book-285",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Metropolitan",
+      "pages": [
+        98
+      ],
+      "indexPhoto": 3,
+      "id": "book-286",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mexican Bulldog",
+      "pages": [
+        450
+      ],
+      "indexPhoto": 3,
+      "id": "book-287",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mexican Mule",
+      "pages": [
+        424
+      ],
+      "indexPhoto": 3,
+      "id": "book-288",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mexicana",
+      "pages": [
+        414
+      ],
+      "indexPhoto": 3,
+      "id": "book-289",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mexicola",
+      "pages": [
+        433
+      ],
+      "indexPhoto": 3,
+      "id": "book-290",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Midsummer Punch",
+      "pages": [
+        516
+      ],
+      "indexPhoto": 3,
+      "id": "book-291",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mike Collins",
+      "pages": [
+        349
+      ],
+      "indexPhoto": 3,
+      "id": "book-292",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mint Julep I",
+      "pages": [
+        314
+      ],
+      "indexPhoto": 3,
+      "id": "book-293",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-mint-julep"
+      ]
+    },
+    {
+      "name": "Mint Julep II",
+      "pages": [
+        315
+      ],
+      "indexPhoto": 3,
+      "id": "book-294",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-mint-julep"
+      ]
+    },
+    {
+      "name": "Mississippi Mule",
+      "pages": [
+        190
+      ],
+      "indexPhoto": 3,
+      "id": "book-295",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mississippi Punch",
+      "pages": [
+        354
+      ],
+      "indexPhoto": 3,
+      "id": "book-296",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mockingbird",
+      "pages": [
+        460,
+        461
+      ],
+      "indexPhoto": 3,
+      "id": "book-297",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mojito",
+      "pages": [
+        32,
+        33
+      ],
+      "indexPhoto": 3,
+      "id": "book-298",
+      "recipeIds": [
+        "ba-mojito"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Money Shot",
+      "pages": [
+        472
+      ],
+      "indexPhoto": 3,
+      "id": "book-299",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Monkey Gland",
+      "pages": [
+        155
+      ],
+      "indexPhoto": 3,
+      "id": "book-300",
+      "recipeIds": [
+        "ba-monkey-gland"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Monoloco Zombie",
+      "pages": [
+        63
+      ],
+      "indexPhoto": 3,
+      "id": "book-301",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Monta Rosa",
+      "pages": [
+        104
+      ],
+      "indexPhoto": 3,
+      "id": "book-302",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Monte Carlo Sling",
+      "pages": [
+        118,
+        119
+      ],
+      "indexPhoto": 3,
+      "id": "book-303",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Moon River",
+      "pages": [
+        138
+      ],
+      "indexPhoto": 3,
+      "id": "book-304",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Morning",
+      "pages": [
+        124,
+        125
+      ],
+      "indexPhoto": 3,
+      "id": "book-305",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Moscow Mule",
+      "pages": [
+        228,
+        229
+      ],
+      "indexPhoto": 3,
+      "id": "book-306",
+      "recipeIds": [
+        "moscow-mule"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Moth & Moose",
+      "pages": [
+        496
+      ],
+      "indexPhoto": 3,
+      "id": "book-307",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Mudslide",
+      "pages": [
+        227
+      ],
+      "indexPhoto": 3,
+      "id": "book-308",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Murray Hearn",
+      "pages": [
+        254
+      ],
+      "indexPhoto": 3,
+      "id": "book-309",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "My Tie Collection",
+      "pages": [
+        62
+      ],
+      "indexPhoto": 3,
+      "id": "book-310",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Negroni",
+      "pages": [
+        144,
+        145
+      ],
+      "indexPhoto": 3,
+      "id": "book-311",
+      "recipeIds": [
+        "negroni"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Nerida",
+      "pages": [
+        339
+      ],
+      "indexPhoto": 3,
+      "id": "book-312",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "New Day",
+      "pages": [
+        230
+      ],
+      "indexPhoto": 3,
+      "id": "book-313",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "New Orleans Dandy",
+      "pages": [
+        41
+      ],
+      "indexPhoto": 3,
+      "id": "book-314",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "New Orleans Dry Martini",
+      "pages": [
+        142,
+        143
+      ],
+      "indexPhoto": 3,
+      "id": "book-315",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "New Yorker",
+      "pages": [
+        350,
+        351
+      ],
+      "indexPhoto": 3,
+      "id": "book-316",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Nice Pear",
+      "pages": [
+        132,
+        133
+      ],
+      "indexPhoto": 3,
+      "id": "book-317",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Night of Passion",
+      "pages": [
+        202
+      ],
+      "indexPhoto": 3,
+      "id": "book-318",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "North Pole",
+      "pages": [
+        191
+      ],
+      "indexPhoto": 3,
+      "id": "book-319",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Nursery Fizz",
+      "pages": [
+        530
+      ],
+      "indexPhoto": 3,
+      "id": "book-320",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "October Revolution",
+      "pages": [
+        302
+      ],
+      "indexPhoto": 3,
+      "id": "book-321",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "On the Lawn",
+      "pages": [
+        494,
+        495
+      ],
+      "indexPhoto": 3,
+      "id": "book-322",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "One of Those",
+      "pages": [
+        259
+      ],
+      "indexPhoto": 3,
+      "id": "book-323",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Opal Martini",
+      "pages": [
+        208,
+        209
+      ],
+      "indexPhoto": 3,
+      "id": "book-324",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Opera",
+      "pages": [
+        162,
+        163
+      ],
+      "indexPhoto": 3,
+      "id": "book-325",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Orange Blossom",
+      "pages": [
+        188,
+        189
+      ],
+      "indexPhoto": 3,
+      "id": "book-326",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Original Pisco Sour",
+      "pages": [
+        480,
+        481
+      ],
+      "indexPhoto": 3,
+      "id": "book-327",
+      "recipeIds": [],
+      "relatedIds": [
+        "ba-pisco-sour"
+      ]
+    },
+    {
+      "name": "Oyster Shot",
+      "pages": [
+        243
+      ],
+      "indexPhoto": 3,
+      "id": "book-328",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Paddy's Night",
+      "pages": [
+        392
+      ],
+      "indexPhoto": 3,
+      "id": "book-329",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pale Original",
+      "pages": [
+        443
+      ],
+      "indexPhoto": 3,
+      "id": "book-330",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pancho Villa",
+      "pages": [
+        451
+      ],
+      "indexPhoto": 3,
+      "id": "book-331",
+      "recipeIds": [
+        "ba-pancho-villa"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Pansy",
+      "pages": [
+        476
+      ],
+      "indexPhoto": 3,
+      "id": "book-332",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Papa Doble, The",
+      "pages": [
+        64,
+        65
+      ],
+      "indexPhoto": 3,
+      "id": "book-333",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Papa G",
+      "pages": [
+        482,
+        483
+      ],
+      "indexPhoto": 3,
+      "id": "book-334",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Paradise",
+      "pages": [
+        154,
+        155
+      ],
+      "indexPhoto": 3,
+      "id": "book-335",
+      "recipeIds": [
+        "ba-paradise"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Parisian Spring Punch",
+      "pages": [
+        410,
+        411
+      ],
+      "indexPhoto": 3,
+      "id": "book-336",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Parisien",
+      "pages": [
+        114,
+        115
+      ],
+      "indexPhoto": 3,
+      "id": "book-337",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Park Lane Special",
+      "pages": [
+        157
+      ],
+      "indexPhoto": 3,
+      "id": "book-338",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Parrot's Head Punch",
+      "pages": [
+        304
+      ],
+      "indexPhoto": 3,
+      "id": "book-339",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Passion for Fashion",
+      "pages": [
+        70,
+        71
+      ],
+      "indexPhoto": 3,
+      "id": "book-340",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Passion Fruit Margarita",
+      "pages": [
+        452
+      ],
+      "indexPhoto": 3,
+      "id": "book-341",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "PCP",
+      "pages": [
+        484,
+        485
+      ],
+      "indexPhoto": 3,
+      "id": "book-342",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "PDQ",
+      "pages": [
+        265
+      ],
+      "indexPhoto": 3,
+      "id": "book-343",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Peach, Pear, and Raspberry Crush",
+      "pages": [
+        514
+      ],
+      "indexPhoto": 3,
+      "id": "book-344",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Penguin",
+      "pages": [
+        90
+      ],
+      "indexPhoto": 3,
+      "id": "book-345",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Perfect Lady",
+      "pages": [
+        194
+      ],
+      "indexPhoto": 3,
+      "id": "book-346",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pernod Fizz",
+      "pages": [
+        387
+      ],
+      "indexPhoto": 3,
+      "id": "book-347",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pillow Talk",
+      "pages": [
+        276,
+        277
+      ],
+      "indexPhoto": 3,
+      "id": "book-348",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pineapple Mojito",
+      "pages": [
+        37
+      ],
+      "indexPhoto": 3,
+      "id": "book-349",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Angel",
+      "pages": [
+        30
+      ],
+      "indexPhoto": 3,
+      "id": "book-350",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Cadillac Convertible",
+      "pages": [
+        424,
+        425
+      ],
+      "indexPhoto": 3,
+      "id": "book-351",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Camellia",
+      "pages": [
+        175
+      ],
+      "indexPhoto": 3,
+      "id": "book-352",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Clover Club",
+      "pages": [
+        148,
+        149
+      ],
+      "indexPhoto": 3,
+      "id": "book-353",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Gin",
+      "pages": [
+        161
+      ],
+      "indexPhoto": 3,
+      "id": "book-354",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Mojito",
+      "pages": [
+        34,
+        35
+      ],
+      "indexPhoto": 3,
+      "id": "book-355",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Tonic",
+      "pages": [
+        522,
+        523
+      ],
+      "indexPhoto": 3,
+      "id": "book-356",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pink Treasure",
+      "pages": [
+        64
+      ],
+      "indexPhoto": 3,
+      "id": "book-357",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Piña Colada",
+      "pages": [
+        74,
+        75
+      ],
+      "indexPhoto": 3,
+      "id": "book-358",
+      "recipeIds": [
+        "ba-pina-colada"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Planter's Punch",
+      "pages": [
+        76,
+        77
+      ],
+      "indexPhoto": 3,
+      "id": "book-359",
+      "recipeIds": [
+        "ba-planters-punch"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Plasma",
+      "pages": [
+        251
+      ],
+      "indexPhoto": 3,
+      "id": "book-360",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Playa Del Mar",
+      "pages": [
+        440,
+        441
+      ],
+      "indexPhoto": 3,
+      "id": "book-361",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Poet's Dream",
+      "pages": [
+        186
+      ],
+      "indexPhoto": 3,
+      "id": "book-362",
+      "recipeIds": [
+        "ba-poets-dream"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Polish Martini",
+      "pages": [
+        226,
+        227
+      ],
+      "indexPhoto": 3,
+      "id": "book-363",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Port Antonio",
+      "pages": [
+        10,
+        11
+      ],
+      "indexPhoto": 3,
+      "id": "book-364",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Prohibition Punch",
+      "pages": [
+        524
+      ],
+      "indexPhoto": 3,
+      "id": "book-365",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Pudding Cocktail, The",
+      "pages": [
+        131
+      ],
+      "indexPhoto": 3,
+      "id": "book-366",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Purple Haze",
+      "pages": [
+        286,
+        287
+      ],
+      "indexPhoto": 3,
+      "id": "book-367",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "QF",
+      "pages": [
+        472,
+        473
+      ],
+      "indexPhoto": 3,
+      "id": "book-368",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Raspberry Beret",
+      "pages": [
+        444
+      ],
+      "indexPhoto": 3,
+      "id": "book-369",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rattlesnake",
+      "pages": [
+        331
+      ],
+      "indexPhoto": 3,
+      "id": "book-370",
+      "recipeIds": [
+        "ba-rattlesnake"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Razzamopolitan",
+      "pages": [
+        300,
+        301
+      ],
+      "indexPhoto": 3,
+      "id": "book-371",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Red Cloud",
+      "pages": [
+        142
+      ],
+      "indexPhoto": 3,
+      "id": "book-372",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Red Kiss",
+      "pages": [
+        216
+      ],
+      "indexPhoto": 3,
+      "id": "book-373",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Red Lion",
+      "pages": [
+        206
+      ],
+      "indexPhoto": 3,
+      "id": "book-374",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Red Rum",
+      "pages": [
+        46,
+        47
+      ],
+      "indexPhoto": 3,
+      "id": "book-375",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rhett Butler",
+      "pages": [
+        308,
+        309
+      ],
+      "indexPhoto": 3,
+      "id": "book-376",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rickey",
+      "pages": [
+        311
+      ],
+      "indexPhoto": 3,
+      "id": "book-377",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rising Sun",
+      "pages": [
+        238
+      ],
+      "indexPhoto": 3,
+      "id": "book-378",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Ritz Fizz I",
+      "pages": [
+        400,
+        401
+      ],
+      "indexPhoto": 3,
+      "id": "book-379",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Ritz Fizz II",
+      "pages": [
+        400,
+        401
+      ],
+      "indexPhoto": 3,
+      "id": "book-380",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Ritz Old-fashioned",
+      "pages": [
+        350,
+        351
+      ],
+      "indexPhoto": 3,
+      "id": "book-381",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "River Cruise",
+      "pages": [
+        524
+      ],
+      "indexPhoto": 3,
+      "id": "book-382",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Riviera Fizz",
+      "pages": [
+        176,
+        177
+      ],
+      "indexPhoto": 3,
+      "id": "book-383",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Road Runner",
+      "pages": [
+        294
+      ],
+      "indexPhoto": 3,
+      "id": "book-384",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Roamin' the Gloamin",
+      "pages": [
+        330
+      ],
+      "indexPhoto": 3,
+      "id": "book-385",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rob Roy",
+      "pages": [
+        328
+      ],
+      "indexPhoto": 3,
+      "id": "book-386",
+      "recipeIds": [
+        "reference-rob-roy"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Rock Chick",
+      "pages": [
+        240
+      ],
+      "indexPhoto": 3,
+      "id": "book-387",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rollin' Stoned",
+      "pages": [
+        322,
+        323
+      ],
+      "indexPhoto": 3,
+      "id": "book-388",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Romanov Fizz",
+      "pages": [
+        528
+      ],
+      "indexPhoto": 3,
+      "id": "book-389",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rooster Booster",
+      "pages": [
+        460
+      ],
+      "indexPhoto": 3,
+      "id": "book-390",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rosarita Bay Breeze",
+      "pages": [
+        457
+      ],
+      "indexPhoto": 3,
+      "id": "book-391",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "'383'",
+      "pages": [
+        489
+      ],
+      "indexPhoto": 4,
+      "id": "book-392",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Ruby Fizz",
+      "pages": [
+        152
+      ],
+      "indexPhoto": 4,
+      "id": "book-393",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Ruby Rita",
+      "pages": [
+        432,
+        433
+      ],
+      "indexPhoto": 4,
+      "id": "book-394",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rude Cosmopolitan",
+      "pages": [
+        438
+      ],
+      "indexPhoto": 4,
+      "id": "book-395",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rude June",
+      "pages": [
+        47
+      ],
+      "indexPhoto": 4,
+      "id": "book-396",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rum Crusta",
+      "pages": [
+        26
+      ],
+      "indexPhoto": 4,
+      "id": "book-397",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Rum Old-fashioned",
+      "pages": [
+        16,
+        17
+      ],
+      "indexPhoto": 4,
+      "id": "book-398",
+      "recipeIds": [
+        "ba-rum-old-fashioned"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Rum Refashioned",
+      "pages": [
+        49
+      ],
+      "indexPhoto": 4,
+      "id": "book-399",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Russian Spring Punch",
+      "pages": [
+        410,
+        411
+      ],
+      "indexPhoto": 4,
+      "id": "book-400",
+      "recipeIds": [
+        "ba-russian-spring-punch"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Rusty Nail",
+      "pages": [
+        340,
+        341
+      ],
+      "indexPhoto": 4,
+      "id": "book-401",
+      "recipeIds": [
+        "ba-rusty-nail"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Sake-tini",
+      "pages": [
+        471
+      ],
+      "indexPhoto": 4,
+      "id": "book-402",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "San Francisco (nonalcoholic)",
+      "pages": [
+        527
+      ],
+      "indexPhoto": 4,
+      "id": "book-403",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "San Francisco (using sloe gin)",
+      "pages": [
+        166
+      ],
+      "indexPhoto": 4,
+      "id": "book-404",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sangria",
+      "pages": [
+        126,
+        127
+      ],
+      "indexPhoto": 4,
+      "id": "book-405",
+      "recipeIds": [
+        "ba-sangria"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Sapphire Martini",
+      "pages": [
+        146,
+        147
+      ],
+      "indexPhoto": 4,
+      "id": "book-406",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Screwdriver",
+      "pages": [
+        228,
+        229
+      ],
+      "indexPhoto": 4,
+      "id": "book-407",
+      "recipeIds": [
+        "ba-screwdriver"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Sea Breeze",
+      "pages": [
+        268,
+        269
+      ],
+      "indexPhoto": 4,
+      "id": "book-408",
+      "recipeIds": [
+        "ba-sea-breeze"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Serenade",
+      "pages": [
+        38
+      ],
+      "indexPhoto": 4,
+      "id": "book-409",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sex in the Dunes",
+      "pages": [
+        235
+      ],
+      "indexPhoto": 4,
+      "id": "book-410",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sex on the Beach",
+      "pages": [
+        220
+      ],
+      "indexPhoto": 4,
+      "id": "book-411",
+      "recipeIds": [
+        "ba-sex-on-the-beach"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Shanghai",
+      "pages": [
+        86,
+        87
+      ],
+      "indexPhoto": 4,
+      "id": "book-412",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sicilian Kiss",
+      "pages": [
+        362
+      ],
+      "indexPhoto": 4,
+      "id": "book-413",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Silk Stocking",
+      "pages": [
+        442
+      ],
+      "indexPhoto": 4,
+      "id": "book-414",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Silky Pin",
+      "pages": [
+        340,
+        341
+      ],
+      "indexPhoto": 4,
+      "id": "book-415",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Singapore Sling",
+      "pages": [
+        186,
+        187
+      ],
+      "indexPhoto": 4,
+      "id": "book-416",
+      "recipeIds": [
+        "ba-singapore-sling"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Skipper",
+      "pages": [
+        359
+      ],
+      "indexPhoto": 4,
+      "id": "book-417",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Slinky Mink",
+      "pages": [
+        404,
+        405
+      ],
+      "indexPhoto": 4,
+      "id": "book-418",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Slippery Nipple",
+      "pages": [
+        466
+      ],
+      "indexPhoto": 4,
+      "id": "book-419",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sloe Gin Sling",
+      "pages": [
+        204
+      ],
+      "indexPhoto": 4,
+      "id": "book-420",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sloe-ho",
+      "pages": [
+        196,
+        197
+      ],
+      "indexPhoto": 4,
+      "id": "book-421",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Smoky",
+      "pages": [
+        157
+      ],
+      "indexPhoto": 4,
+      "id": "book-422",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Snapdragon",
+      "pages": [
+        230,
+        231
+      ],
+      "indexPhoto": 4,
+      "id": "book-423",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sombrero",
+      "pages": [
+        420,
+        421
+      ],
+      "indexPhoto": 4,
+      "id": "book-424",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sour Apple",
+      "pages": [
+        428,
+        429
+      ],
+      "indexPhoto": 4,
+      "id": "book-425",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "South for the Summer",
+      "pages": [
+        458,
+        459
+      ],
+      "indexPhoto": 4,
+      "id": "book-426",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "South of the Border",
+      "pages": [
+        438,
+        439
+      ],
+      "indexPhoto": 4,
+      "id": "book-427",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Southerly Buster",
+      "pages": [
+        336,
+        337
+      ],
+      "indexPhoto": 4,
+      "id": "book-428",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Spiced Ginger Punch",
+      "pages": [
+        529
+      ],
+      "indexPhoto": 4,
+      "id": "book-429",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Spiced Sidecar",
+      "pages": [
+        94
+      ],
+      "indexPhoto": 4,
+      "id": "book-430",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "St Augustine",
+      "pages": [
+        72
+      ],
+      "indexPhoto": 4,
+      "id": "book-431",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "St Clement's Manhattan",
+      "pages": [
+        335
+      ],
+      "indexPhoto": 4,
+      "id": "book-432",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "St Lucia",
+      "pages": [
+        20,
+        21
+      ],
+      "indexPhoto": 4,
+      "id": "book-433",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Stinger",
+      "pages": [
+        110,
+        111
+      ],
+      "indexPhoto": 4,
+      "id": "book-434",
+      "recipeIds": [
+        "ba-stinger"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Storm at Sea",
+      "pages": [
+        250
+      ],
+      "indexPhoto": 4,
+      "id": "book-435",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Stormy Weather",
+      "pages": [
+        156
+      ],
+      "indexPhoto": 4,
+      "id": "book-436",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Strawberry and Hazelnut Lassi",
+      "pages": [
+        490,
+        491
+      ],
+      "indexPhoto": 4,
+      "id": "book-437",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Strawberry and Mint Daiquiri",
+      "pages": [
+        54
+      ],
+      "indexPhoto": 4,
+      "id": "book-438",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Strawberry Eclair",
+      "pages": [
+        468
+      ],
+      "indexPhoto": 4,
+      "id": "book-439",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Strawberry Fields",
+      "pages": [
+        290,
+        291
+      ],
+      "indexPhoto": 4,
+      "id": "book-440",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Suburban",
+      "pages": [
+        349
+      ],
+      "indexPhoto": 4,
+      "id": "book-441",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sunbum",
+      "pages": [
+        420
+      ],
+      "indexPhoto": 4,
+      "id": "book-442",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Surf Rider",
+      "pages": [
+        296
+      ],
+      "indexPhoto": 4,
+      "id": "book-443",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Swallow Dive",
+      "pages": [
+        240,
+        241
+      ],
+      "indexPhoto": 4,
+      "id": "book-444",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sweet Sixteen",
+      "pages": [
+        136
+      ],
+      "indexPhoto": 4,
+      "id": "book-445",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Sydney Fizz",
+      "pages": [
+        164
+      ],
+      "indexPhoto": 4,
+      "id": "book-446",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tanqstream",
+      "pages": [
+        170,
+        171
+      ],
+      "indexPhoto": 4,
+      "id": "book-447",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tar",
+      "pages": [
+        312
+      ],
+      "indexPhoto": 4,
+      "id": "book-448",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tenderberry",
+      "pages": [
+        520,
+        521
+      ],
+      "indexPhoto": 4,
+      "id": "book-449",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tequila de Coco",
+      "pages": [
+        422
+      ],
+      "indexPhoto": 4,
+      "id": "book-450",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tequila Slammer",
+      "pages": [
+        454,
+        455
+      ],
+      "indexPhoto": 4,
+      "id": "book-451",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tequila Sunrise",
+      "pages": [
+        458,
+        459
+      ],
+      "indexPhoto": 4,
+      "id": "book-452",
+      "recipeIds": [
+        "tequila-sunrise"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Tequini",
+      "pages": [
+        422,
+        423
+      ],
+      "indexPhoto": 4,
+      "id": "book-453",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Texas Tea",
+      "pages": [
+        436
+      ],
+      "indexPhoto": 4,
+      "id": "book-454",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Thigh High",
+      "pages": [
+        426
+      ],
+      "indexPhoto": 4,
+      "id": "book-455",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tidal Wave",
+      "pages": [
+        112,
+        113
+      ],
+      "indexPhoto": 4,
+      "id": "book-456",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tijuana Sling",
+      "pages": [
+        448,
+        449
+      ],
+      "indexPhoto": 4,
+      "id": "book-457",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tiki Treat",
+      "pages": [
+        52,
+        53
+      ],
+      "indexPhoto": 4,
+      "id": "book-458",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tipperary",
+      "pages": [
+        178
+      ],
+      "indexPhoto": 4,
+      "id": "book-459",
+      "recipeIds": [
+        "ba-tipperary"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Tobago",
+      "pages": [
+        24
+      ],
+      "indexPhoto": 4,
+      "id": "book-460",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tokyo Joe",
+      "pages": [
+        244
+      ],
+      "indexPhoto": 4,
+      "id": "book-461",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tom Collins",
+      "pages": [
+        180,
+        181
+      ],
+      "indexPhoto": 4,
+      "id": "book-462",
+      "recipeIds": [
+        "reference-tom-collins"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Toulon",
+      "pages": [
+        84
+      ],
+      "indexPhoto": 4,
+      "id": "book-463",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tropical Dream",
+      "pages": [
+        72,
+        73
+      ],
+      "indexPhoto": 4,
+      "id": "book-464",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Tropical Treat",
+      "pages": [
+        518
+      ],
+      "indexPhoto": 4,
+      "id": "book-465",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Turf",
+      "pages": [
+        150
+      ],
+      "indexPhoto": 4,
+      "id": "book-466",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Valentine Martini",
+      "pages": [
+        298,
+        299
+      ],
+      "indexPhoto": 4,
+      "id": "book-467",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vampire",
+      "pages": [
+        198
+      ],
+      "indexPhoto": 4,
+      "id": "book-468",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vanilla Daisy",
+      "pages": [
+        360,
+        361
+      ],
+      "indexPhoto": 4,
+      "id": "book-469",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Velvet Hammer",
+      "pages": [
+        486
+      ],
+      "indexPhoto": 4,
+      "id": "book-470",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vesper",
+      "pages": [
+        298
+      ],
+      "indexPhoto": 4,
+      "id": "book-471",
+      "recipeIds": [
+        "ba-vesper"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Virgin Colada",
+      "pages": [
+        508,
+        509
+      ],
+      "indexPhoto": 4,
+      "id": "book-472",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Virginia Mint Julep",
+      "pages": [
+        234,
+        325
+      ],
+      "indexPhoto": 4,
+      "note": "Index prints 234, 325; verify the first page in the book.",
+      "id": "book-473",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Viva Maria",
+      "pages": [
+        430
+      ],
+      "indexPhoto": 4,
+      "id": "book-474",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vocachino",
+      "pages": [
+        280,
+        281
+      ],
+      "indexPhoto": 4,
+      "id": "book-475",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vodka Collins",
+      "pages": [
+        278
+      ],
+      "indexPhoto": 4,
+      "id": "book-476",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vodka Gibson",
+      "pages": [
+        242
+      ],
+      "indexPhoto": 4,
+      "id": "book-477",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vodka Sazerac",
+      "pages": [
+        272,
+        273
+      ],
+      "indexPhoto": 4,
+      "id": "book-478",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vodka Sour",
+      "pages": [
+        294,
+        295
+      ],
+      "indexPhoto": 4,
+      "id": "book-479",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Vodkatini",
+      "pages": [
+        244,
+        245
+      ],
+      "indexPhoto": 4,
+      "id": "book-480",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Warbine Cooler",
+      "pages": [
+        514
+      ],
+      "indexPhoto": 4,
+      "note": "Name transcribed as printed; verify spelling on the recipe page.",
+      "id": "book-481",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Warsaw Cocktail",
+      "pages": [
+        224
+      ],
+      "indexPhoto": 4,
+      "id": "book-482",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Watermelon Martini",
+      "pages": [
+        258,
+        259
+      ],
+      "indexPhoto": 4,
+      "id": "book-483",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Whiskey Daisy",
+      "pages": [
+        360,
+        361
+      ],
+      "indexPhoto": 4,
+      "id": "book-484",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Whiskey Mac",
+      "pages": [
+        318,
+        319
+      ],
+      "indexPhoto": 4,
+      "id": "book-485",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Whiskey Sour",
+      "pages": [
+        356
+      ],
+      "indexPhoto": 4,
+      "id": "book-486",
+      "recipeIds": [
+        "whiskey-sour"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "White Lady",
+      "pages": [
+        168,
+        169
+      ],
+      "indexPhoto": 4,
+      "id": "book-487",
+      "recipeIds": [
+        "white-lady"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "White Leopard",
+      "pages": [
+        283
+      ],
+      "indexPhoto": 4,
+      "id": "book-488",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "White Russian",
+      "pages": [
+        256,
+        257
+      ],
+      "indexPhoto": 4,
+      "id": "book-489",
+      "recipeIds": [
+        "ba-white-russian"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "White Spider",
+      "pages": [
+        252
+      ],
+      "indexPhoto": 4,
+      "id": "book-490",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "White Witch",
+      "pages": [
+        30,
+        31
+      ],
+      "indexPhoto": 4,
+      "id": "book-491",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Whizz Bang",
+      "pages": [
+        324
+      ],
+      "indexPhoto": 4,
+      "id": "book-492",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Woodstock",
+      "pages": [
+        192
+      ],
+      "indexPhoto": 4,
+      "id": "book-493",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Xantippe",
+      "pages": [
+        252,
+        253
+      ],
+      "indexPhoto": 4,
+      "id": "book-494",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Yellow Bird",
+      "pages": [
+        76
+      ],
+      "indexPhoto": 4,
+      "id": "book-495",
+      "recipeIds": [
+        "ba-yellow-bird"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Yokohama",
+      "pages": [
+        273
+      ],
+      "indexPhoto": 4,
+      "id": "book-496",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Zaza",
+      "pages": [
+        148
+      ],
+      "indexPhoto": 4,
+      "id": "book-497",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Zed",
+      "pages": [
+        191
+      ],
+      "indexPhoto": 4,
+      "id": "book-498",
+      "recipeIds": [],
+      "relatedIds": []
+    },
+    {
+      "name": "Zombie",
+      "pages": [
+        66
+      ],
+      "indexPhoto": 4,
+      "id": "book-499",
+      "recipeIds": [
+        "ba-zombie"
+      ],
+      "relatedIds": []
+    },
+    {
+      "name": "Zoom",
+      "pages": [
+        338
+      ],
+      "indexPhoto": 4,
+      "id": "book-500",
+      "recipeIds": [],
+      "relatedIds": []
+    }
+  ]
+}

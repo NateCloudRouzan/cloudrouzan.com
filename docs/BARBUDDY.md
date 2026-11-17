@@ -188,3 +188,28 @@ are stocked. New recipes use the existing substitution and missing-item checks.
 Incomplete recipes and product-use references do not enter recommendation or unlock
 counts. The stale Aperix recipe link was excluded after its destination showed
 unrelated content. The linked research report preserves unresolved products and gaps.
+
+## Book index and capture list
+
+The Book index tab transcribes 500 named entries from the four supplied index
+photos. It links 62 entries to existing same-name reference recipes, flags 9
+related/incomplete variants, and lists 429 without a matching recipe. No index
+entry is presented as a verified book transcription. The book title's 501 count
+has not been reconciled; the UI explicitly reports 500 recovered entries.
+
+`data/book-index.json` retains names, listed pages, photo number, stable IDs,
+reference IDs and notes. `BookIndex.tsx` provides name/page search, status filters,
+30-entry pagination, recipe navigation and filtered CSV downloads. The durable
+capture list is [BARBUDDY-BOOK-CHECKLIST.md](BARBUDDY-BOOK-CHECKLIST.md).
+
+Four verified reference recipes (Tom Collins, Rob Roy, Black Velvet and El Diablo)
+are added in `data/book-reference-recipes.json`, with source links and paraphrased
+methods. The overall catalog now contains 692 recipes. Existing IDs and reviews
+are unchanged. Related names (for example Corpse Reviver versus No. 2, and Mint
+Julep I versus II) remain on the capture list. A Clover Club record exists but needs
+verification, so it is not counted as an available reference.
+
+One whole fresh lemon and one whole fresh lime were owner-confirmed in the same
+session. They are recorded with unspecified storage location, bringing inventory
+to 56 entries. Whole fruit can supply its corresponding juice, and is preferred
+over bottled juice in preparation notes; no juice volume is inferred.
