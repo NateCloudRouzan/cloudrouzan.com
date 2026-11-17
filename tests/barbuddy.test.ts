@@ -255,7 +255,7 @@ test("review validation rejects invalid stars, oversized notes, dates, IDs and d
 });
 
 test("expanded catalog preserves existing IDs, resolves optional ingredients, and quarantines drafts", () => {
-  assert.equal(drinks.length, 692);
+  assert.equal(drinks.length, 699);
   assert.equal(drinks.filter((d) => d.id.startsWith("ba-")).length, 647);
   assert.equal(drinks.filter((d) => d.needsReview).length, 7);
   const ids = new Set(ingredients.map((i) => i.id));
@@ -507,4 +507,44 @@ test("inventory grouping preserves items and combines category and location filt
   assert.ok(filtered[0].items.every(i => i.location === "Fridge"));
   assert.equal(filtered[0].name, "Juices");
   assert.deepEqual(groupInventory(sharedBar.items, "Fridge", "Bitters & tinctures"), []);
+});
+
+test("audit substitutions accept comparable liqueurs and seasoning bitters, not bitters bases", () => {
+  const p = emptyProfile();
+  p.items = ["triple-sec", "aromatic", "chocolate-bitters", "raspberry", "cherries"].map(id => ({id,ingredient:id,name:id,quantity:1,stock:"have" as const}));
+  assert.ok(available(p).has("ba-cointreau"));
+  assert.ok(available(p).has("ba-chambord"));
+  assert.ok(available(p).has("ba-cocktail-cherry"));
+  for (const [id,amount] of [["angostura","2 dashes"],["ba-angostura-cocoa-bitters","1 dash"]]) {
+    const recipe = {...drinks[0], needs:[{id,amount}]};
+    assert.equal(inspect(recipe,p).missing.length,0);
+    assert.ok(inspect(recipe,p).substitutions[0].includes("Flavor may differ"));
+  }
+  const base = {...drinks[0],needs:[{id:"angostura",amount:"45 ml"}]};
+  assert.equal(inspect(base,p).missing.length,1);
+  p.items.find(i=>i.id==="aromatic")!.stock="low";
+  const seasoning = {...base,needs:[{id:"angostura",amount:"2 dashes"}]};
+  assert.equal(inspect(seasoning,p).low.length,1);
+  p.items.find(i=>i.id==="aromatic")!.stock="out";
+  assert.equal(inspect(seasoning,p).missing.length,1);
+  assert.ok(!available(p).has("ba-maraschino"));
+});
+
+test("premixed serves require only the bottle and SLUSHi recipes retain real requirements", () => {
+  const p=withSharedBar(emptyProfile());
+  for(const id of ["serve-mission-strawberry","serve-mission-tamarind"]) {
+    const d=drink(id); assert.equal(d.needs.length,1); assert.deepEqual(d.tools,[]);
+    assert.equal(inspect(d,p).missing.length,0);
+    p.items=p.items.map(i=>i.ingredient===d.needs[0].id ? {...i,stock:"out"} : i);
+    assert.equal(inspect(d,p).missing.length,1);
+  }
+  const slushi=drinks.filter(d=>d.id.startsWith("slushi-"));
+  assert.equal(slushi.length,5);
+  assert.ok(slushi.every(d=>d.style==="Frozen" && d.tools.includes("slushi") && !d.tools.includes("blender") && !d.needs.some(n=>n.id==="ice") && d.source && d.note?.includes("servings")));
+  const bar=withSharedBar(emptyProfile());
+  assert.ok(inspect(drink("slushi-diet-cola"),bar).missing.some(n=>n.id==="liquid-allulose"));
+  assert.ok(inspect(drink("slushi-mimosa"),bar).missing.some(n=>n.id==="prosecco"));
+  assert.ok(inspect(drink("slushi-pineapple-rum"),bar).missing.some(n=>n.id==="canned-coconut-milk"));
+  bar.tools=bar.tools.filter(t=>t!=="slushi");
+  assert.ok(inspect(drink("slushi-mimosa"),bar).tools.includes("slushi"));
 });

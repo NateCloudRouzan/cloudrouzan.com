@@ -3,6 +3,7 @@ import {
   drinks,
   vendorRecipeCount,
   bookReferenceRecipeCount,
+  servesAndSlushiCount,
   ingredients,
   ingredientName,
   equipment,
@@ -419,20 +420,21 @@ export default function BarBuddy() {
                   ))}
               </div>
             </details>
+            <p className="bb-footnote">Ready counts include the substitutions listed in each recipe. They check ingredient availability and equipment, not remaining volume; check batch quantities before making a drink. Search “SLUSHi” for machine recipes.</p>
             <div className="bb-result-head">
               <div aria-live="polite">
                 <h3>
                   {ready.length
                     ? "Ready for your bar"
                     : prefs.style === "Frozen"
-                      ? "Frozen recipes for a blender"
+                      ? "Frozen recipes for your equipment"
                       : "A few possibilities"}
                 </h3>
                 <p>
                   {ready.length
                     ? `${ready.length} matching drinks. Flavor preferences bring your best matches to the top.`
                     : prefs.style === "Frozen"
-                      ? "These recipes require a blender. Ninja SLUSHi adaptations still need model-specific verification."
+                      ? "Check each recipe’s equipment: Ninja SLUSHi recipes and blender recipes are separate."
                       : "No drinks are fully ready with these settings. Here’s exactly what is missing."}
                 </p>
               </div>
@@ -492,7 +494,7 @@ export default function BarBuddy() {
               <p className="bb-footnote">
                 {importReport.importedRecipes} recipes imported from Bar
                 Assistant’s MIT-licensed data, plus 20 retained BarBuddy
-                recipes, {vendorRecipeCount} vendor/creator recipes and attributed adaptations, and {bookReferenceRecipeCount} newly verified book-index reference recipes. {importReport.preparationReview.length} imported
+                recipes, {vendorRecipeCount} vendor/creator recipes and attributed adaptations, {bookReferenceRecipeCount} newly verified book-index reference recipes, and {servesAndSlushiCount} ready-to-pour serves / SLUSHi recipes. {importReport.preparationReview.length} imported
                 recipes need preparation or quantity verification and are
                 excluded from make-now and unlock results. Existing recipe IDs
                 and reviews are preserved. This collection does not claim to
@@ -1080,7 +1082,7 @@ function DrinkCard({
           {drink.needsReview
             ? "Needs recipe verification"
             : ready
-              ? "Ready to make"
+              ? (substitutions.length ? "Ready with substitutions" : "Ready to make")
               : missing.length
                 ? `Missing ${missing.length} ${missing.length === 1 ? "ingredient" : "ingredients"}`
                 : "Needs equipment"}
