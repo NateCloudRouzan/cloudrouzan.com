@@ -213,3 +213,6 @@ One whole fresh lemon and one whole fresh lime were owner-confirmed in the same
 session. They are recorded with unspecified storage location, bringing inventory
 to 56 entries. Whole fruit can supply its corresponding juice, and is preferred
 over bottled juice in preparation notes; no juice volume is inferred.
+
+The owner also confirmed a shaker. Shared equipment now includes the shaker and
+the previously recorded strainer; shake recipes use the existing equipment check.
