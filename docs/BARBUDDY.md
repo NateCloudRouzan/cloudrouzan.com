@@ -286,3 +286,7 @@ inventory entries. The full missing-ingredient histogram, base-tag counts, tool
 checks and simulated immediate unlocks are in BARBUDDY-READINESS-AUDIT.md. Georgia
 Peach syrup now satisfies generic peach syrup (not peach fruit/liqueur/plain syrup),
 raising one-ingredient-away entries to 114 while ready remains 50.
+
+On 2026-11-17 the owner confirmed a muddler and blender. Both are now in shared
+equipment alongside the Ninja SLUSHi; ordinary blender recipes retain their own
+requirements. No additional ingredient was inferred from equipment ownership.
