@@ -1,0 +1,42 @@
+[
+  {
+    "drinkId": "margarita",
+    "title": "How to make a Margarita",
+    "creator": "MIXOLOGY FLAIRED",
+    "url": "https://www.youtube.com/shorts/Ii2tYMzlf0Y",
+    "format": "YouTube Short",
+    "kind": "How-to",
+    "note": "The creator adds simple syrup and uses a lime-salt-sugar rim; follow the BarBuddy ingredient list for this recipe.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "gin-tonic",
+    "title": "How to Make the Perfect Gin and Tonic",
+    "creator": "COCKTAIL CHANNEL",
+    "url": "https://www.youtube.com/watch?v=HPxRRtmpswY",
+    "format": "58-second YouTube video",
+    "kind": "How-to",
+    "note": "A short preparation guide; brands, garnish and proportions may differ.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "ba-batanga",
+    "title": "Batanga Cocktail",
+    "creator": "RAUL BARTENDER",
+    "url": "https://www.youtube.com/shorts/ThyYs9J6mPM",
+    "format": "YouTube Short",
+    "kind": "Cocktail demo",
+    "note": "A visual reference for the cocktail; follow the BarBuddy recipe for quantities.",
+    "checkedAt": "2026-11-16"
+  },
+  {
+    "drinkId": "ba-shirley-temple",
+    "title": "Shirley Temple Drink Recipe Short",
+    "creator": "Baking a Moment",
+    "url": "https://www.youtube.com/shorts/AqyVf6PZOFo",
+    "format": "YouTube Short",
+    "kind": "How-to",
+    "note": "The creator\u2019s mixer and proportions may differ from this recipe.",
+    "checkedAt": "2026-11-16"
+  }
+]

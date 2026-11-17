@@ -462,3 +462,17 @@ test("fresh lemon and lime supply juice without pretending bottled juice supplie
   const bottled={...emptyProfile(),items:p.items.filter(i=>i.ingredient==="bottled-lime")};
   assert.ok(!available(bottled).has("ba-lime"));
 });
+
+// Curated links must target known recipes and direct YouTube videos, not searches.
+test("curated cocktail video links resolve to catalog drinks and direct videos", async () => {
+  const { default: links } = await import("../src/barbuddy/data/video-links.json", { with: { type: "json" } });
+  assert.equal(new Set(links.map(v => v.drinkId)).size, links.length);
+  for (const link of links) {
+    assert.ok(drinks.some(d => d.id === link.drinkId));
+    const url = new URL(link.url);
+    assert.equal(url.protocol, "https:");
+    assert.equal(url.hostname, "www.youtube.com");
+    assert.ok(/^\/shorts\/[A-Za-z0-9_-]{11}$/.test(url.pathname) || (url.pathname === "/watch" && /^[A-Za-z0-9_-]{11}$/.test(url.searchParams.get("v") ?? "")));
+    assert.ok(link.creator && link.note && link.checkedAt);
+  }
+});
