@@ -26,6 +26,7 @@ import {
 } from "./model";
 import "./barbuddy.css";
 import BookIndex from "./BookIndex";
+import videoLinks from "./data/video-links.json";
 import ReviewEditor from "./ReviewEditor";
 import { sharedBar, withSharedBar } from "./shared-bar";
 import { retailers, type Retailer } from "./retailers";
@@ -1110,6 +1111,13 @@ function DrinkCard({
             first.
           </p>
         )}
+        {videoLinks.filter(video => video.drinkId === drink.id).map(video => (
+          <div className="bb-footnote" key={video.url}>
+            <a href={video.url} target="_blank" rel="noopener noreferrer">Watch: {video.title} ↗</a>
+            <p>{video.format} · {video.kind} · {video.creator}</p>
+            <p>{video.note}</p>
+          </div>
+        ))}
         <details className="bb-details">
           <summary>Ingredients & method</summary>
           <ul className="bb-recipe">

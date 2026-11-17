@@ -216,3 +216,14 @@ over bottled juice in preparation notes; no juice volume is inferred.
 
 The owner also confirmed a shaker. Shared equipment now includes the shaker and
 the previously recorded strainer; shake recipes use the existing equipment check.
+
+## Cocktail video links
+
+`data/video-links.json` adds four curated direct YouTube links to Margarita, Gin &
+Tonic, Batanga and Shirley Temple. The Margarita, Batanga and Shirley Temple links
+were confirmed in the Shorts player; the Gin & Tonic guide is a 58-second regular
+YouTube video. All four pages and creator credits were checked on 2026-11-16.
+Cards show the creator, format, purpose and recipe-variation note. No video, thumbnail,
+or transcript is copied or embedded; playback starts only on YouTube after clicking.
+Links attach to explicit recipe IDs, not all similarly named variants. Recipe data,
+inventory matching and review IDs remain unchanged. Availability may change later.
