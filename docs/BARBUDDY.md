@@ -245,3 +245,22 @@ fruit/garnishes/rims and flavorings/extras. Category and location filters work
 together; cards retain location, quantity, stock status and restock links. Groups
 show entry counts, omit empty sections and sort products by name. Equipment remains
 separate. Display categories do not alter ingredient matching or saved inventory.
+
+## Readiness audit and machine recipes
+
+See [BARBUDDY-READINESS-AUDIT.md](BARBUDDY-READINESS-AUDIT.md) for the all-catalog
+audit, baseline, mapping corrections, remaining blockers and sources. The catalog
+now contains 699 entries: seven additions are two one-item ready-to-pour Mission
+serves and five sourced Ninja SLUSHi recipes. Ready cards identify substitutions,
+and the UI explains ingredient-type versus batch-volume availability. Frozen
+results no longer imply that all frozen recipes require a blender.
+
+`serves-and-slushi.json` keeps measured recipe needs, yields, source attribution,
+model guidance and optional garnishes separate from inventory. The diet-cola
+recipe requires liquid allulose. Branded aromatic/cocoa bitters substitutions are
+restricted to dash/drop doses; large bitters-base pours retain their requirements.
+`node --experimental-strip-types scripts/audit-barbuddy.ts` emits a full audit.
+
+The owner confirmed always-available drinking water and standard 1:1 simple syrup.
+Water is now one availability entry (60 inventory entries total), and the audit
+now finds 50 ready recipes / 699 total and 112 one ingredient away.

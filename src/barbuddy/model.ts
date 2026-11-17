@@ -4,7 +4,7 @@ import {
   type Retailer,
   type RetailerCheck,
 } from "./retailers.ts";
-import { drinks, equipment, ingredients, ingredientName, type Drink } from "./catalog.ts";
+import { drinks, equipment, ingredients, ingredientName, type Drink, type Requirement } from "./catalog.ts";
 export type Stock = "have" | "low" | "out" | "unknown";
 export type Item = {
   id: string;
@@ -211,6 +211,10 @@ const ingredientAliases: Record<string, string[]> = {
   aromatic: ["ba-bitters"], angostura: ["aromatic", "ba-bitters"],
   "portland-pomegranate-cherry": ["grenadine"],
   rum: ["ba-rum"],
+  "triple-sec": ["ba-cointreau"], "ba-cointreau": ["triple-sec"],
+  raspberry: ["ba-chambord"], "ba-chambord": ["raspberry"],
+  cherries: ["ba-cocktail-cherry"],
+  water: ["ba-water"], "ba-water": ["water"],
 };
 // Owner-approved prepared mixers require the carbonator and stocked concentrate.
 function suppliedIngredients(item: Item, profile: Profile): string[] {
@@ -233,31 +237,31 @@ export function available(profile: Profile): Set<string> {
       .flatMap((i) => suppliedIngredients(i, profile)),
   );
 }
+// Branded bitters can substitute at seasoning doses, not as a cocktail base.
+function suppliesRequirement(item: Item, profile: Profile, need: Requirement): boolean {
+  if (/\b(dash|dashes|drop|drops)\b/i.test(need.amount) &&
+      ((item.ingredient === "aromatic" && need.id === "angostura") ||
+       (item.ingredient === "chocolate-bitters" && need.id === "ba-angostura-cocoa-bitters"))) return true;
+  return suppliedIngredients(item, profile).includes(need.id);
+}
 export function inspect(drink: Drink, profile: Profile) {
-  const have = available(profile);
+  const stocked = profile.items.filter(i => i.quantity > 0 && (i.stock === "have" || i.stock === "low"));
   return {
-    missing: drink.needs.filter((n) => !have.has(n.id)),
-    tools: drink.tools.filter((t) => !profile.tools.includes(t)),
-    substitutions: drink.needs.flatMap((n) => {
-      const stocked = profile.items.filter(i => i.quantity > 0 && (i.stock === "have" || i.stock === "low"));
+    missing: drink.needs.filter(n => !stocked.some(i => suppliesRequirement(i, profile, n))),
+    tools: drink.tools.filter(t => !profile.tools.includes(t)),
+    substitutions: drink.needs.flatMap(n => {
       if (stocked.some(i => i.ingredient === n.id)) return [];
-      const item = [...stocked].sort((a,b) => Number(["ba-lemon", "ba-lime"].includes(b.ingredient)) - Number(["ba-lemon", "ba-lime"].includes(a.ingredient))).find(i => suppliedIngredients(i, profile).includes(n.id));
+      const item = [...stocked].sort((a,b) => Number(["ba-lemon", "ba-lime"].includes(b.ingredient)) - Number(["ba-lemon", "ba-lime"].includes(a.ingredient))).find(i => suppliesRequirement(i, profile, n));
       if (!item) return [];
       if (["ba-lemon", "ba-lime"].includes(item.ingredient)) return [`Juice the ${item.name.toLowerCase()} for ${ingredientName(n.id)}.`];
       const fresh = ["pineapple-juice", "bottled-lime", "bottled-lemon", "bottled-orange"].includes(item.ingredient);
       return [`Use ${item.name} for ${ingredientName(n.id)}.${fresh ? " Fresh is preferred for the best flavor." : " Flavor may differ from the recipe’s original ingredient."}`];
     }),
-    low: drink.needs.filter(
-      (n) =>
-        profile.items.some(
-          (i) => suppliedIngredients(i, profile).includes(n.id) && i.quantity > 0 && i.stock === "low",
-        ) &&
-        !profile.items.some(
-          (i) => suppliedIngredients(i, profile).includes(n.id) && i.quantity > 0 && i.stock === "have",
-        ),
-    ),
+    low: drink.needs.filter(n => stocked.some(i => i.stock === "low" && suppliesRequirement(i, profile, n)) &&
+      !stocked.some(i => i.stock === "have" && suppliesRequirement(i, profile, n))),
   };
 }
+
 export function matches(drink: Drink, p: Preferences, includeReview = false) {
   return (
     (!drink.needsReview || includeReview) &&

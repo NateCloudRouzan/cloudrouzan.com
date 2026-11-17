@@ -1,0 +1,218 @@
+[
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Fruity"
+    ],
+    "style": "Classic",
+    "effort": "Quick",
+    "tools": [],
+    "id": "serve-mission-strawberry",
+    "name": "Mission Strawberry Margarita (ready to pour)",
+    "spirit": "tequila",
+    "needs": [
+      {
+        "id": "premix",
+        "amount": "90 ml (one suggested serving)"
+      }
+    ],
+    "method": "Chill the bottle and pour a 90 ml serving into a glass. Ice and a rim are optional; no additional spirits or juice are needed.",
+    "source": "https://missioncocktails.com/products/strawberry-margarita",
+    "sourceLabel": "Mission Craft Cocktails · product reference",
+    "note": "Source checked 2026-11-16. One-item serving suggestion by BarBuddy, not a scratch-made recipe. Bottle is 25% ABV; 90 ml is a suggested pour, not the whole bottle. Do not pour this undiluted high-alcohol premix into the SLUSHi."
+  },
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Fruity"
+    ],
+    "style": "Classic",
+    "effort": "Quick",
+    "tools": [],
+    "id": "serve-mission-tamarind",
+    "name": "Mission Tamarind Margarita (ready to pour)",
+    "spirit": "tequila",
+    "needs": [
+      {
+        "id": "tamarind-margarita-premix",
+        "amount": "90 ml (one suggested serving)"
+      }
+    ],
+    "method": "Chill the bottle and pour a 90 ml serving into a glass. Ice and a rim are optional; no additional spirits or juice are needed.",
+    "source": "https://missioncocktails.com/products/tamarind-margarita",
+    "sourceLabel": "Mission Craft Cocktails · product reference",
+    "note": "Source checked 2026-11-16. One-item serving suggestion by BarBuddy, not a scratch-made recipe. Bottle is 25% ABV; 90 ml is a suggested pour, not the whole bottle. Do not pour this undiluted high-alcohol premix into the SLUSHi."
+  },
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Fruity"
+    ],
+    "style": "Frozen",
+    "effort": "Shake or stir",
+    "tools": [
+      "slushi"
+    ],
+    "id": "slushi-classic-margarita",
+    "name": "Ninja SLUSHi Margarita (lime-juice version)",
+    "spirit": "tequila",
+    "needs": [
+      {
+        "id": "lime",
+        "amount": "1 US cup"
+      },
+      {
+        "id": "syrup",
+        "amount": "1¼ US cups (standard 1:1 syrup)"
+      },
+      {
+        "id": "water",
+        "amount": "3 US cups, chilled"
+      },
+      {
+        "id": "tequila",
+        "amount": "1½ US cups"
+      },
+      {
+        "id": "triple-sec",
+        "amount": "½ US cup"
+      }
+    ],
+    "method": "Combine the liquids, using the lime juice, 1 cup syrup and 2 cups water as the source’s limeade substitute; the remaining ¼ cup syrup and 1 cup water complete the batch. Chill, load the vessel and select SPIKED SLUSH. Dispense when ready. Do not add ice or solids.",
+    "source": "https://cookingwithjanica.com/ninja-slushi-margaritas/",
+    "sourceLabel": "Cooking With Janica · Jessica Pinney",
+    "note": "Source checked 2026-11-16. Six servings, 7¼ US cups total (about 1.72 L). Uses the author’s published limeade substitution, retaining the extra syrup and water in the recipe. Standard 1:1 syrup; richer syrups need adjustment. Scale all ingredients together to your model’s fill lines. Flavor and freezing depend on brand sugar/ABV; follow the model guide. Garnish optional."
+  },
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Fruity"
+    ],
+    "style": "Frozen",
+    "effort": "Shake or stir",
+    "tools": [
+      "slushi"
+    ],
+    "id": "slushi-pineapple-rum",
+    "name": "Ninja SLUSHi Pineapple Rum",
+    "spirit": "rum",
+    "needs": [
+      {
+        "id": "pineapple",
+        "amount": "1¾ US cups"
+      },
+      {
+        "id": "syrup",
+        "amount": "¼ US cup"
+      },
+      {
+        "id": "ba-spiced-rum",
+        "amount": "½ US cup"
+      },
+      {
+        "id": "canned-coconut-milk",
+        "amount": "½ US cup, full-fat"
+      }
+    ],
+    "method": "Combine chilled liquids, pour into the vessel and select SPIKED SLUSH. The FS301 source sets 10 temperature bars; use your model’s corresponding texture guidance and dispense when ready. Add no ice or solids.",
+    "source": "https://www.sharkninja.com/pineapple-rum-slushi/REC15542.html",
+    "sourceLabel": "Ninja Test Kitchen · Pineapple Rum Slushi",
+    "note": "Source checked 2026-11-16. 2–3 servings, 3 US cups total. Spiced rum and canned full-fat coconut milk are required; coconut cream and cream of coconut are different products. Tested source model FS301; check your model’s fill limits."
+  },
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Fruity"
+    ],
+    "style": "Frozen",
+    "effort": "Shake or stir",
+    "tools": [
+      "slushi"
+    ],
+    "id": "slushi-mimosa",
+    "name": "Ninja SLUSHi Frozen Mimosa",
+    "spirit": "other",
+    "needs": [
+      {
+        "id": "prosecco",
+        "amount": "1¾ US cups, chilled"
+      },
+      {
+        "id": "orange",
+        "amount": "1¼ US cups, chilled"
+      }
+    ],
+    "method": "Pour chilled orange juice and sparkling wine into the vessel. Select SPIKED SLUSH, adjust texture if desired and dispense when ready. Add no ice or solids.",
+    "source": "https://www.sharkninja.com/frozen-mimosa-slushi/REC14443.html",
+    "sourceLabel": "Ninja Test Kitchen · Frozen Mimosa Slushi",
+    "note": "Source checked 2026-11-16. 2–3 servings, 3 US cups total. The source permits Prosecco, Champagne, Cava or sparkling wine. Still white wine is not a substitute. Tested source model FS301; check your model’s fill limits."
+  },
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Sweet"
+    ],
+    "style": "Frozen",
+    "effort": "Shake or stir",
+    "tools": [
+      "slushi"
+    ],
+    "id": "slushi-coffee-frappe",
+    "name": "Ninja SLUSHi Coffee Frappé",
+    "spirit": "other",
+    "needs": [
+      {
+        "id": "half-and-half",
+        "amount": "1 US cup"
+      },
+      {
+        "id": "ba-coffee",
+        "amount": "2 US cups, brewed and chilled"
+      },
+      {
+        "id": "ba-vanilla-extract",
+        "amount": "1 teaspoon"
+      },
+      {
+        "id": "sugar",
+        "amount": "⅓ US cup, granulated"
+      }
+    ],
+    "method": "Dissolve sugar in the coffee and combine with half-and-half and vanilla. Cool completely before loading. Select FRAPPÉ and dispense when ready, within 30 minutes after the preset ends. Add no ice.",
+    "source": "https://www.sharkninja.com/coffee-frappe-slushi/REC14571.html",
+    "sourceLabel": "Ninja Test Kitchen · Coffee Frappé Slushi",
+    "note": "Source checked 2026-11-16. 2–3 servings. Source liquid base is 3 US cups plus dissolved sugar and vanilla. Half-and-half, vanilla and sugar are required; toppings optional. Tested source model FS301; check your model’s fill limits."
+  },
+  {
+    "description": "Source-linked recipe for your bar.",
+    "taste": [
+      "Refreshing"
+    ],
+    "style": "Frozen",
+    "effort": "Shake or stir",
+    "tools": [
+      "slushi"
+    ],
+    "id": "slushi-diet-cola",
+    "name": "Ninja SLUSHi Diet Cola Slush",
+    "spirit": "other",
+    "needs": [
+      {
+        "id": "cola-zero",
+        "amount": "3 US cups, prepared diet cola"
+      },
+      {
+        "id": "liquid-allulose",
+        "amount": "3 tablespoons"
+      },
+      {
+        "id": "lemon",
+        "amount": "2 tablespoons"
+      }
+    ],
+    "method": "Mix chilled prepared diet cola with liquid allulose and lemon juice; pour into the vessel. Select SLUSH and set temperature to 2 bars as directed by the source, or follow your model’s equivalent guidance. Dispense when ready. Add no ice.",
+    "source": "https://www.sharkninja.com/sugar-free-diet-soda-slush/REC16377.html",
+    "sourceLabel": "Ninja Test Kitchen · Sugar Free Diet Soda Slush",
+    "note": "Source checked 2026-11-16. 2–3 servings. Liquid allulose is required by this recipe and is not assumed stocked. Diet soda alone is not this recipe; do not omit its freezing aid. Prepare SodaStream concentrate at its label dilution before measuring. Tested source model FS301; check your model’s fill limits."
+  }
+]
