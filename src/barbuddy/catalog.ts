@@ -45,6 +45,7 @@ const groups: Record<string, [string, string][]> = {
     ["lemon", "Fresh lemon juice"],
     ["orange", "Fresh orange juice"],
     ["pineapple", "Fresh pineapple juice"],
+    ["pineapple-juice", "Pineapple juice"],
     ["soda", "Plain sparkling water"],
     ["water", "Water"],
     ["cola", "Cola"],

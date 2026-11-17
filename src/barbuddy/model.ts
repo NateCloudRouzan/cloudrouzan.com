@@ -201,6 +201,7 @@ const ingredientAliases: Record<string, string[]> = {
   "ba-blended-scotch-whisky": ["ba-scotch-whiskey", "ba-whiskey"],
   "ba-islay-scotch-whiskey": ["ba-scotch-whiskey", "ba-whiskey"],
   "ba-lime": ["lime"], "ba-lemon": ["lemon"],
+  "pineapple-juice": ["pineapple"],
   "bottled-lime": ["lime"], "bottled-lemon": ["lemon"], "bottled-orange": ["orange"],
   "ba-tequila-blanco": ["tequila", "ba-tequila"],
   "ba-tequila-reposado": ["tequila", "ba-tequila"],
@@ -243,7 +244,7 @@ export function inspect(drink: Drink, profile: Profile) {
       const item = [...stocked].sort((a,b) => Number(["ba-lemon", "ba-lime"].includes(b.ingredient)) - Number(["ba-lemon", "ba-lime"].includes(a.ingredient))).find(i => suppliedIngredients(i, profile).includes(n.id));
       if (!item) return [];
       if (["ba-lemon", "ba-lime"].includes(item.ingredient)) return [`Juice the ${item.name.toLowerCase()} for ${ingredientName(n.id)}.`];
-      const fresh = ["bottled-lime", "bottled-lemon", "bottled-orange"].includes(item.ingredient);
+      const fresh = ["pineapple-juice", "bottled-lime", "bottled-lemon", "bottled-orange"].includes(item.ingredient);
       return [`Use ${item.name} for ${ingredientName(n.id)}.${fresh ? " Fresh is preferred for the best flavor." : " Flavor may differ from the recipe’s original ingredient."}`];
     }),
     low: drink.needs.filter(

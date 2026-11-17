@@ -227,3 +227,12 @@ Cards show the creator, format, purpose and recipe-variation note. No video, thu
 or transcript is copied or embedded; playback starts only on YouTube after clicking.
 Links attach to explicit recipe IDs, not all similarly named variants. Recipe data,
 inventory matching and review IDs remain unchanged. Availability may change later.
+
+## Additional owner-confirmed supplies
+
+Simple syrup, Aperol and pineapple juice are available, with package count, storage
+location and remaining volume unspecified (one availability entry each). Inventory
+now contains 59 entries. Aperol remains separate from the photographed Aperix.
+Pineapple juice satisfies fresh pineapple juice requirements with a fresh-preferred
+note; it does not imply whole pineapple is stocked. The mixing glass is confirmed
+and the existing strainer remains recorded once.
