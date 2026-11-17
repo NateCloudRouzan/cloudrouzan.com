@@ -488,3 +488,23 @@ test("pineapple juice supplies fresh juice without implying whole fruit", () => 
   p.items[0].stock = "out";
   assert.ok(!available(p).has("pineapple"));
 });
+
+test("inventory grouping preserves items and combines category and location filters", async () => {
+  const { groupInventory, inventoryCategory } = await import("../src/barbuddy/inventory.ts");
+  const groups = groupInventory(sharedBar.items);
+  const items = groups.flatMap(g => g.items);
+  assert.equal(items.length, sharedBar.items.length);
+  assert.equal(new Set(items.map(i => i.id)).size, sharedBar.items.length);
+  assert.ok(!groups.some(g => g.name === "Other ingredients"));
+  assert.equal(inventoryCategory("ba-tequila-reposado"), "Spirits");
+  assert.equal(inventoryCategory("peach-bitters"), "Bitters & tinctures");
+  assert.equal(inventoryCategory("grenadine"), "Syrups");
+  assert.equal(inventoryCategory("ba-lemon"), "Fruit, garnishes & rims");
+  assert.equal(inventoryCategory("premix"), "Ready-to-drink cocktails");
+  assert.equal(inventoryCategory("ba-white-wine"), "Wine & beer");
+  const filtered = groupInventory(sharedBar.items, "Fridge", "Juices");
+  assert.equal(filtered.length, 1);
+  assert.ok(filtered[0].items.every(i => i.location === "Fridge"));
+  assert.equal(filtered[0].name, "Juices");
+  assert.deepEqual(groupInventory(sharedBar.items, "Fridge", "Bitters & tinctures"), []);
+});
