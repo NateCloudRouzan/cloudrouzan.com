@@ -1,0 +1,800 @@
+[
+  {
+    "id": "vendor-fireball-ginger",
+    "name": "Fireball & Ginger",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "fireball",
+        "amount": "1 part"
+      },
+      {
+        "id": "ginger-ale",
+        "amount": "3 parts"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Build over ice in a tall glass and stir.",
+    "source": "https://www.fireballwhisky.com/cocktail-recipes/",
+    "sourceLabel": "Fireball",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Prepared diet ginger ale is a supported variation."
+  },
+  {
+    "id": "vendor-fireball-coffee",
+    "name": "Fireball & Coffee",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "fireball",
+        "amount": "1 part"
+      },
+      {
+        "id": "ba-coffee",
+        "amount": "2 parts"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [],
+    "method": "Combine the brewed coffee and Fireball, chill, then serve in a small glass.",
+    "source": "https://www.fireballwhisky.com/cocktail-recipes/",
+    "sourceLabel": "Fireball",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. "
+  },
+  {
+    "id": "vendor-fireball-cola",
+    "name": "Fireball & Cola",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "fireball",
+        "amount": "1 part"
+      },
+      {
+        "id": "cola",
+        "amount": "3 parts"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Pour into an ice-filled glass and stir.",
+    "source": "https://www.fireballwhisky.com/faqs/",
+    "sourceLabel": "Fireball",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Prepared diet cola is a supported variation."
+  },
+  {
+    "id": "vendor-sodastream-shirley",
+    "name": "SodaStream Shirley Temple",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "grenadine",
+        "amount": "1 oz"
+      },
+      {
+        "id": "lemon-lime-soda",
+        "amount": "6–8 oz"
+      },
+      {
+        "id": "cherries",
+        "amount": "1"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Prepare lemon-lime soda according to its bottle directions. Fill a glass with ice, add grenadine, top with prepared soda and stir. Finish with the cherry.",
+    "source": "https://sodastream.com/blogs/cocktails/shirley-temple",
+    "sourceLabel": "SodaStream",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Alcohol-free. Vendor’s optional vodka is separated into its own recipe. Ginger ale may replace lemon-lime soda; diet soda is a variation."
+  },
+  {
+    "id": "vendor-dirty-shirley",
+    "name": "SodaStream Dirty Shirley",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "vodka",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "grenadine",
+        "amount": "1 oz"
+      },
+      {
+        "id": "lemon-lime-soda",
+        "amount": "6–8 oz"
+      },
+      {
+        "id": "cherries",
+        "amount": "1"
+      },
+      {
+        "id": "vodka",
+        "amount": "2 oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Prepare lemon-lime soda according to its bottle directions. Fill a glass with ice, add grenadine and vodka, top with prepared soda and stir. Finish with the cherry.",
+    "source": "https://sodastream.com/blogs/cocktails/shirley-temple",
+    "sourceLabel": "SodaStream",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Contains vodka. Vendor’s optional vodka is separated into its own recipe. Ginger ale may replace lemon-lime soda; diet soda is a variation."
+  },
+  {
+    "id": "vendor-kalimotxo",
+    "name": "Kalimotxo",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "ba-red-wine",
+        "amount": "4 oz"
+      },
+      {
+        "id": "cola",
+        "amount": "3 oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Add wine and cola to an ice-filled glass and stir gently.",
+    "source": "https://www.heb.com/recipe/recipe-detail/kalimotxo",
+    "sourceLabel": "H-E-B",
+    "optionalNeeds": [
+      {
+        "id": "ba-orange",
+        "amount": "1 slice, garnish"
+      }
+    ],
+    "note": "Source checked 2026-11-16. BarBuddy serving adaptation: fresh citrus garnish omitted. Diet cola and your red wine brands change the flavor."
+  },
+  {
+    "id": "vendor-white-wine-spritzer",
+    "name": "White Wine Spritzer",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "ba-white-wine",
+        "amount": "3 parts"
+      },
+      {
+        "id": "soda",
+        "amount": "1 part"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Chill both liquids. Combine over ice and stir gently.",
+    "source": "https://www.medivineyards.com/recipes/White-Wine-Spritzer",
+    "sourceLabel": "Mediterranean Vineyards",
+    "optionalNeeds": [
+      {
+        "id": "ba-lemon",
+        "amount": "1 slice, garnish"
+      }
+    ],
+    "note": "Source checked 2026-11-16. BarBuddy adaptation uses your still white wine instead of the source Pinot Grigio. Fresh citrus garnish is optional here."
+  },
+  {
+    "id": "vendor-velvet-hex",
+    "name": "Velvet Hex",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "ba-pisco",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "cream-sherry",
+        "amount": "½ oz"
+      },
+      {
+        "id": "coconut-liqueur",
+        "amount": "1 tsp"
+      },
+      {
+        "id": "pineapple",
+        "amount": "¾ oz"
+      },
+      {
+        "id": "coconut-water-syrup",
+        "amount": "¾ oz"
+      },
+      {
+        "id": "lime",
+        "amount": "½ oz"
+      },
+      {
+        "id": "ube-flavouring",
+        "amount": "3 drops"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Briefly shake the liquids with a little crushed ice to combine. Pour everything into a tall glass and add more crushed ice. For the syrup, dissolve 1 part sugar in 1½ parts coconut water before measuring the recipe portion.",
+    "source": "https://www.deathandcompanymarket.com/blogs/recipes/velvet-hex-cocktail-recipe",
+    "sourceLabel": "Death & Co · Marcus McCormick (D.C., 2025)",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Source specifies Caravedo acholado pisco, Romate cream sherry, Kalani coconut liqueur and Butterfly ube extract. Toasted coconut garnish optional. Ube syrup does not replace extract."
+  },
+  {
+    "id": "vendor-ube-colada",
+    "name": "Portland Ube Colada",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "rum",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "ba-rum",
+        "amount": "2 oz"
+      },
+      {
+        "id": "portland-ube",
+        "amount": "1 oz"
+      },
+      {
+        "id": "pineapple",
+        "amount": "¾ oz"
+      },
+      {
+        "id": "coconut-cream",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Shake the liquids thoroughly with ice for about 30 seconds. Strain into a large glass filled with small ice.",
+    "source": "https://beveragemixers.com/blogs/news/ube-colada",
+    "sourceLabel": "Portland Syrups",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Pineapple wedge garnish optional. Uses Ube syrup, not extract. This is the shaken recipe; no SLUSHi adaptation is assumed."
+  },
+  {
+    "id": "vendor-spiced-peach-whiskey-sour",
+    "name": "Spiced Peach Whiskey Sour",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "peach-ginger",
+        "amount": "½ oz"
+      },
+      {
+        "id": "lemon",
+        "amount": "½ oz"
+      },
+      {
+        "id": "ba-demerara-syrup",
+        "amount": "¼ oz"
+      },
+      {
+        "id": "ba-whiskey",
+        "amount": "1¾ oz"
+      },
+      {
+        "id": "fernet",
+        "amount": "¼ oz"
+      },
+      {
+        "id": "soda",
+        "amount": "To top"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Shake all liquids except the sparkling water with ice. Pour over fresh ice and finish with sparkling water.",
+    "source": "https://sodastream.com/blogs/cocktails/spiced-peach-whiskey-sour",
+    "sourceLabel": "SodaStream",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Fresh lemon twist optional. Bellini amaro is not Fernet."
+  },
+  {
+    "id": "vendor-bitter-squeeze",
+    "name": "Bitter Squeeze",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "gin",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "gin",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "sweet-vermouth",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "ba-amaro",
+        "amount": "½ oz"
+      },
+      {
+        "id": "lemon",
+        "amount": "0.3 oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "mixing"
+    ],
+    "method": "Stir the liquids with ice in a mixing vessel, then strain into a cocktail glass.",
+    "source": "https://kindredcocktails.com/cocktail/bitter-squeeze",
+    "sourceLabel": "Sean Forde · Kindred Cocktails (2022)",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Creator explicitly recommends Bellini Amaro delle Terme. Other amari are variations."
+  },
+  {
+    "id": "vendor-elderflower-martini",
+    "name": "Barsmith Elderflower Martini",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "vodka",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "vodka",
+        "amount": "2 oz"
+      },
+      {
+        "id": "elderflower-simple-syrup",
+        "amount": "1 oz"
+      },
+      {
+        "id": "lemon",
+        "amount": "¾ oz"
+      },
+      {
+        "id": "dehydrated-lemon",
+        "amount": "1 wheel"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Shake liquids with ice for 15–20 seconds, strain into a chilled glass, then add the dehydrated lemon wheel.",
+    "source": "https://barsmithmix.com/elderflower-martini",
+    "sourceLabel": "Barsmith",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Source specifies Barsmith Elderflower Simple Syrup; elderflower liqueur is not the same ingredient."
+  },
+  {
+    "id": "vendor-lucerita",
+    "name": "Lucerita",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "tequila",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "ba-absinthe",
+        "amount": "¼ oz"
+      },
+      {
+        "id": "ba-tequila-blanco",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "lime",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "triple-sec",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "mixing"
+    ],
+    "method": "Stir tequila, lime juice and triple sec in a mixing vessel. Strain into an ice-filled glass and finish with absinthe.",
+    "source": "https://www.lucidabsinthe.com/cocktails",
+    "sourceLabel": "Lucid Absinthe",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Source calls for Lucid absinthe and Batanga tequila; Cristiani/Casamigos are disclosed brand variations. Lime wedge and salt rim optional."
+  },
+  {
+    "id": "vendor-matcha-collins",
+    "name": "Matcha Collins (BarBuddy adaptation)",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "gin",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "gin",
+        "amount": "1½ oz"
+      },
+      {
+        "id": "lemon",
+        "amount": "¾ oz"
+      },
+      {
+        "id": "matcha-syrup",
+        "amount": "¾ oz"
+      },
+      {
+        "id": "soda",
+        "amount": "To top"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Shake gin, lemon and matcha syrup with ice. Strain over fresh ice, then add soda. To prepare the syrup, warm 150 g sugar, 150 g water and 1 tsp matcha until mixed; cool before using.",
+    "source": "https://empressgin.com/cocktail/matcha-do-about-nothing/",
+    "sourceLabel": "Adapted from Empress · Matcha Do About Nothing",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Adaptation accepts your gin; original uses Empress Cucumber Lemon Gin. Matcha syrup needs sugar as well as matcha. Flower garnish omitted."
+  },
+  {
+    "id": "vendor-spicy-tajin-margarita",
+    "name": "Spicy Tajín Margarita",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "tequila",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "ba-tequila-blanco",
+        "amount": "2 oz"
+      },
+      {
+        "id": "lime",
+        "amount": "1 oz"
+      },
+      {
+        "id": "triple-sec",
+        "amount": "1 oz"
+      },
+      {
+        "id": "ba-agave-syrup",
+        "amount": "½ oz"
+      },
+      {
+        "id": "jalapeno",
+        "amount": "2 slices"
+      },
+      {
+        "id": "tajin-rim",
+        "amount": "For rim"
+      },
+      {
+        "id": "tajin-sauce",
+        "amount": "For rim"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "muddler",
+      "shaker"
+    ],
+    "method": "Coat part of the glass rim with chile-lime sauce and Tajín seasoning. Muddle jalapeño with lime juice, add the remaining liquids and ice, and shake. Strain over fresh ice.",
+    "source": "https://www.tajin.com/us/recipe/spicy-tajin-margarita/",
+    "sourceLabel": "Tajín",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Source uses fresh lime; fresh lime/jalapeño garnish optional. Seasoning and chile-lime sauce are separate supplies."
+  },
+  {
+    "id": "vendor-pom-cherry-soda",
+    "name": "Portland Pomegranate Cherry Soda",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "portland-pomegranate-cherry",
+        "amount": "1 oz"
+      },
+      {
+        "id": "soda",
+        "amount": "6 oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Combine syrup with prepared sparkling water over ice and stir gently.",
+    "source": "https://beveragemixers.com/products/pomegranate-cherry-syrup",
+    "sourceLabel": "Portland Syrups",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Alcohol-free vendor serving suggestion."
+  },
+  {
+    "id": "vendor-empress-tonic",
+    "name": "Empress & Tonic",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "gin",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "gin",
+        "amount": "2 oz"
+      },
+      {
+        "id": "tonic",
+        "amount": "3 oz"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Pour Empress Indigo Gin over ice and add chilled prepared tonic. Stir gently.",
+    "source": "https://empressgin.com/cocktail/empress-tonic/",
+    "sourceLabel": "Empress 1908",
+    "optionalNeeds": [
+      {
+        "id": "grapefruit-fruit",
+        "amount": "1 slice, garnish"
+      }
+    ],
+    "note": "Source checked 2026-11-16. Source specifies Empress Indigo and premium tonic. Other gin or SodaStream tonic is a variation. Grapefruit garnish optional in this serving adaptation."
+  },
+  {
+    "id": "vendor-chambord-french-martini",
+    "name": "Chambord French Martini",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "vodka",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Shake or stir",
+    "needs": [
+      {
+        "id": "raspberry",
+        "amount": "½ part"
+      },
+      {
+        "id": "vodka",
+        "amount": "1½ parts"
+      },
+      {
+        "id": "pineapple",
+        "amount": "2 parts"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "shaker"
+    ],
+    "method": "Shake all liquids with ice and strain into a chilled cocktail glass.",
+    "source": "https://www.chambordliqueur.com/cocktail/french-martini/",
+    "sourceLabel": "Chambord",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Vendor proportions differ from the retained French Martini recipe. Fresh raspberry garnish optional."
+  },
+  {
+    "id": "vendor-scrappys-old-fashioned",
+    "name": "Scrappy’s Rye Old Fashioned",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "rye",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "rye",
+        "amount": "2 oz"
+      },
+      {
+        "id": "syrup",
+        "amount": "½ oz"
+      },
+      {
+        "id": "aromatic",
+        "amount": "3–4 dashes"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Stir the ingredients with ice and serve over fresh ice.",
+    "source": "https://www.scrappysbitters.com/cocktail/old-fashioned",
+    "sourceLabel": "Scrappy’s Bitters",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Uses Scrappy’s Aromatic Bitters. Optional lemon twist. Rye-specific variant; Japanese whisky is not silently treated as rye."
+  },
+  {
+    "id": "vendor-realemon-lemonade",
+    "name": "ReaLemon Lemonade (pitcher)",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "other",
+    "taste": [],
+    "style": "Classic",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "water",
+        "amount": "13 cups"
+      },
+      {
+        "id": "bottled-lemon",
+        "amount": "2 cups"
+      },
+      {
+        "id": "sugar",
+        "amount": "2 cups"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "spoon"
+    ],
+    "method": "Mix water, bottled lemon juice and sugar until the sugar dissolves. Pour over ice.",
+    "source": "https://www.realemon.ca/en/recipes/realemon-lemonade",
+    "sourceLabel": "ReaLemon",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Alcohol-free. Batch yields about 15 servings of 8 oz; this is not a single-drink measure."
+  },
+  {
+    "id": "vendor-realime-mojito",
+    "name": "ReaLime Mojito (pitcher)",
+    "description": "Source-linked recipe for your bar.",
+    "spirit": "rum",
+    "taste": [],
+    "style": "Sparkling",
+    "effort": "Quick",
+    "needs": [
+      {
+        "id": "ba-mint",
+        "amount": "12 leaves"
+      },
+      {
+        "id": "bottled-lime",
+        "amount": "⅓ cup"
+      },
+      {
+        "id": "rum",
+        "amount": "½ cup"
+      },
+      {
+        "id": "sugar",
+        "amount": "¼ cup"
+      },
+      {
+        "id": "soda",
+        "amount": "4 cups"
+      },
+      {
+        "id": "ice",
+        "amount": "As needed"
+      }
+    ],
+    "tools": [
+      "muddler",
+      "spoon"
+    ],
+    "method": "Gently press mint in a pitcher, then add ice. Separately dissolve sugar in lime juice and rum. Combine in the pitcher with prepared soda.",
+    "source": "https://www.realemon.ca/en/recipes/mojito-minted-lemonade",
+    "sourceLabel": "ReaLime",
+    "optionalNeeds": [],
+    "note": "Source checked 2026-11-16. Batch yields 4–5 servings. Vendor permits omitting rum; this record is the alcoholic version. Requires mint and sugar, not just lime juice."
+  }
+]

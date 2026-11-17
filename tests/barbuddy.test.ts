@@ -254,7 +254,7 @@ test("review validation rejects invalid stars, oversized notes, dates, IDs and d
 });
 
 test("expanded catalog preserves existing IDs, resolves optional ingredients, and quarantines drafts", () => {
-  assert.equal(drinks.length, 667);
+  assert.equal(drinks.length, 688);
   assert.equal(drinks.filter((d) => d.id.startsWith("ba-")).length, 647);
   assert.equal(drinks.filter((d) => d.needsReview).length, 7);
   const ids = new Set(ingredients.map((i) => i.id));
@@ -417,4 +417,18 @@ test("mapped pantry supplies prevent false unlocks without equating unrelated in
  assert.ok(!available(p).has("ba-maraschino"));
  const recipe={...drink("margarita"),needs:[{id:"lime",amount:"1 oz"},{id:"bottled-lime",amount:"1 oz"}]};
  assert.equal(inspect(recipe,p).substitutions.length,1);
+});
+
+test("vendor imports preserve provenance and separate alcohol-free and vodka variants", () => {
+  const added=drinks.filter(d=>d.id.startsWith("vendor-"));
+  assert.equal(added.length,21);
+  assert.ok(added.every(d=>d.source.startsWith("https://") && d.sourceLabel && d.method && d.note?.includes("2026-11-16")));
+  assert.ok(!drink("vendor-sodastream-shirley").needs.some(n=>n.id==="vodka"));
+  assert.ok(drink("vendor-dirty-shirley").needs.some(n=>n.id==="vodka"));
+  const p=withSharedBar(emptyProfile());
+  for(const id of ["vendor-fireball-ginger","vendor-fireball-coffee","vendor-kalimotxo","vendor-sodastream-shirley"]) {
+    const state=inspect(drink(id),p); assert.equal(state.missing.length,0,id); assert.equal(state.tools.length,0,id);
+  }
+  assert.ok(inspect(drink("vendor-velvet-hex"),p).missing.length>0);
+  assert.ok(inspect(drink("vendor-spicy-tajin-margarita"),p).missing.some(n=>n.id==="tajin-sauce"));
 });

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Almost Flameous",
+    "url": "https://www.scrappysbitters.com/cocktail/almost-flameous",
+    "publisher": "Scrappy’s · @danmagro",
+    "note": "Fire tincture recipe; source omits a measured tincture dose and complete method."
+  },
+  {
+    "name": "1192",
+    "url": "https://www.scrappysbitters.com/cocktail/1192",
+    "publisher": "Scrappy’s · @sagamorehillmaine",
+    "note": "Chocolate bitters and mezcal; ingredient list has no quantities."
+  },
+  {
+    "name": "Atlas Martini",
+    "url": "https://www.scrappysbitters.com/cocktail/atlas-martini",
+    "publisher": "Scrappy’s · @jessejvida",
+    "note": "Orange bitters and gin; quantities need verification."
+  },
+  {
+    "name": "Peachy Bourbon Sweet Tea",
+    "url": "https://whisknyc.com/whiskblog/fee-bros-peach-bitters",
+    "publisher": "Whisk NYC",
+    "note": "Video recipe using Fee Brothers Peach Bitters; measurements not yet transcribed."
+  },
+  {
+    "name": "Holly Jolly Java",
+    "url": "https://www.lcbo.com/en/recipe/holly-jolly-java/200706105",
+    "publisher": "LCBO",
+    "note": "Goldschläger coffee drink; full recipe page was unavailable during verification."
+  },
+  {
+    "name": "Matcha Gin and Tonic",
+    "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/matcha-gin-and-tonic-8849524",
+    "publisher": "Food Network Kitchen",
+    "note": "External recipe; not imported into matching."
+  },
+  {
+    "name": "400 Conejos cocktails",
+    "url": "https://400conejos.com/es/cocktails/",
+    "publisher": "400 Conejos",
+    "note": "Brand recipe collection; individual measurements require verification."
+  },
+  {
+    "name": "Lychee soju cocktail cards",
+    "url": "https://jun-ho.com/wp-content/themes/junho-czechclick/downloads/JUN%20HO%20cocktail%20cards_print.pdf",
+    "publisher": "Jun Ho",
+    "note": "Different-brand leads for Soonhari; no automatic soju-to-liqueur substitution."
+  },
+  {
+    "name": "Portland Georgia Peach serving ideas",
+    "url": "https://beveragemixers.com/collections/fruit-forward-refreshers/products/peach-syrup",
+    "publisher": "Portland Syrups",
+    "note": "Product suggestions need a measured recipe before matching."
+  },
+  {
+    "name": "Luxardo cherry cocktails",
+    "url": "https://www.luxardo.it/cocktails-ingredienti/original-maraschino-cherries/",
+    "publisher": "Luxardo",
+    "note": "Collection featuring the cherries; cherries do not substitute for maraschino liqueur."
+  },
+  {
+    "name": "Stirrings Cosmopolitan Rimmer",
+    "url": "https://stirrings.com/products/stirrings-cosmopolitan-rimmer",
+    "publisher": "Stirrings",
+    "note": "Garnish product reference; does not supply the remaining Cosmopolitan ingredients."
+  },
+  {
+    "name": "Drillaud Violet / Aviation",
+    "url": "https://www.totalwine.com/spirits/liqueurscordialsschnapps/herbal-spice/floral/drillaud-creme-de-violette/p/110041750",
+    "publisher": "Total Wine",
+    "note": "Product usage reference; a complete measured Aviation recipe is still needed."
+  }
+]
