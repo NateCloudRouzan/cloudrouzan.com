@@ -476,3 +476,15 @@ test("curated cocktail video links resolve to catalog drinks and direct videos",
     assert.ok(link.creator && link.note && link.checkedAt);
   }
 });
+
+test("pineapple juice supplies fresh juice without implying whole fruit", () => {
+  const p = emptyProfile();
+  p.items = [{ id: "juice", ingredient: "pineapple-juice", name: "Pineapple juice", quantity: 1, stock: "have" }];
+  assert.ok(available(p).has("pineapple"));
+  assert.ok(!available(p).has("ba-pineapple"));
+  const recipe = { ...drinks[0], needs: [{id: "pineapple", amount: "30 ml"}] };
+  assert.equal(inspect(recipe, p).missing.length, 0);
+  assert.ok(inspect(recipe, p).substitutions.some(n => n.includes("Fresh is preferred")));
+  p.items[0].stock = "out";
+  assert.ok(!available(p).has("pineapple"));
+});

@@ -1,7 +1,7 @@
 {
   "name": "Nate’s bar",
   "updatedAt": "2026-11-16",
-  "status": "Inventory recorded by location on 2026-11-16. Photographed containers counted once each; cabinet supplies and Tajín are availability entries with package counts unspecified. Remaining volume is not tracked. Tallax wine style remains unconfirmed. Aarke carbonator, Ninja SLUSHi, strainer, shaker, stirring spoon, and ice confirmed. Mixing glass is not yet confirmed.",
+  "status": "Inventory recorded by location on 2026-11-16. Photographed containers counted once each; cabinet supplies and Tajín are availability entries with package counts unspecified. Remaining volume is not tracked. Tallax wine style remains unconfirmed. Aarke carbonator, Ninja SLUSHi, strainer, shaker, stirring spoon, and ice confirmed. Mixing glass also confirmed. Additional simple syrup, Aperol and pineapple juice are availability entries; package counts, storage locations and remaining volume are unspecified.",
   "items": [
     {
       "id": "fridge-noble-ginger",
@@ -488,6 +488,30 @@
       "quantity": 1,
       "stock": "have",
       "notes": "One whole lime confirmed by owner; storage location unspecified."
+    },
+    {
+      "id": "owner-simple-syrup",
+      "ingredient": "syrup",
+      "name": "Simple syrup",
+      "quantity": 1,
+      "stock": "have",
+      "notes": "Owner-confirmed available; quantity is an availability entry, not a confirmed package count. Storage location and remaining volume unspecified."
+    },
+    {
+      "id": "owner-aperol",
+      "ingredient": "aperol",
+      "name": "Aperol",
+      "quantity": 1,
+      "stock": "have",
+      "notes": "Owner-confirmed available; quantity is an availability entry, not a confirmed package count. Storage location and remaining volume unspecified."
+    },
+    {
+      "id": "owner-pineapple-juice",
+      "ingredient": "pineapple-juice",
+      "name": "Pineapple juice",
+      "quantity": 1,
+      "stock": "have",
+      "notes": "Owner-confirmed available; quantity is an availability entry, not a confirmed package count. Storage location and remaining volume unspecified."
     }
   ],
   "tools": [
@@ -495,6 +519,7 @@
     "slushi",
     "strainer",
     "shaker",
-    "spoon"
+    "spoon",
+    "mixing"
   ]
 }
