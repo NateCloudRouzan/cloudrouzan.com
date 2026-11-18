@@ -14,6 +14,7 @@ export default defineConfig({
       input: {
         main: "index.html",
         barbuddy: "BarBuddy/index.html",
+        wineAdvent: "WineAdvent/index.html",
       },
     },
   },
