@@ -86,3 +86,6 @@
 @media (max-width: 470px) {
   .wa-pair { grid-template-columns: 1fr; }
 }
+.wa-extra-rounds { list-style: none; padding: 0; display: grid; gap: 6px; }
+.wa-extra-rounds button { width: 100%; text-align: left; overflow-wrap: anywhere; }
+.wa-extra-rounds button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }

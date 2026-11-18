@@ -15,6 +15,7 @@ type Round = {
 };
 
 const days = Array.from({ length: 24 }, (_, index) => index + 1);
+const lastCalendarDay = days.length;
 const storageKey = "cloudrouzan.wine-advent.v1";
 const guide = "https://ingoodtaste.com/pages/advent-experience";
 const emptyRound: Round = { guesses: {} };
@@ -36,8 +37,8 @@ export default function WineAdvent() {
   const [day, setDay] = useState(() => days.find(number => !rounds[number]?.matches) ?? 1);
   const [storageError, setStorageError] = useState(false);
   const round = rounds[day] ?? emptyRound;
-  const update = (next: Round) => {
-    const updated = { ...rounds, [day]: next };
+  const saveRound = (number: number, next: Round) => {
+    const updated = { ...rounds, [number]: next };
     setRounds(updated);
     try {
       localStorage.setItem(storageKey, JSON.stringify(updated));
@@ -47,8 +48,17 @@ export default function WineAdvent() {
     }
   };
 
-  const played = days.filter(number => rounds[number]?.matches);
-  const rankings = days.flatMap(number => {
+  const extraRounds = Object.keys(rounds).map(Number).filter(number => Number.isSafeInteger(number) && number > lastCalendarDay);
+  const allRounds = [...days, ...extraRounds];
+  const played = allRounds.filter(number => rounds[number]?.matches);
+  const calendarPlayed = days.filter(number => rounds[number]?.matches).length;
+  const isExtra = day > lastCalendarDay;
+  const extraLabel = (number: number) => `Home round ${number - lastCalendarDay}`;
+  const openRound = (number: number) => {
+    setDay(number);
+    document.getElementById("wa-round")?.scrollIntoView({ block: "start" });
+  };
+  const rankings = allRounds.flatMap(number => {
     const entry = rounds[number];
     if (!entry?.reveal || !entry.reviews) return [];
     const ratings = players.flatMap(player => entry.reviews?.[player]?.rating ?? []);
@@ -71,7 +81,7 @@ export default function WineAdvent() {
           <aside>
             <section className="wa-panel" aria-labelledby="wa-calendar">
               <h2 id="wa-calendar">The calendar</h2>
-              <p className="wa-muted">{played.length} of 24 rounds scored</p>
+              <p className="wa-muted">{calendarPlayed} of 24 doors scored</p>
               <div className="wa-days">
                 {days.map(number => (
                   <button key={number} type="button" aria-pressed={day === number}
@@ -80,6 +90,26 @@ export default function WineAdvent() {
                     onClick={() => setDay(number)}>{number}</button>
                 ))}
               </div>
+            </section>
+            <section className="wa-panel" aria-labelledby="wa-home-wines">
+              <h2 id="wa-home-wines">Wines at home</h2>
+              {extraRounds.length > 0 && (
+                <ul className="wa-extra-rounds">
+                  {extraRounds.map(number => (
+                    <li key={number}>
+                      <button type="button" aria-pressed={day === number} onClick={() => openRound(number)}>
+                        {rounds[number]?.reveal?.wine ?? extraLabel(number)}
+                        {rounds[number]?.matches && <span className="wa-muted"> · Scored</span>}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <button type="button" onClick={() => {
+                const number = (extraRounds[extraRounds.length - 1] ?? lastCalendarDay) + 1;
+                saveRound(number, { guesses: {} });
+                openRound(number);
+              }}>Add a wine round</button>
             </section>
             <section className="wa-panel">
               <h2>Scoreboard</h2>
@@ -95,10 +125,10 @@ export default function WineAdvent() {
               <p className="wa-muted">Major notes earn 2 points. Each minor note earns 1.</p>
             </section>
           </aside>
-          <section className="wa-panel wa-round" key={day} aria-labelledby="wa-door">
-            <p className="wa-kicker">Door {String(day).padStart(2, "0")}</p>
+          <section className="wa-panel wa-round" id="wa-round" aria-labelledby="wa-door">
+            <p className="wa-kicker">{isExtra ? extraLabel(day) : `Door ${String(day).padStart(2, "0")}`}</p>
             <h2 id="wa-door">{round.reveal?.wine ?? "The blind pour"}</h2>
-            <RoundContent round={round} update={update} />
+            <RoundContent key={day} round={round} isExtra={isExtra} update={next => saveRound(day, next)} />
           </section>
         </div>
         <section className="wa-panel wa-rankings" id="wine-rankings">
@@ -106,13 +136,10 @@ export default function WineAdvent() {
           <p className="wa-muted">Sorted by average rating. Wines enter the ranking after their first review.</p>
           {rankings.length ? <ol>{rankings.map(entry => (
             <li key={entry.day}>
-              <button type="button" onClick={() => {
-                setDay(entry.day);
-                document.getElementById("wa-door")?.scrollIntoView({ block: "center" });
-              }}>{entry.wine}</button>
+              <button type="button" onClick={() => openRound(entry.day)}>{entry.wine}</button>
               <strong>{entry.average.toFixed(1)} / 10</strong>
               <span className="wa-muted">{entry.count}/2 ratings</span>
-              <BottleLink wine={entry.wine} bottle={entry.bottle} />
+              <BottleLink wine={entry.wine} bottle={entry.bottle} isExtra={entry.day > lastCalendarDay} />
             </li>
           ))}</ol> : <p>Save a review to put your first wine on the board.</p>}
         </section>
@@ -122,7 +149,7 @@ export default function WineAdvent() {
   );
 }
 
-function RoundContent({ round, update }: { round: Round; update: (next: Round) => void }) {
+function RoundContent({ round, isExtra, update }: { round: Round; isExtra: boolean; update: (next: Round) => void }) {
   const nextPlayer = players.find(player => !round.guesses[player]);
   if (nextPlayer) {
     function lock(event: FormEvent<HTMLFormElement>, player: Player) {
@@ -160,8 +187,14 @@ function RoundContent({ round, update }: { round: Round; update: (next: Round) =
         update({ ...round, reveal: { wine, major, minor: field(data, "minor"), bottle: "" } });
       }}>
         <h3>Both guesses are locked</h3>
-        <p>Open the bottle’s tasting guide. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
-        <a href={guide} target="_blank" rel="noreferrer">Open the In Good Taste guide</a>
+        {isExtra ? (
+          <p>Check the bottle label or look up the winery’s tasting notes. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
+        ) : (
+          <>
+            <p>Open the bottle’s tasting guide. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
+            <a href={guide} target="_blank" rel="noreferrer">Open the In Good Taste guide</a>
+          </>
+        )}
         <label>Wine name and vintage<input name="wine" required maxLength={140} /></label>
         <label>Official major note<input name="major" required maxLength={100} /></label>
         <label>Official minor notes<input name="minor" maxLength={280} placeholder="Separate notes with a comma" /></label>
@@ -220,7 +253,7 @@ function RoundContent({ round, update }: { round: Round; update: (next: Round) =
         }
         update({ ...round, reveal: { ...reveal, bottle } });
       }}>
-        <BottleLink wine={reveal.wine} bottle={reveal.bottle} />
+        <BottleLink wine={reveal.wine} bottle={reveal.bottle} isExtra={isExtra} />
         <label>Full-bottle link (optional)
           <input type="url" name="bottle" defaultValue={reveal.bottle} maxLength={2048}
             onChange={event => event.currentTarget.setCustomValidity("")} placeholder="https://…" />
@@ -231,10 +264,12 @@ function RoundContent({ round, update }: { round: Round; update: (next: Round) =
   );
 }
 
-function BottleLink({ wine, bottle }: { wine: string; bottle: string }) {
-  const search = `https://ingoodtaste.com/search?q=${encodeURIComponent(`${wine} 750ml`)}`;
+function BottleLink({ wine, bottle, isExtra }: { wine: string; bottle: string; isExtra: boolean }) {
+  const query = encodeURIComponent(`${wine} 750ml`);
+  const search = isExtra ? `https://www.google.com/search?q=${query}` : `https://ingoodtaste.com/search?q=${query}`;
+  const searchLabel = isExtra ? "Search for a full bottle" : "Search In Good Taste for 750 ml";
   const direct = /^https?:\/\//i.test(bottle);
-  return <a href={direct ? bottle : search} target="_blank" rel="noreferrer">{direct ? "View full bottle" : "Search In Good Taste for 750 ml"}</a>;
+  return <a href={direct ? bottle : search} target="_blank" rel="noreferrer">{direct ? "View full bottle" : searchLabel}</a>;
 }
 
 function ReviewForm({ player, review, save }: { player: Player; review?: Review; save: (review: Review) => void }) {
