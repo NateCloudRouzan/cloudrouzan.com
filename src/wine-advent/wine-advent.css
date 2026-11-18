@@ -1,0 +1,88 @@
+.wa {
+  --ink: #f8edda;
+  --muted: #c7c7ae;
+  --line: #536354;
+  --gold: #edc482;
+  background: #14281f;
+  color: var(--ink);
+  min-height: 100vh;
+  color-scheme: dark;
+}
+.wa-shell { width: min(1120px, calc(100% - 40px)); margin: auto; padding-bottom: 32px; }
+.wa nav { display: flex; justify-content: space-between; gap: 12px; padding: 20px 0; }
+.wa a { color: var(--gold); text-underline-offset: 4px; text-decoration: underline; }
+.wa-hero {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(32px, 7vw, 80px) clamp(20px, 5vw, 64px);
+  background: linear-gradient(90deg, #101f18 10%, #101f18eb 37%, #101f1880 67%, #101f1840),
+    url("/images/wine-advent.jpg") center 42% / cover;
+  margin-bottom: 20px;
+}
+.wa h1, .wa h2 { font-family: Georgia, serif; font-weight: normal; letter-spacing: -.035em; }
+.wa h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); margin: 6px 0 12px; }
+.wa h2 { font-size: clamp(1.6rem, 3vw, 2.35rem); margin: 0; overflow-wrap: anywhere; }
+.wa h3 { margin: 20px 0 8px; }
+.wa p { line-height: 1.5; }
+.wa-hero p:last-child { font-size: clamp(1rem, 3vw, 1.3rem); margin: 0; }
+.wa-kicker { color: var(--gold); font-size: .875rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 8px; }
+.wa-layout { display: grid; grid-template-columns: minmax(290px, .85fr) minmax(0, 1.65fr); gap: 20px; align-items: start; }
+.wa-panel { background: #1b3428; border: 1px solid var(--line); border-radius: 14px; padding: clamp(16px, 3vw, 28px); }
+.wa aside .wa-panel + .wa-panel, .wa-rankings { margin-top: 20px; }
+.wa-muted, .wa-footer { color: var(--muted); }
+.wa-days { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.wa button, .wa input, .wa textarea { font: inherit; }
+.wa button {
+  border: 1px solid #738171;
+  border-radius: 7px;
+  background: #223d30;
+  color: var(--ink);
+  padding: 8px 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.wa button:hover { background: #34533f; }
+.wa .wa-days button { padding: 6px 0; font-variant-numeric: tabular-nums; }
+.wa .wa-days .wa-scored { border-color: var(--gold); color: var(--gold); }
+.wa .wa-days button[aria-pressed="true"] { background: var(--gold); color: #14281f; border-color: var(--gold); font-weight: 700; }
+.wa table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.wa th, .wa td { text-align: center; border-bottom: 1px solid var(--line); padding: 9px 2px; }
+.wa th:first-child { text-align: left; }
+.wa .wa-primary { background: #943f50; border-color: #c87583; font-weight: 650; }
+.wa .wa-primary:hover { background: #753040; }
+.wa label { display: block; margin: 13px 0; }
+.wa input:not([type="checkbox"]), .wa textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #738171;
+  border-radius: 7px;
+  background: #13291f;
+  color: var(--ink);
+  padding: 10px;
+  margin-top: 6px;
+}
+.wa textarea { resize: vertical; }
+.wa input::placeholder { color: #b5bba9; }
+.wa :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wa-notes { display: grid; gap: 10px; padding: 14px; border-left: 2px solid var(--gold); background: #14281f; }
+.wa dt { color: var(--gold); }
+.wa dd { margin: 3px 0 0; overflow-wrap: anywhere; }
+.wa-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.wa fieldset { min-width: 0; border: 1px solid var(--line); border-radius: 8px; margin: 0; padding: 0 12px 10px; }
+.wa legend { padding: 0 5px; font-weight: 650; }
+.wa .wa-check { display: flex; gap: 8px; align-items: baseline; overflow-wrap: anywhere; }
+.wa input[type="checkbox"] { accent-color: var(--gold); }
+.wa-saved { color: var(--gold); margin: 8px 0 0; }
+.wa span.wa-saved { margin-left: 12px; }
+.wa-bottle { padding-top: 16px; border-top: 1px solid var(--line); }
+.wa-rankings ol { padding-left: 24px; }
+.wa-rankings li { padding: 10px 0; border-top: 1px solid var(--line); }
+.wa-rankings li > * { display: inline-block; margin: 0 12px 4px 0; overflow-wrap: anywhere; }
+.wa-footer { margin-bottom: 0; }
+@media (max-width: 740px) {
+  .wa-shell { width: calc(100% - 28px); }
+  .wa-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 470px) {
+  .wa-pair { grid-template-columns: 1fr; }
+}

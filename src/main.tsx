@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 const BarBuddy = React.lazy(() => import("./barbuddy/BarBuddy"));
 
+const WineAdvent = React.lazy(() => import("./wine-advent/WineAdvent"));
+
 function App() {
   return (
     <main className="page">
@@ -54,6 +56,11 @@ function App() {
           </p>
           <span>Explore BarBuddy</span>
         </a>
+        <a className="project-card" href="/WineAdvent">
+          <h3>Wine Advent</h3>
+          <p>A two-player blind tasting game with 24 doors and a ranked bottle list.</p>
+          <span>Play Wine Advent</span>
+        </a>
       </section>
       <footer>© {new Date().getFullYear()} Nate Cloud-Rouzan</footer>
     </main>
@@ -62,7 +69,11 @@ function App() {
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/^\/barbuddy\/?$/i.test(window.location.pathname) ? (
+    {/^\/wineadvent\/?$/i.test(window.location.pathname) ? (
+      <React.Suspense fallback={<main className="page"><p>Opening Wine Advent…</p></main>}>
+        <WineAdvent />
+      </React.Suspense>
+    ) : /^\/barbuddy\/?$/i.test(window.location.pathname) ? (
       <React.Suspense
         fallback={
           <main className="page">
