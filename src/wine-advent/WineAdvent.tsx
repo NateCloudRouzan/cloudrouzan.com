@@ -251,6 +251,19 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
 const flavorLabels = new Map(Object.values(cardNotes).flatMap(entry =>
   (entry ?? []).map(note => [normalize(note), note.toLowerCase()] as const)));
 const flavorChoices = [...flavorLabels.values()].sort((a, b) => a.localeCompare(b));
+const flavorGroups = [
+  { label: "Citrus", flavors: ["citrus", "citrus zest", "grapefruit", "lemon", "lime"] },
+  { label: "Berries", flavors: ["black currant", "blackberry", "blackberry preserves", "cranberry", "juicy berries", "raspberry", "strawberry"] },
+  { label: "Orchard & stone fruit", flavors: ["black cherry", "black plum", "dark cherry", "golden apple", "green apple", "plum", "red cherry", "red plum", "ripe peach", "ripe pear", "ripe plum", "sour cherry", "white peach"] },
+  { label: "Tropical fruit & melon", flavors: ["passionfruit", "pineapple", "watermelon"] },
+  { label: "Floral", flavors: ["chamomile", "honeysuckle", "rose petal"] },
+  { label: "Herbs & greens", flavors: ["dried herbs", "fresh tomato leaf", "fresh-cut grass", "jalapeño"] },
+  { label: "Spices", flavors: ["baking spice", "clove", "cracked peppercorn", "licorice", "spice", "vanilla bean", "white pepper"] },
+  { label: "Chocolate, toast & honey", flavors: ["beeswax", "brioche", "cocoa", "cocoa powder", "dark chocolate", "honeycomb", "toast"] },
+  { label: "Earth, wood & minerals", flavors: ["cedar", "char", "forest floor", "leather", "sea spray", "wet stone"] },
+].map(({ label, flavors }) => ({ label, flavors: flavorChoices.filter(note => flavors.includes(note)) }));
+const groupedFlavors = new Set(flavorGroups.flatMap(group => group.flavors));
+
 
 function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: number; lock: (guess: Guess) => void }) {
   const limit = noteCount ?? 3;
@@ -261,7 +274,9 @@ function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: nu
   const majorNote = selected.includes(major) ? major : selected[0];
   const customNote = custom.trim();
   const customKey = normalize(customNote);
-  const choices = [...flavorChoices, ...selected.filter(note => !flavorLabels.has(normalize(note)))];
+  const otherFlavors = [...flavorChoices.filter(note => !groupedFlavors.has(note)),
+    ...selected.filter(note => !flavorLabels.has(normalize(note)))];
+  const groups = [...flavorGroups, { label: "Other flavors", flavors: otherFlavors }];
 
   return (
     <form onSubmit={event => {
@@ -274,19 +289,26 @@ function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: nu
         <legend>Choose tasting notes</legend>
         <p className="wa-muted">{noteCount ? `The card lists ${noteCount} notes for this door.` : `Choose up to ${limit} notes.`}</p>
         <p className="wa-saved" role="status">{selected.length} of {limit} selected</p>
-        <div className="wa-flavors">
-          {choices.map(note => {
-            const chosen = selected.includes(note);
-            return <button key={note} type="button" aria-pressed={chosen} disabled={!chosen && atLimit}
-              onClick={() => {
-                if (chosen) {
-                  setSelected(selected.filter(value => value !== note));
-                  if (major === note) setMajor("");
-                } else {
-                  setSelected([...selected, note]);
-                }
-              }}>{note}</button>;
-          })}
+        <div className="wa-flavor-groups">
+          {groups.filter(group => group.flavors.length).map(group => (
+            <div className="wa-flavor-group" role="group" aria-label={group.label} key={group.label}>
+              <h4>{group.label}</h4>
+              <div className="wa-flavors">
+                {group.flavors.map(note => {
+                  const chosen = selected.includes(note);
+                  return <button key={note} type="button" aria-pressed={chosen} disabled={!chosen && atLimit}
+                    onClick={() => {
+                      if (chosen) {
+                        setSelected(selected.filter(value => value !== note));
+                        if (major === note) setMajor("");
+                      } else {
+                        setSelected([...selected, note]);
+                      }
+                    }}>{note}</button>;
+                })}
+              </div>
+            </div>
+          ))}
         </div>
         {!noteCount && (
           <div className="wa-custom-note">
