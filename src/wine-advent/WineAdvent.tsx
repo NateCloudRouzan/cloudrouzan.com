@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { cardNotes } from "./card-notes";
 import "./wine-advent.css";
 
 const players = ["Nate", "Hallie"] as const;
@@ -17,7 +18,6 @@ type Round = {
 const days = Array.from({ length: 24 }, (_, index) => index + 1);
 const lastCalendarDay = days.length;
 const storageKey = "cloudrouzan.wine-advent.v1";
-const guide = "https://ingoodtaste.com/pages/advent-experience";
 const emptyRound: Round = { guesses: {} };
 const normalize = (value: string) => value.trim().toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 const notes = (value: string) => value.split(",").map(note => note.trim()).filter(Boolean);
@@ -128,7 +128,7 @@ export default function WineAdvent() {
           <section className="wa-panel wa-round" id="wa-round" aria-labelledby="wa-door">
             <p className="wa-kicker">{isExtra ? extraLabel(day) : `Door ${String(day).padStart(2, "0")}`}</p>
             <h2 id="wa-door">{round.reveal?.wine ?? "The blind pour"}</h2>
-            <RoundContent key={day} round={round} isExtra={isExtra} update={next => saveRound(day, next)} />
+            <RoundContent key={day} round={round} day={day} update={next => saveRound(day, next)} />
           </section>
         </div>
         <section className="wa-panel wa-rankings" id="wine-rankings">
@@ -149,7 +149,8 @@ export default function WineAdvent() {
   );
 }
 
-function RoundContent({ round, isExtra, update }: { round: Round; isExtra: boolean; update: (next: Round) => void }) {
+function RoundContent({ round, day, update }: { round: Round; day: number; update: (next: Round) => void }) {
+  const isExtra = day > lastCalendarDay;
   const nextPlayer = players.find(player => !round.guesses[player]);
   if (nextPlayer) {
     function lock(event: FormEvent<HTMLFormElement>, player: Player) {
@@ -177,27 +178,30 @@ function RoundContent({ round, isExtra, update }: { round: Round; isExtra: boole
   }
 
   if (!round.reveal) {
+    const reference = cardNotes[day];
     return (
       <form onSubmit={event => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const wine = field(data, "wine");
-        const major = field(data, "major");
+        const major = reference?.[0] ?? field(data, "major");
+        const minor = reference ? reference.slice(1).join(", ") : field(data, "minor");
         if (!wine || !major) return;
-        update({ ...round, reveal: { wine, major, minor: field(data, "minor"), bottle: "" } });
+        update({ ...round, reveal: { wine, major, minor, bottle: "" } });
       }}>
         <h3>Both guesses are locked</h3>
-        {isExtra ? (
-          <p>Check the bottle label or look up the winery’s tasting notes. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
+        {reference ? (
+          <p>Enter the name printed on the mini bottle, then reveal the tasting notes from the calendar card.</p>
         ) : (
-          <>
-            <p>Open the bottle’s tasting guide. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
-            <a href={guide} target="_blank" rel="noreferrer">Open the In Good Taste guide</a>
-          </>
+          <p>Check the bottle label or look up the winery’s tasting notes. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
         )}
         <label>Wine name and vintage<input name="wine" required maxLength={140} /></label>
-        <label>Official major note<input name="major" required maxLength={100} /></label>
-        <label>Official minor notes<input name="minor" maxLength={280} placeholder="Separate notes with a comma" /></label>
+        {!reference && (
+          <>
+            <label>Official major note<input name="major" required maxLength={100} /></label>
+            <label>Official minor notes<input name="minor" maxLength={280} placeholder="Separate notes with a comma" /></label>
+          </>
+        )}
         <button className="wa-primary" type="submit">Reveal the wine</button>
       </form>
     );
