@@ -153,28 +153,8 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
   const isExtra = day > lastCalendarDay;
   const nextPlayer = players.find(player => !round.guesses[player]);
   if (nextPlayer) {
-    function lock(event: FormEvent<HTMLFormElement>, player: Player) {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const major = field(data, "major");
-      const minor = ["minor-1", "minor-2"].map(name => field(data, name))
-        .filter(note => note && normalize(note) !== normalize(major));
-      if (!major) return;
-      const unique = [...new Map(minor.map(note => [normalize(note), note])).values()];
-      update({ ...round, guesses: { ...round.guesses, [player]: { major, minor: unique } } });
-    }
-    return (
-      <form key={nextPlayer} onSubmit={event => lock(event, nextPlayer)}>
-        <h3>{nextPlayer}’s turn</h3>
-        <p>{nextPlayer === "Nate" ? "Taste the wine before checking the bottle or guide." : "Nate’s guesses are locked. Hand the device to Hallie."}</p>
-        <label>Major note<input name="major" required maxLength={80} placeholder="The flavor that stands out most" /></label>
-        <div className="wa-pair">
-          <label>First minor note<input name="minor-1" maxLength={80} placeholder="Optional" /></label>
-          <label>Second minor note<input name="minor-2" maxLength={80} placeholder="Optional" /></label>
-        </div>
-        <button className="wa-primary" type="submit">Lock {nextPlayer}’s guesses</button>
-      </form>
-    );
+    return <GuessForm key={nextPlayer} player={nextPlayer} noteCount={cardNotes[day]?.length}
+      lock={guess => update({ ...round, guesses: { ...round.guesses, [nextPlayer]: guess } })} />;
   }
 
   if (!round.reveal) {
@@ -265,6 +245,70 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
         <button type="submit">Save bottle link</button>
       </form>
     </>
+  );
+}
+
+const flavorLabels = new Map(Object.values(cardNotes).flatMap(entry =>
+  (entry ?? []).map(note => [normalize(note), note.toLowerCase()] as const)));
+const flavorChoices = [...flavorLabels.values()].sort((a, b) => a.localeCompare(b));
+
+function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: number; lock: (guess: Guess) => void }) {
+  const limit = noteCount ?? 3;
+  const [selected, setSelected] = useState<string[]>([]);
+  const [major, setMajor] = useState("");
+  const [custom, setCustom] = useState("");
+  const atLimit = selected.length >= limit;
+  const majorNote = selected.includes(major) ? major : selected[0];
+  const customNote = custom.trim();
+  const customKey = normalize(customNote);
+  const choices = [...flavorChoices, ...selected.filter(note => !flavorLabels.has(normalize(note)))];
+
+  return (
+    <form onSubmit={event => {
+      event.preventDefault();
+      if (majorNote) lock({ major: majorNote, minor: selected.filter(note => note !== majorNote) });
+    }}>
+      <h3>{player}’s turn</h3>
+      <p>{player === "Nate" ? "Taste the wine before checking the bottle or guide." : "Nate’s guesses are locked. Hand the device to Hallie."}</p>
+      <fieldset className="wa-flavor-picker">
+        <legend>Choose tasting notes</legend>
+        <p className="wa-muted">{noteCount ? `The card lists ${noteCount} notes for this door.` : `Choose up to ${limit} notes.`}</p>
+        <p className="wa-saved" role="status">{selected.length} of {limit} selected</p>
+        <div className="wa-flavors">
+          {choices.map(note => {
+            const chosen = selected.includes(note);
+            return <button key={note} type="button" aria-pressed={chosen} disabled={!chosen && atLimit}
+              onClick={() => {
+                if (chosen) {
+                  setSelected(selected.filter(value => value !== note));
+                  if (major === note) setMajor("");
+                } else {
+                  setSelected([...selected, note]);
+                }
+              }}>{note}</button>;
+          })}
+        </div>
+        {!noteCount && (
+          <div className="wa-custom-note">
+            <label>Other flavor<input value={custom} maxLength={80} onChange={event => setCustom(event.currentTarget.value)}
+              onKeyDown={event => { if (event.key === "Enter") event.preventDefault(); }} /></label>
+            <button type="button" disabled={!customKey || atLimit || selected.some(note => normalize(note) === customKey)}
+              onClick={() => {
+                setSelected([...selected, flavorLabels.get(customKey) ?? customNote]);
+                setCustom("");
+              }}>Add flavor</button>
+          </div>
+        )}
+      </fieldset>
+      {majorNote && (
+        <label>Major note
+          <select value={majorNote} onChange={event => setMajor(event.currentTarget.value)}>
+            {selected.map(note => <option key={note} value={note}>{note}</option>)}
+          </select>
+        </label>
+      )}
+      <button className="wa-primary" type="submit" disabled={!majorNote}>Lock {player}’s guesses</button>
+    </form>
   );
 }
 
