@@ -1,0 +1,28 @@
+// In Good Taste's printed insert lists flavors without scoring tiers.
+// For the game, the first named flavor is major and the remaining notes are minor.
+export const cardNotes: Readonly<Partial<Record<number, readonly [string, ...string[]]>>> = {
+  1: ["Green apple", "white pepper", "citrus zest"],
+  2: ["Blackberry", "dark cherry", "cocoa"],
+  3: ["Ripe pear", "honeysuckle", "lemon"],
+  4: ["Black currant", "cedar", "dried herbs"],
+  5: ["Grapefruit", "fresh-cut grass", "passionfruit"],
+  6: ["Jalapeño", "juicy berries"],
+  7: ["Blackberry", "cracked peppercorn", "char"],
+  8: ["Blackberry preserves", "baking spice", "licorice"],
+  9: ["Strawberry", "watermelon", "citrus"],
+  10: ["Ripe plum", "black cherry", "cocoa powder"],
+  11: ["Pineapple", "vanilla bean", "toast"],
+  12: ["Red cherry", "forest floor", "clove"],
+  13: ["Black plum", "dried herbs", "leather"],
+  14: ["Raspberry", "rose petal", "citrus"],
+  15: ["Golden apple", "chamomile", "beeswax"],
+  16: ["Sour cherry", "red plum", "spice"],
+  17: ["Passionfruit", "lime", "fresh-cut grass"],
+  18: ["Blackberry", "plum", "dark chocolate"],
+  19: ["Green apple", "brioche", "lemon"],
+  20: ["Cranberry", "raspberry", "white pepper"],
+  21: ["Honeycomb", "ripe peach", "wet stone"],
+  22: ["Red cherry", "dried herbs", "fresh tomato leaf"],
+  23: ["Green apple", "sea spray", "white peach"],
+  24: ["Black currant", "cedar", "dark chocolate"],
+};
