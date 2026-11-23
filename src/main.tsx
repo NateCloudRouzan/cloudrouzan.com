@@ -61,6 +61,20 @@ function App() {
           <p>A two-player blind tasting game with 24 doors and a ranked bottle list.</p>
           <span>Play Wine Advent</span>
         </a>
+        <a
+          className="project-card"
+          href="https://github.com/NateCloudRouzan/tidal-scripts"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <h3>TIDAL Collection Repair</h3>
+          <p>
+            A Python command-line tool for finding unavailable saved tracks,
+            proposing playable versions of the same recording, and auditing
+            TIDAL playlists.
+          </p>
+          <span>View on GitHub</span>
+        </a>
       </section>
       <footer>© {new Date().getFullYear()} Nate Cloud-Rouzan</footer>
     </main>
