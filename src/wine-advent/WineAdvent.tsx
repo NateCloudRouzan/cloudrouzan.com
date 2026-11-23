@@ -13,6 +13,7 @@ type Round = {
   guesses: Partial<Record<Player, Guess>>;
   reveal?: Reveal;
   matches?: Record<Player, Matches>;
+  sharedReview?: Review;
   reviews?: Partial<Record<Player, Review>>;
 };
 
@@ -23,6 +24,20 @@ const emptyRound: Round = { guesses: {} };
 const normalize = (value: string) => value.trim().toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 const notes = (value: string) => value.split(",").map(note => note.trim()).filter(Boolean);
 const field = (data: FormData, name: string) => String(data.get(name) ?? "").trim();
+
+function reviewForRound(round: Round): Review | undefined {
+  if (round.sharedReview) return round.sharedReview;
+  const previous = players.flatMap(player => {
+    const review = round.reviews?.[player];
+    return review ? [{ player, ...review }] : [];
+  });
+  if (!previous.length) return;
+  const totalTenths = previous.reduce((sum, review) => sum + Math.round(review.rating * 10), 0);
+  return {
+    rating: Math.round(totalTenths / previous.length) / 10,
+    note: previous.filter(review => review.note).map(review => `${review.player}: ${review.note}`).join("\n\n"),
+  };
+}
 
 function loadRounds(): Partial<Record<number, Round>> {
   try {
@@ -62,12 +77,11 @@ export default function WineAdvent() {
   };
   const rankings = allRounds.flatMap(number => {
     const entry = rounds[number];
-    if (!entry?.reveal || !entry.reviews) return [];
-    const ratings = players.flatMap(player => entry.reviews?.[player]?.rating ?? []);
-    if (!ratings.length) return [];
-    return [{ day: number, wine: entry.reveal.wine, bottle: entry.reveal.bottle, count: ratings.length,
-      average: ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length }];
-  }).sort((a, b) => b.average - a.average || a.day - b.day);
+    if (!entry?.reveal) return [];
+    const review = reviewForRound(entry);
+    if (!review) return [];
+    return [{ day: number, wine: entry.reveal.wine, bottle: entry.reveal.bottle, rating: review.rating }];
+  }).sort((a, b) => b.rating - a.rating || a.day - b.day);
 
   return (
     <main className="wa">
@@ -135,12 +149,11 @@ export default function WineAdvent() {
         </div>
         <section className="wa-panel wa-rankings" id="wine-rankings">
           <h2>Bottle power rankings</h2>
-          <p className="wa-muted">Sorted by average rating. Wines enter the ranking after their first review.</p>
+          <p className="wa-muted">Sorted by your shared rating. Wines enter the ranking after their first review.</p>
           {rankings.length ? <ol>{rankings.map(entry => (
             <li key={entry.day}>
               <button type="button" onClick={() => openRound(entry.day)}>{entry.wine}</button>
-              <strong>{entry.average.toFixed(1)} / 10</strong>
-              <span className="wa-muted">{entry.count}/2 ratings</span>
+              <strong>{entry.rating.toFixed(1)} / 10</strong>
               <BottleLink wine={entry.wine} bottle={entry.bottle} isExtra={entry.day < 0 || entry.day > lastCalendarDay} />
             </li>
           ))}</ol> : <p>Save a review to put your first wine on the board.</p>}
@@ -241,11 +254,8 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
         <button className="wa-primary" type="submit">{round.matches ? "Update scores" : "Save scores"}</button>
         {round.matches && <span className="wa-saved" role="status">Scored</span>}
       </form>
-      <h3>Review the wine</h3>
-      <div className="wa-pair">
-        {players.map(player => <ReviewForm key={player} player={player} review={round.reviews?.[player]}
-          save={review => update({ ...round, reviews: { ...round.reviews, [player]: review } })} />)}
-      </div>
+      <h3>Review together</h3>
+      <ReviewForm review={reviewForRound(round)} save={sharedReview => update({ ...round, sharedReview })} />
       <form className="wa-bottle" onSubmit={event => {
         event.preventDefault();
         const input = event.currentTarget.elements.namedItem("bottle") as HTMLInputElement;
@@ -367,7 +377,7 @@ function BottleLink({ wine, bottle, isExtra }: { wine: string; bottle: string; i
   return <a href={direct ? bottle : search} target="_blank" rel="noreferrer">{direct ? "View full bottle" : searchLabel}</a>;
 }
 
-function ReviewForm({ player, review, save }: { player: Player; review?: Review; save: (review: Review) => void }) {
+function ReviewForm({ review, save }: { review?: Review; save: (review: Review) => void }) {
   const [editing, setEditing] = useState(false);
   return <form onChange={() => setEditing(true)} onSubmit={event => {
     event.preventDefault();
@@ -378,10 +388,10 @@ function ReviewForm({ player, review, save }: { player: Player; review?: Review;
     setEditing(false);
   }}>
     <fieldset>
-      <legend>{player}</legend>
+      <legend>Nate &amp; Hallie</legend>
       <label>Rating (1.0–10.0)<input type="number" name="rating" min="1" max="10" step="0.1" required defaultValue={review?.rating.toFixed(1)} /></label>
-      <label>Tasting note (optional)<textarea name="note" rows={2} maxLength={1000} defaultValue={review?.note} /></label>
-      <button type="submit">Save review</button>
+      <label>Tasting note (optional)<textarea name="note" rows={3} maxLength={2100} defaultValue={review?.note} /></label>
+      <button type="submit">Save shared review</button>
       <p className="wa-saved" role="status">{!editing && review ? `Saved ${review.rating.toFixed(1)} / 10` : ""}</p>
     </fieldset>
   </form>;
