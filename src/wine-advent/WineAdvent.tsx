@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { cardNotes } from "./card-notes";
+import { pantryIds, pantryWines } from "./pantry-wines";
 import "./wine-advent.css";
 
 const players = ["Nate", "Hallie"] as const;
@@ -49,11 +50,12 @@ export default function WineAdvent() {
   };
 
   const extraRounds = Object.keys(rounds).map(Number).filter(number => Number.isSafeInteger(number) && number > lastCalendarDay);
-  const allRounds = [...days, ...extraRounds];
+  const homeRounds = [...pantryIds, ...extraRounds];
+  const allRounds = [...days, ...homeRounds];
   const played = allRounds.filter(number => rounds[number]?.matches);
   const calendarPlayed = days.filter(number => rounds[number]?.matches).length;
-  const isExtra = day > lastCalendarDay;
-  const extraLabel = (number: number) => `Home round ${number - lastCalendarDay}`;
+  const isExtra = day < 0 || day > lastCalendarDay;
+  const extraLabel = (number: number) => pantryWines[number]?.name ?? `Home round ${number - lastCalendarDay}`;
   const openRound = (number: number) => {
     setDay(number);
     document.getElementById("wa-round")?.scrollIntoView({ block: "start" });
@@ -93,9 +95,9 @@ export default function WineAdvent() {
             </section>
             <section className="wa-panel" aria-labelledby="wa-home-wines">
               <h2 id="wa-home-wines">Wines at home</h2>
-              {extraRounds.length > 0 && (
+              {homeRounds.length > 0 && (
                 <ul className="wa-extra-rounds">
-                  {extraRounds.map(number => (
+                  {homeRounds.map(number => (
                     <li key={number}>
                       <button type="button" aria-pressed={day === number} onClick={() => openRound(number)}>
                         {rounds[number]?.reveal?.wine ?? extraLabel(number)}
@@ -139,7 +141,7 @@ export default function WineAdvent() {
               <button type="button" onClick={() => openRound(entry.day)}>{entry.wine}</button>
               <strong>{entry.average.toFixed(1)} / 10</strong>
               <span className="wa-muted">{entry.count}/2 ratings</span>
-              <BottleLink wine={entry.wine} bottle={entry.bottle} isExtra={entry.day > lastCalendarDay} />
+              <BottleLink wine={entry.wine} bottle={entry.bottle} isExtra={entry.day < 0 || entry.day > lastCalendarDay} />
             </li>
           ))}</ol> : <p>Save a review to put your first wine on the board.</p>}
         </section>
@@ -150,14 +152,25 @@ export default function WineAdvent() {
 }
 
 function RoundContent({ round, day, update }: { round: Round; day: number; update: (next: Round) => void }) {
-  const isExtra = day > lastCalendarDay;
+  const isExtra = day < 0 || day > lastCalendarDay;
+  const pantryWine = pantryWines[day];
   const nextPlayer = players.find(player => !round.guesses[player]);
   if (nextPlayer) {
-    return <GuessForm key={nextPlayer} player={nextPlayer} noteCount={cardNotes[day]?.length}
+    return <GuessForm key={nextPlayer} player={nextPlayer} noteCount={(pantryWine?.notes ?? cardNotes[day])?.length} includePantry={isExtra}
       lock={guess => update({ ...round, guesses: { ...round.guesses, [nextPlayer]: guess } })} />;
   }
 
   if (!round.reveal) {
+    if (pantryWine) {
+      const [major, ...minor] = pantryWine.notes;
+      return <>
+        <h3>Both guesses are locked</h3>
+        <button className="wa-primary" type="button" onClick={() => update({
+          ...round,
+          reveal: { wine: pantryWine.name, major, minor: minor.join(", "), bottle: `https://www.firstleaf.com/products/${pantryWine.product}` },
+        })}>Reveal the wine</button>
+      </>;
+    }
     const reference = cardNotes[day];
     return (
       <form onSubmit={event => {
@@ -190,6 +203,13 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
   const reveal = round.reveal;
   return (
     <>
+      {pantryWine && (
+        <div>
+          <p>{pantryWine.region} · {pantryWine.retailPrice} retail on the tasting sheet</p>
+          <p>{pantryWine.description}</p>
+          <p><strong>Pairs well with</strong> {pantryWine.pairings}</p>
+        </div>
+      )}
       <dl className="wa-notes">
         <div><dt>Major note</dt><dd>{reveal.major}</dd></div>
         <div><dt>Minor notes</dt><dd>{reveal.minor || "None recorded"}</dd></div>
@@ -250,22 +270,25 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
 
 const flavorLabels = new Map(Object.values(cardNotes).flatMap(entry =>
   (entry ?? []).map(note => [normalize(note), note.toLowerCase()] as const)));
-const flavorChoices = [...flavorLabels.values()].sort((a, b) => a.localeCompare(b));
+const pantryFlavorLabels = new Map(Object.values(pantryWines).flatMap(wine =>
+  (wine?.notes ?? []).map(note => [normalize(note), note.toLowerCase()] as const)));
+const homeFlavorLabels = new Map([...flavorLabels, ...pantryFlavorLabels]);
+const flavorChoices = [...homeFlavorLabels.values()].sort((a, b) => a.localeCompare(b));
 const flavorGroups = [
   { label: "Citrus", flavors: ["citrus", "citrus zest", "grapefruit", "lemon", "lime"] },
   { label: "Berries", flavors: ["black currant", "blackberry", "blackberry preserves", "cranberry", "juicy berries", "raspberry", "strawberry"] },
   { label: "Orchard & stone fruit", flavors: ["black cherry", "black plum", "dark cherry", "golden apple", "green apple", "plum", "red cherry", "red plum", "ripe peach", "ripe pear", "ripe plum", "sour cherry", "white peach"] },
   { label: "Tropical fruit & melon", flavors: ["passionfruit", "pineapple", "watermelon"] },
-  { label: "Floral", flavors: ["chamomile", "honeysuckle", "rose petal"] },
-  { label: "Herbs & greens", flavors: ["dried herbs", "fresh tomato leaf", "fresh-cut grass", "jalapeño"] },
+  { label: "Floral", flavors: ["chamomile", "citrus blossom", "honeysuckle", "lavender", "rose petal"] },
+  { label: "Herbs & greens", flavors: ["dried herbs", "fresh herbs", "fresh tomato leaf", "fresh-cut grass", "jalapeño"] },
   { label: "Spices", flavors: ["baking spice", "clove", "cracked peppercorn", "licorice", "spice", "vanilla bean", "white pepper"] },
   { label: "Chocolate, toast & honey", flavors: ["beeswax", "brioche", "cocoa", "cocoa powder", "dark chocolate", "honeycomb", "toast"] },
-  { label: "Earth, wood & minerals", flavors: ["cedar", "char", "forest floor", "leather", "sea spray", "wet stone"] },
+  { label: "Earth, wood & minerals", flavors: ["cedar", "char", "cigar box", "forest floor", "leather", "mineral", "sea spray", "wet stone"] },
 ].map(({ label, flavors }) => ({ label, flavors: flavorChoices.filter(note => flavors.includes(note)) }));
 const groupedFlavors = new Set(flavorGroups.flatMap(group => group.flavors));
 
 
-function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: number; lock: (guess: Guess) => void }) {
+function GuessForm({ player, noteCount, includePantry, lock }: { player: Player; noteCount?: number; includePantry: boolean; lock: (guess: Guess) => void }) {
   const limit = noteCount ?? 3;
   const [selected, setSelected] = useState<string[]>([]);
   const [major, setMajor] = useState("");
@@ -274,9 +297,11 @@ function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: nu
   const majorNote = selected.includes(major) ? major : selected[0];
   const customNote = custom.trim();
   const customKey = normalize(customNote);
-  const otherFlavors = [...flavorChoices.filter(note => !groupedFlavors.has(note)),
-    ...selected.filter(note => !flavorLabels.has(normalize(note)))];
-  const groups = [...flavorGroups, { label: "Other flavors", flavors: otherFlavors }];
+  const labels = includePantry ? homeFlavorLabels : flavorLabels;
+  const otherFlavors = [...flavorChoices.filter(note => labels.has(normalize(note)) && !groupedFlavors.has(note)),
+    ...selected.filter(note => !labels.has(normalize(note)))];
+  const groups = [...flavorGroups.map(group => ({ ...group, flavors: group.flavors.filter(note => labels.has(normalize(note))) })),
+    { label: "Other flavors", flavors: otherFlavors }];
 
   return (
     <form onSubmit={event => {
@@ -287,7 +312,7 @@ function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: nu
       <p>{player === "Nate" ? "Taste the wine before checking the bottle or guide." : "Nate’s guesses are locked. Hand the device to Hallie."}</p>
       <fieldset className="wa-flavor-picker">
         <legend>Choose tasting notes</legend>
-        <p className="wa-muted">{noteCount ? `The card lists ${noteCount} notes for this door.` : `Choose up to ${limit} notes.`}</p>
+        <p className="wa-muted">{noteCount ? `The tasting sheet lists ${noteCount} notes for this wine.` : `Choose up to ${limit} notes.`}</p>
         <p className="wa-saved" role="status">{selected.length} of {limit} selected</p>
         <div className="wa-flavor-groups">
           {groups.filter(group => group.flavors.length).map(group => (
@@ -316,7 +341,7 @@ function GuessForm({ player, noteCount, lock }: { player: Player; noteCount?: nu
               onKeyDown={event => { if (event.key === "Enter") event.preventDefault(); }} /></label>
             <button type="button" disabled={!customKey || atLimit || selected.some(note => normalize(note) === customKey)}
               onClick={() => {
-                setSelected([...selected, flavorLabels.get(customKey) ?? customNote]);
+                setSelected([...selected, labels.get(customKey) ?? customNote]);
                 setCustom("");
               }}>Add flavor</button>
           </div>
