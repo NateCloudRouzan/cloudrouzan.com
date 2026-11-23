@@ -205,7 +205,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
     <>
       {pantryWine && (
         <div>
-          <p>{pantryWine.region} · {pantryWine.retailPrice} retail on the tasting sheet</p>
+          <p>{pantryWine.region} · {pantryWine.retailPrice} listed retail</p>
           <p>{pantryWine.description}</p>
           <p><strong>Pairs well with</strong> {pantryWine.pairings}</p>
         </div>

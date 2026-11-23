@@ -64,6 +64,15 @@ export const pantryWines: Readonly<Partial<Record<number, PantryWine>>> = {
     retailPrice: "$26.00",
     product: "alavez-2024-verdejo-spain",
   },
+  [-7]: {
+    name: "Meiggs’ Pardon 2024 Promissory Red",
+    region: "North Coast, California",
+    notes: ["Plum", "Baking spice", "Dark chocolate"],
+    description: "Juicy and rounded, with black cherry and cassis alongside cinnamon, nutmeg, and vanilla. Smooth tannins carry dark fruit and spice into the finish.",
+    pairings: "Eggplant Parmesan, roasted chicken, short ribs",
+    retailPrice: "$26.50",
+    product: "meiggs-pardon-2024-promissory-red-north-coast",
+  },
 };
 
 export const pantryIds = Object.keys(pantryWines).map(Number);
