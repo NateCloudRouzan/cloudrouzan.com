@@ -100,3 +100,4 @@
 .wa-custom-note { display: flex; flex-wrap: wrap; align-items: end; gap: 8px; margin-top: 8px; }
 .wa-custom-note label { flex: 1 1 150px; margin: 0; }
 .wa select { display: block; min-height: 44px; max-width: 100%; margin-top: 6px; border: 1px solid #738171; border-radius: 7px; background: #13291f; color: var(--ink); padding: 8px; font: inherit; }
+.wa .wa-review-note { display: block; white-space: pre-wrap; margin-top: 4px; }

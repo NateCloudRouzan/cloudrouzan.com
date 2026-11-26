@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { cardNotes } from "./card-notes";
 import { pantryIds, pantryWines } from "./pantry-wines";
 import "./wine-advent.css";
@@ -39,10 +39,16 @@ function reviewForRound(round: Round): Review | undefined {
   };
 }
 
-function loadRounds(): Partial<Record<number, Round>> {
+type Rounds = Partial<Record<number, Round>>;
+
+function readRounds(): Rounds {
+  const saved = JSON.parse(localStorage.getItem(storageKey) ?? "{}");
+  return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+}
+
+function loadRounds(): Rounds {
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) ?? "{}");
-    return saved && typeof saved === "object" ? saved : {};
+    return readRounds();
   } catch {
     return {};
   }
@@ -53,16 +59,31 @@ export default function WineAdvent() {
   const [day, setDay] = useState(() => days.find(number => !rounds[number]?.matches) ?? 1);
   const [storageError, setStorageError] = useState(false);
   const round = rounds[day] ?? emptyRound;
-  const saveRound = (number: number, next: Round) => {
-    const updated = { ...rounds, [number]: next };
-    setRounds(updated);
+  useEffect(() => {
+    function refresh(event: StorageEvent) {
+      if (event.storageArea === localStorage && (event.key === storageKey || event.key === null)) {
+        setRounds(loadRounds());
+      }
+    }
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+
+  function saveRound(number: number | undefined, changes: Partial<Round>) {
     try {
+      const latest = readRounds();
+      const target = number ?? Math.max(lastCalendarDay, ...Object.keys(latest).map(Number).filter(Number.isSafeInteger)) + 1;
+      // Apply only the fields this action changed so an older tab cannot erase a saved review.
+      const updated = { ...latest, [target]: { ...(latest[target] ?? emptyRound), ...changes } };
       localStorage.setItem(storageKey, JSON.stringify(updated));
+      setRounds(updated);
       setStorageError(false);
+      return target;
     } catch {
       setStorageError(true);
+      return undefined;
     }
-  };
+  }
 
   const extraRounds = Object.keys(rounds).map(Number).filter(number => Number.isSafeInteger(number) && number > lastCalendarDay);
   const homeRounds = [...pantryIds, ...extraRounds];
@@ -80,7 +101,7 @@ export default function WineAdvent() {
     if (!entry?.reveal) return [];
     const review = reviewForRound(entry);
     if (!review) return [];
-    return [{ day: number, wine: entry.reveal.wine, bottle: entry.reveal.bottle, rating: review.rating }];
+    return [{ day: number, wine: entry.reveal.wine, bottle: entry.reveal.bottle, rating: review.rating, note: review.note }];
   }).sort((a, b) => b.rating - a.rating || a.day - b.day);
 
   return (
@@ -92,7 +113,7 @@ export default function WineAdvent() {
           <h1>Wine Advent</h1>
           <p>A blind tasting game for Nate &amp; Hallie.</p>
         </header>
-        {storageError && <p role="alert">This browser couldn’t save your progress. Keep this tab open to retain it.</p>}
+        {storageError && <p role="alert">This browser couldn’t save your changes. Leave this tab open and try saving again.</p>}
         <div className="wa-layout">
           <aside>
             <section className="wa-panel" aria-labelledby="wa-calendar">
@@ -122,9 +143,8 @@ export default function WineAdvent() {
                 </ul>
               )}
               <button type="button" onClick={() => {
-                const number = (extraRounds[extraRounds.length - 1] ?? lastCalendarDay) + 1;
-                saveRound(number, { guesses: {} });
-                openRound(number);
+                const number = saveRound(undefined, { guesses: {} });
+                if (number !== undefined) openRound(number);
               }}>Add a wine round</button>
             </section>
             <section className="wa-panel">
@@ -155,6 +175,7 @@ export default function WineAdvent() {
               <button type="button" onClick={() => openRound(entry.day)}>{entry.wine}</button>
               <strong>{entry.rating.toFixed(1)} / 10</strong>
               <BottleLink wine={entry.wine} bottle={entry.bottle} isExtra={entry.day < 0 || entry.day > lastCalendarDay} />
+              {entry.note && <p className="wa-review-note">{entry.note}</p>}
             </li>
           ))}</ol> : <p>Save a review to put your first wine on the board.</p>}
         </section>
@@ -164,13 +185,13 @@ export default function WineAdvent() {
   );
 }
 
-function RoundContent({ round, day, update }: { round: Round; day: number; update: (next: Round) => void }) {
+function RoundContent({ round, day, update }: { round: Round; day: number; update: (changes: Partial<Round>) => number | undefined }) {
   const isExtra = day < 0 || day > lastCalendarDay;
   const pantryWine = pantryWines[day];
   const nextPlayer = players.find(player => !round.guesses[player]);
   if (nextPlayer) {
     return <GuessForm key={nextPlayer} player={nextPlayer} noteCount={(pantryWine?.notes ?? cardNotes[day])?.length} includePantry={isExtra}
-      lock={guess => update({ ...round, guesses: { ...round.guesses, [nextPlayer]: guess } })} />;
+      lock={guess => update({ guesses: { ...round.guesses, [nextPlayer]: guess } })} />;
   }
 
   if (!round.reveal) {
@@ -179,7 +200,6 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
       return <>
         <h3>Both guesses are locked</h3>
         <button className="wa-primary" type="button" onClick={() => update({
-          ...round,
           reveal: { wine: pantryWine.name, major, minor: minor.join(", "), bottle: `https://www.firstleaf.com/products/${pantryWine.product}` },
         })}>Reveal the wine</button>
       </>;
@@ -193,7 +213,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
         const major = reference?.[0] ?? field(data, "major");
         const minor = reference ? reference.slice(1).join(", ") : field(data, "minor");
         if (!wine || !major) return;
-        update({ ...round, reveal: { wine, major, minor, bottle: "" } });
+        update({ reveal: { wine, major, minor, bottle: "" } });
       }}>
         <h3>Both guesses are locked</h3>
         {reference ? (
@@ -234,7 +254,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
           major: data.has(`${player}-major`),
           minor: round.guesses[player]!.minor.map((_, index) => data.has(`${player}-minor-${index}`)),
         });
-        update({ ...round, matches: { Nate: readMatches("Nate"), Hallie: readMatches("Hallie") } });
+        update({ matches: { Nate: readMatches("Nate"), Hallie: readMatches("Hallie") } });
       }}>
         <h3>Score the guesses</h3>
         <p className="wa-muted">Exact matches start checked. Adjust for synonyms and give each official note credit once per player.</p>
@@ -255,7 +275,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
         {round.matches && <span className="wa-saved" role="status">Scored</span>}
       </form>
       <h3>Review together</h3>
-      <ReviewForm review={reviewForRound(round)} save={sharedReview => update({ ...round, sharedReview })} />
+      <ReviewForm review={reviewForRound(round)} save={sharedReview => update({ sharedReview })} />
       <form className="wa-bottle" onSubmit={event => {
         event.preventDefault();
         const input = event.currentTarget.elements.namedItem("bottle") as HTMLInputElement;
@@ -265,7 +285,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
           input.reportValidity();
           return;
         }
-        update({ ...round, reveal: { ...reveal, bottle } });
+        update({ reveal: { ...reveal, bottle } });
       }}>
         <BottleLink wine={reveal.wine} bottle={reveal.bottle} isExtra={isExtra} />
         <label>Full-bottle link (optional)
@@ -377,22 +397,22 @@ function BottleLink({ wine, bottle, isExtra }: { wine: string; bottle: string; i
   return <a href={direct ? bottle : search} target="_blank" rel="noreferrer">{direct ? "View full bottle" : searchLabel}</a>;
 }
 
-function ReviewForm({ review, save }: { review?: Review; save: (review: Review) => void }) {
-  const [editing, setEditing] = useState(false);
-  return <form onChange={() => setEditing(true)} onSubmit={event => {
+function ReviewForm({ review, save }: { review?: Review; save: (review: Review) => number | undefined }) {
+  const [draft, setDraft] = useState<{ rating: string; note: string }>();
+  const fields = draft ?? { rating: review?.rating.toFixed(1) ?? "", note: review?.note ?? "" };
+  return <form onSubmit={event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const rating = Number(field(data, "rating"));
     if (rating < 1 || rating > 10 || !Number.isInteger(rating * 10)) return;
-    save({ rating, note: field(data, "note") });
-    setEditing(false);
+    if (save({ rating, note: field(data, "note") }) !== undefined) setDraft(undefined);
   }}>
     <fieldset>
       <legend>Nate &amp; Hallie</legend>
-      <label>Rating (1.0–10.0)<input type="number" name="rating" min="1" max="10" step="0.1" required defaultValue={review?.rating.toFixed(1)} /></label>
-      <label>Tasting note (optional)<textarea name="note" rows={3} maxLength={2100} defaultValue={review?.note} /></label>
+      <label>Rating (1.0–10.0)<input type="number" name="rating" min="1" max="10" step="0.1" required value={fields.rating} onChange={event => setDraft({ ...fields, rating: event.currentTarget.value })} /></label>
+      <label>Tasting note (optional)<textarea name="note" rows={3} maxLength={2100} value={fields.note} onChange={event => setDraft({ ...fields, note: event.currentTarget.value })} /></label>
       <button type="submit">Save shared review</button>
-      <p className="wa-saved" role="status">{!editing && review ? `Saved ${review.rating.toFixed(1)} / 10` : ""}</p>
+      <p className="wa-saved" role="status">{!draft && review ? `Saved ${review.rating.toFixed(1)} / 10` : ""}</p>
     </fieldset>
   </form>;
 }
