@@ -1,0 +1,116 @@
+.chumani-page {
+  --portfolio-accent: #e7b789;
+}
+
+.chumani-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.chumani-page .hero {
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.chumani-page h1 {
+  font-size: clamp(38px, 7.3vw, 76px);
+}
+
+.chumani-page .eyebrow {
+  color: var(--portfolio-accent);
+  font-size: 0.875rem;
+}
+
+.portfolio-button {
+  background: var(--portfolio-accent);
+  color: #10151c;
+  border-radius: 8px;
+  font-weight: 650;
+  padding: 0 16px;
+}
+
+.chumani-feature {
+  margin: 0;
+}
+
+.chumani-feature img,
+.chumani-project img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.chumani-feature img {
+  aspect-ratio: 5 / 4;
+  border: 1px solid #39424b;
+  border-radius: 16px;
+}
+
+.chumani-feature figcaption {
+  color: #a9b7c7;
+  font-size: 0.875rem;
+  margin-top: 12px;
+}
+
+.chumani-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.chumani-project {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #151c24;
+  border: 1px solid #39424b;
+  border-radius: 12px;
+}
+
+.chumani-project img {
+  aspect-ratio: 16 / 10;
+}
+
+.chumani-project-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+.chumani-project p {
+  margin: 0 0 14px;
+}
+
+.chumani-project h3 {
+  font-size: 1.5rem;
+  margin: 0 0 6px;
+  letter-spacing: -0.025em;
+}
+
+.chumani-project .chumani-location {
+  font-size: 0.875rem;
+}
+
+.chumani-project a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: auto;
+  color: var(--portfolio-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 620px) {
+  .chumani-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chumani-page h1 {
+    font-size: clamp(36px, 10vw, 62px);
+  }
+}
