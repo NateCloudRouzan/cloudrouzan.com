@@ -14,12 +14,14 @@ type Round = {
   reveal?: Reveal;
   matches?: Record<Player, Matches>;
   sharedReview?: Review;
+  reviewWineName?: string;
   reviews?: Partial<Record<Player, Review>>;
 };
 
 const days = Array.from({ length: 24 }, (_, index) => index + 1);
 const lastCalendarDay = days.length;
 const storageKey = "cloudrouzan.wine-advent.v1";
+const pantryBottle = (product: string) => `https://www.firstleaf.com/products/${product}`;
 const emptyRound: Round = { guesses: {} };
 const normalize = (value: string) => value.trim().toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 const notes = (value: string) => value.split(",").map(note => note.trim()).filter(Boolean);
@@ -55,10 +57,12 @@ function loadRounds(): Rounds {
 }
 
 export default function WineAdvent() {
+  const reviewOnly = new URLSearchParams(window.location.search).get("mode") === "review";
   const [rounds, setRounds] = useState(loadRounds);
   const [day, setDay] = useState(() => days.find(number => !rounds[number]?.matches) ?? 1);
   const [storageError, setStorageError] = useState(false);
   const round = rounds[day] ?? emptyRound;
+  const knownWineName = round.reveal?.wine ?? pantryWines[day]?.name;
   useEffect(() => {
     function refresh(event: StorageEvent) {
       if (event.storageArea === localStorage && (event.key === storageKey || event.key === null)) {
@@ -98,33 +102,40 @@ export default function WineAdvent() {
   };
   const rankings = allRounds.flatMap(number => {
     const entry = rounds[number];
-    if (!entry?.reveal) return [];
+    if (!entry) return [];
+    const pantryWine = pantryWines[number];
+    const wine = entry.reveal?.wine ?? pantryWine?.name ?? entry.reviewWineName;
     const review = reviewForRound(entry);
-    if (!review) return [];
-    return [{ day: number, wine: entry.reveal.wine, bottle: entry.reveal.bottle, rating: review.rating, note: review.note }];
+    if (!wine || !review) return [];
+    const bottle = entry.reveal?.bottle ?? (pantryWine ? pantryBottle(pantryWine.product) : "");
+    return [{ day: number, wine, bottle, rating: review.rating, note: review.note }];
   }).sort((a, b) => b.rating - a.rating || a.day - b.day);
 
   return (
     <main className="wa">
       <div className="wa-shell">
-        <nav><a href="/">cloudrouzan.com</a><a href="#wine-rankings">Bottle rankings</a></nav>
+        <nav>
+          <a href="/">cloudrouzan.com</a>
+          <a href={reviewOnly ? "/WineAdvent/" : "/WineAdvent/?mode=review"}>{reviewOnly ? "Guessing game" : "Review only"}</a>
+          <a href="#wine-rankings">Bottle rankings</a>
+        </nav>
         <header className="wa-hero">
           <p className="wa-kicker">In Good Taste · 24 doors</p>
           <h1>Wine Advent</h1>
-          <p>A blind tasting game for Nate &amp; Hallie.</p>
+          <p>{reviewOnly ? "Wine reviews for Nate & Hallie." : "A blind tasting game for Nate & Hallie."}</p>
         </header>
         {storageError && <p role="alert">This browser couldn’t save your changes. Leave this tab open and try saving again.</p>}
         <div className="wa-layout">
           <aside>
             <section className="wa-panel" aria-labelledby="wa-calendar">
               <h2 id="wa-calendar">The calendar</h2>
-              <p className="wa-muted">{calendarPlayed} of 24 doors scored</p>
+              {!reviewOnly && <p className="wa-muted">{calendarPlayed} of 24 doors scored</p>}
               <div className="wa-days">
                 {days.map(number => (
                   <button key={number} type="button" aria-pressed={day === number}
-                    aria-label={`Door ${number}${rounds[number]?.matches ? ", scored" : rounds[number] ? ", in progress" : ""}`}
+                    aria-label={`Door ${number}${reviewOnly ? (rounds[number] && reviewForRound(rounds[number]!) ? ", reviewed" : "") : rounds[number]?.matches ? ", scored" : rounds[number] ? ", in progress" : ""}`}
                     className={rounds[number]?.matches ? "wa-scored" : ""}
-                    onClick={() => setDay(number)}>{number}</button>
+                    onClick={() => reviewOnly ? openRound(number) : setDay(number)}>{number}</button>
                 ))}
               </div>
             </section>
@@ -135,8 +146,8 @@ export default function WineAdvent() {
                   {homeRounds.map(number => (
                     <li key={number}>
                       <button type="button" aria-pressed={day === number} onClick={() => openRound(number)}>
-                        {rounds[number]?.reveal?.wine ?? extraLabel(number)}
-                        {rounds[number]?.matches && <span className="wa-muted"> · Scored</span>}
+                        {rounds[number]?.reveal?.wine ?? rounds[number]?.reviewWineName ?? extraLabel(number)}
+                        {!reviewOnly && rounds[number]?.matches && <span className="wa-muted"> · Scored</span>}
                       </button>
                     </li>
                   ))}
@@ -145,9 +156,9 @@ export default function WineAdvent() {
               <button type="button" onClick={() => {
                 const number = saveRound(undefined, { guesses: {} });
                 if (number !== undefined) openRound(number);
-              }}>Add a wine round</button>
+              }}>{reviewOnly ? "Add a wine to review" : "Add a wine round"}</button>
             </section>
-            <section className="wa-panel">
+            {!reviewOnly && <section className="wa-panel">
               <h2>Scoreboard</h2>
               <table>
                 <thead><tr><th scope="col">Player</th><th scope="col">Major</th><th scope="col">Minor</th><th scope="col">Pts</th></tr></thead>
@@ -159,12 +170,18 @@ export default function WineAdvent() {
                 })}</tbody>
               </table>
               <p className="wa-muted">Major notes earn 2 points. Each minor note earns 1.</p>
-            </section>
+            </section>}
           </aside>
           <section className="wa-panel wa-round" id="wa-round" aria-labelledby="wa-door">
             <p className="wa-kicker">{isExtra ? extraLabel(day) : `Door ${String(day).padStart(2, "0")}`}</p>
-            <h2 id="wa-door">{round.reveal?.wine ?? "The blind pour"}</h2>
-            <RoundContent key={day} round={round} day={day} update={next => saveRound(day, next)} />
+            <h2 id="wa-door">{reviewOnly ? knownWineName ?? "Review together" : round.reveal?.wine ?? "The blind pour"}</h2>
+            {reviewOnly ? (
+              <ReviewForm key={day} review={reviewForRound(round)}
+                wineName={knownWineName ? undefined : round.reviewWineName ?? ""}
+                save={(sharedReview, wineName) => saveRound(day, knownWineName ? { sharedReview } : { sharedReview, reviewWineName: wineName })} />
+            ) : (
+              <RoundContent key={day} round={round} day={day} update={next => saveRound(day, next)} />
+            )}
           </section>
         </div>
         <section className="wa-panel wa-rankings" id="wine-rankings">
@@ -200,7 +217,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
       return <>
         <h3>Both guesses are locked</h3>
         <button className="wa-primary" type="button" onClick={() => update({
-          reveal: { wine: pantryWine.name, major, minor: minor.join(", "), bottle: `https://www.firstleaf.com/products/${pantryWine.product}` },
+          reveal: { wine: pantryWine.name, major, minor: minor.join(", "), bottle: pantryBottle(pantryWine.product) },
         })}>Reveal the wine</button>
       </>;
     }
@@ -221,7 +238,7 @@ function RoundContent({ round, day, update }: { round: Round; day: number; updat
         ) : (
           <p>Check the bottle label or look up the winery’s tasting notes. Use its lead flavor as the major note and its supporting flavors as minor notes.</p>
         )}
-        <label>Wine name and vintage<input name="wine" required maxLength={140} /></label>
+        <label>Wine name and vintage<input name="wine" required maxLength={140} defaultValue={round.reviewWineName} /></label>
         {!reference && (
           <>
             <label>Official major note<input name="major" required maxLength={100} /></label>
@@ -397,18 +414,23 @@ function BottleLink({ wine, bottle, isExtra }: { wine: string; bottle: string; i
   return <a href={direct ? bottle : search} target="_blank" rel="noreferrer">{direct ? "View full bottle" : searchLabel}</a>;
 }
 
-function ReviewForm({ review, save }: { review?: Review; save: (review: Review) => number | undefined }) {
-  const [draft, setDraft] = useState<{ rating: string; note: string }>();
-  const fields = draft ?? { rating: review?.rating.toFixed(1) ?? "", note: review?.note ?? "" };
+function ReviewForm({ review, wineName, save }: { review?: Review; wineName?: string; save: (review: Review, wineName: string) => number | undefined }) {
+  const [draft, setDraft] = useState<{ rating: string; note: string; wine: string }>();
+  const fields = draft ?? { rating: review?.rating.toFixed(1) ?? "", note: review?.note ?? "", wine: wineName ?? "" };
   return <form onSubmit={event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const rating = Number(field(data, "rating"));
     if (rating < 1 || rating > 10 || !Number.isInteger(rating * 10)) return;
-    if (save({ rating, note: field(data, "note") }) !== undefined) setDraft(undefined);
+    const wine = field(data, "wine");
+    if (wineName !== undefined && !wine) return;
+    if (save({ rating, note: field(data, "note") }, wine) !== undefined) setDraft(undefined);
   }}>
     <fieldset>
       <legend>Nate &amp; Hallie</legend>
+      {wineName !== undefined && <label>Wine name and vintage
+        <input name="wine" required maxLength={140} value={fields.wine} onChange={event => setDraft({ ...fields, wine: event.currentTarget.value })} />
+      </label>}
       <label>Rating (1.0–10.0)<input type="number" name="rating" min="1" max="10" step="0.1" required value={fields.rating} onChange={event => setDraft({ ...fields, rating: event.currentTarget.value })} /></label>
       <label>Tasting note (optional)<textarea name="note" rows={3} maxLength={2100} value={fields.note} onChange={event => setDraft({ ...fields, note: event.currentTarget.value })} /></label>
       <button type="submit">Save shared review</button>
