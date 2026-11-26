@@ -95,14 +95,126 @@
   font-size: 0.875rem;
 }
 
-.chumani-project a {
-  display: inline-flex;
-  align-items: center;
+html:has(.chumani-dialog[open]) {
+  overflow: hidden;
+}
+
+.chumani-page button {
+  border: 1px solid #526171;
+  border-radius: 8px;
+  background: #1d2832;
+  color: #e9edf2;
+  cursor: pointer;
+  font: inherit;
   min-height: 44px;
+  padding: 8px 14px;
+}
+
+.chumani-page button:hover {
+  background: #2a3947;
+}
+
+.chumani-page button:focus-visible {
+  outline: 2px solid #a9cfee;
+  outline-offset: 3px;
+}
+
+.chumani-page .chumani-open-project,
+.chumani-views button[aria-pressed="true"] {
+  background: var(--portfolio-accent);
+  border-color: var(--portfolio-accent);
+  color: #10151c;
+  font-weight: 650;
+}
+
+.chumani-page .chumani-open-project:hover {
+  background: #f4caa2;
+}
+
+.chumani-open-project {
   margin-top: auto;
+}
+
+.chumani-dialog {
+  width: min(850px, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: clamp(16px, 4vw, 32px);
+  background: #151c24;
+  color: inherit;
+  border: 1px solid #526171;
+  border-radius: 16px;
+}
+
+.chumani-dialog::backdrop {
+  background: rgb(8 12 16 / 82%);
+}
+
+.chumani-dialog-header,
+.chumani-project-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.chumani-dialog h2 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  letter-spacing: -.025em;
+  margin: 4px 0;
+}
+
+.chumani-dialog-location {
+  margin: 0 0 20px;
+  color: #a9b7c7;
+}
+
+.chumani-gallery {
+  margin: 0;
+}
+
+.chumani-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #10151c;
+  border-radius: 10px;
+}
+
+.chumani-gallery figcaption {
+  margin: 8px 0 12px;
+  color: #a9b7c7;
+}
+
+.chumani-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chumani-design-note {
+  margin: 24px 0;
+  line-height: 1.6;
+}
+
+.chumani-design-note h3 {
+  margin: 0;
+}
+
+.chumani-design-note p {
+  margin: 6px 0 8px;
+}
+
+.chumani-design-note a {
   color: var(--portfolio-accent);
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.chumani-project-navigation {
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid #39424b;
 }
 
 @media (max-width: 620px) {
