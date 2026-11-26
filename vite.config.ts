@@ -15,6 +15,7 @@ export default defineConfig({
         main: "index.html",
         barbuddy: "BarBuddy/index.html",
         wineAdvent: "WineAdvent/index.html",
+        chumani: "chumani/index.html",
       },
     },
   },
